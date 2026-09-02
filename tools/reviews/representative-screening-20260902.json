@@ -1,0 +1,35 @@
+{
+  "scope": "First-pass visual anatomy screening of the twenty review-only representative candidates.",
+  "decisionBoundary": "A pass allows ecology and resource-interaction candidate generation only. It does not approve a representative image, publish an asset, or complete species-level identification.",
+  "passCriteria": ["one focal insect", "no obvious extra limbs or hybrid anatomy", "full-body silhouette readable", "the taxon's required high-level diagnostic cue is visible"],
+  "passes": [
+    "lucanus-maculifemoratus",
+    "trypoxylus-dichotomus",
+    "harmonia-axyridis",
+    "papilio-xuthus",
+    "pieris-rapae",
+    "acrida-cinerea",
+    "tenodera-sinensis",
+    "cryptotympana-atrata",
+    "halyomorpha-halys",
+    "camponotus-japonicus",
+    "apis-cerana"
+  ],
+  "holds": [
+    {"id":"protaetia-brevitarsis","reason":"Metallic flower-chafer body plan is readable, but the visual does not yet support species-level separation."},
+    {"id":"anoplophora-malasiaca","reason":"Longhorn silhouette is readable, but spot and antenna pattern need species-level reference comparison."},
+    {"id":"sasakia-charonda","reason":"Iridescent nymphalid-like pattern is plausible, but not enough for a confident species assignment."},
+    {"id":"sericinus-montela","reason":"Long-tailed swallowtail silhouette is plausible, but species-level pattern verification is pending."},
+    {"id":"anax-parthenope","reason":"Dragonfly body plan is readable, but species-level colour and appendage detail are pending."},
+    {"id":"sympetrum-depressiusculum","reason":"Red dragonfly body plan is readable, but species-level marking verification is pending."},
+    {"id":"gampsocleis-sedakovii","reason":"Bush-cricket shape is readable, but long-antenna orthopteran species separation is pending."},
+    {"id":"teleogryllus-emma","reason":"Cricket shape is readable, but species-level wing and terminal detail are pending."},
+    {"id":"hierodula-patellifera","reason":"Mantis body plan is readable, but species-level thorax and wing comparison is pending."}
+  ],
+  "derivedAssetReview": {
+    "reviewedAt": "2026-09-03",
+    "manifest": "tools/generation-tests/representative-ecology-interaction-20260902.json",
+    "result": "22 of 22 ecology or interaction candidates pass the visual anatomy screen: one readable focal subject, no obvious extra limbs or hybrid anatomy, and no cropped body.",
+    "releaseDecision": "remain review-only; do not promote to assets/insects/approved or production data until authoritative taxon comparison and representative review are complete"
+  }
+}
