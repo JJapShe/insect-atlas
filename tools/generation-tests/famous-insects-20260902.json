@@ -1,0 +1,47 @@
+{
+  "purpose": "Pre-review visual generation test for the Insect Atlas shell. These are not production species records and are not imported by the app.",
+  "createdAt": "2026-09-02",
+  "generationMethod": "OpenAI built-in image generation",
+  "releaseBoundary": "All files remain under assets/insects/review/. None are approved, representative eligible, or in the public gallery.",
+  "records": [
+    {
+      "testSubject": "사슴벌레형 성충 수컷",
+      "asset": "assets/insects/review/generation-test/stag-beetle-anatomy-test-imagegen-v1.png",
+      "anatomyChecklist": ["한 개체", "6다리", "두 더듬이", "짝을 이룬 큰턱", "딱지날개"],
+      "sourceAttribution": "OpenAI built-in image generation; no external artwork was used as an input.",
+      "licenseRecord": "Generated project review asset; do not redistribute or promote before separate rights and anatomy review.",
+      "generationPrompt": "scientific-educational; one adult male stag beetle; simple damp forest floor; full body, three-quarter dorsal view, all six legs visible, dark chestnut elytra, paired symmetrical antler-like mandibles and segmented antennae; natural-history editorial illustration; one centered insect; no text, watermark, hands, pins, collage, fantasy anatomy or background insects.",
+      "generationSeed": "service-assigned, not exposed",
+      "generationWorkflow": "Built-in image generation, visual first-pass review at high detail, copied unchanged into the review-only project path.",
+      "reviewStatus": "review hold",
+      "reviewNotes": "Large paired mandibles and full-body silhouette are readable. Species-level identity, leg count at original size, and any representative eligibility still require a separate anatomy review.",
+      "representativeEligible": false
+    },
+    {
+      "testSubject": "장수풍뎅이형 성충 수컷",
+      "asset": "assets/insects/review/generation-test/rhinoceros-beetle-horn-test-imagegen-v1.png",
+      "anatomyChecklist": ["한 개체", "6다리", "두 더듬이", "머리뿔", "앞가슴뿔", "딱지날개"],
+      "sourceAttribution": "OpenAI built-in image generation; no external artwork was used as an input.",
+      "licenseRecord": "Generated project review asset; do not redistribute or promote before separate rights and anatomy review.",
+      "generationPrompt": "scientific-educational; one adult male Asian rhinoceros beetle; simple leaf-litter forest floor; full body, three-quarter dorsal view, all six legs visible, dark mahogany-brown wing cases, tall forked head horn and shorter thoracic horn, segmented antennae; natural-history editorial illustration; one centered insect; no text, watermark, hands, pins, collage, fantasy anatomy, extra horns or background insects.",
+      "generationSeed": "service-assigned, not exposed",
+      "generationWorkflow": "Built-in image generation, visual first-pass review at high detail, copied unchanged into the review-only project path.",
+      "reviewStatus": "review hold",
+      "reviewNotes": "The two horn regions and beetle body plan are visible. Horn proportions, species-level identity, and all limb visibility need a separate anatomy review before any promotion.",
+      "representativeEligible": false
+    },
+    {
+      "testSubject": "사마귀형 성충",
+      "asset": "assets/insects/review/generation-test/praying-mantis-foreleg-test-imagegen-v1.png",
+      "anatomyChecklist": ["한 개체", "삼각형 머리", "두 더듬이", "길어진 앞가슴", "접힌 포획앞다리", "6다리", "접힌 네 날개"],
+      "sourceAttribution": "OpenAI built-in image generation; no external artwork was used as an input.",
+      "licenseRecord": "Generated project review asset; do not redistribute or promote before separate rights and anatomy review.",
+      "generationPrompt": "scientific-educational; one adult praying mantis; simple green leaf and stem at a garden edge; calm side three-quarter pose, triangular head, two long antennae, elongated prothorax, folded raptorial forelegs, four wings folded along the long abdomen, exactly six legs visible; natural-history editorial illustration; one centered insect; no text, watermark, hands, pins, prey, collage, fantasy wings, extra limbs or background insects.",
+      "generationSeed": "service-assigned, not exposed",
+      "generationWorkflow": "Built-in image generation, visual first-pass review at high detail, copied unchanged into the review-only project path.",
+      "reviewStatus": "review hold",
+      "reviewNotes": "Triangular head, folded raptorial forelegs, and long body are readable. Wing pairing, limb count, and species-level identity require separate anatomy review before any promotion.",
+      "representativeEligible": false
+    }
+  ]
+}
