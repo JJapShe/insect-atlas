@@ -31,5 +31,11 @@
     "manifest": "tools/generation-tests/representative-ecology-interaction-20260902.json",
     "result": "22 of 22 ecology or interaction candidates pass the visual anatomy screen: one readable focal subject, no obvious extra limbs or hybrid anatomy, and no cropped body.",
     "releaseDecision": "remain review-only; do not promote to assets/insects/approved or production data until authoritative taxon comparison and representative review are complete"
+  },
+  "deferredAssetReview": {
+    "reviewedAt": "2026-09-03",
+    "manifest": "tools/generation-tests/deferred-representatives-ecology-interaction-20260903.json",
+    "result": "18 of 18 ecology or interaction candidates for the held taxa pass the visual anatomy screen: a readable focal insect, no obvious extra limbs or hybrid anatomy, and no cropped body.",
+    "releaseDecision": "the original nine representative holds remain in force pending authoritative taxon comparison"
   }
 }
