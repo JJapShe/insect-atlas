@@ -27,7 +27,7 @@ PowerShell에서 아래를 실행합니다.
 - `review.html`, `review.js`: 전체 검수 후보를 확대해 통과·보류·탈락으로 표시하는 로컬 검수 화면
 - `scripts/verify.mjs`: 문법·공개 데이터·검수 자산 런타임 분리를 확인하는 기본 검증
 
-GitHub Pages 배포본은 본 도감과 `assets/insects/approved/`만 포함합니다. 검수 화면과 `assets/insects/review/` 후보는 공개 배포물에서 제외합니다.
+GitHub Pages 배포본은 본 도감과 `assets/insects/approved/` 등록본만 포함합니다. 2026-09-03 기준으로는 주인님의 지시에 따라 탈락 외 후보를 임시 등록했으며, 이후 검수에서 제거할 항목을 정리합니다. 검수 화면과 원본 `assets/insects/review/` 후보는 공개 배포물에서 제외합니다.
 
 ## 다음 작업
 

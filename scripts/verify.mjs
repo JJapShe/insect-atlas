@@ -7,14 +7,15 @@ for (const file of files) await readFile(new URL(`../${file}`, import.meta.url),
 const decisions = JSON.parse(await readFile(new URL("../tools/review-decisions/image-review-decisions-20260903.json", import.meta.url), "utf8"));
 if ((decisions.records || []).filter((record) => record.decision === "pass").length !== 3 || (decisions.records || []).filter((record) => record.decision === "reject").length !== 18) throw new Error("Published review decision counts are incomplete.");
 if (!Array.isArray(insects) || insects.length === 0) throw new Error("Production insects data must contain public information records.");
-const invalidRecord = insects.find((insect) => !insect.id || !insect.koreanName || !insect.scientificName || !insect.taxonomy?.order || !Array.isArray(insect.gallery) || (insect.gallery.length === 0 && insect.reviewStatus !== "draft") || (insect.gallery.length > 0 && insect.reviewStatus !== "image-approved"));
+const invalidRecord = insects.find((insect) => !insect.id || !insect.koreanName || !insect.scientificName || !insect.taxonomy?.order || !Array.isArray(insect.gallery) || (insect.gallery.length === 0 && insect.reviewStatus !== "draft") || (insect.gallery.length > 0 && insect.reviewStatus !== "gallery-published-pending-user-review"));
 if (invalidRecord) throw new Error(`Invalid public information record: ${invalidRecord?.id || "unknown"}`);
 const publicGalleryItems = insects.flatMap((insect) => insect.gallery || []);
-if (publicGalleryItems.length !== 3 || publicGalleryItems.some((item) => !item.src?.startsWith("assets/insects/approved/") || !item.license || !item.generationPrompt || !item.generationSeed || !item.generationWorkflow || item.reviewStatus !== "approved")) throw new Error("Public galleries must contain only fully recorded approved assets.");
+if (publicGalleryItems.length !== 85 || publicGalleryItems.some((item) => !item.src?.startsWith("assets/insects/approved/") || !item.license || !item.generationPrompt || !item.generationSeed || !item.generationWorkflow || !["approved", "published-pending-user-review"].includes(item.reviewStatus))) throw new Error("Public galleries must contain only fully recorded registered assets.");
+await Promise.all(publicGalleryItems.map((item) => readFile(new URL(`../${item.src}`, import.meta.url))));
 const app = await readFile(new URL("../app.js", import.meta.url), "utf8");
 const body = app.replace(/^import .*?;\s*/m, "");
 new vm.Script(body.replace(/export\s+/g, ""));
 const review = await readFile(new URL("../review.js", import.meta.url), "utf8");
 new vm.Script(review.replace(/export\s+/g, ""));
 if (/assets\/insects\/review/.test(app)) throw new Error("Review-only assets must not be referenced by the public app runtime.");
-console.log(`PASS: files readable, ${insects.length} public information records include ${publicGalleryItems.length} approved gallery assets, review assets are excluded from app runtime, scripts are valid`);
+console.log(`PASS: files readable, ${insects.length} public information records include ${publicGalleryItems.length} registered gallery assets, review assets are excluded from app runtime, scripts are valid`);

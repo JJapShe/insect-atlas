@@ -1,19 +1,43 @@
 // Public species information is intentionally separate from review-only image assets.
 // No gallery image is exposed here until it has passed authoritative taxonomy, rights, and image review.
 const source = Object.freeze([{ label: "국립생물자원관 국가생물종지식정보시스템", url: "https://species.nibr.go.kr/" }]);
-const approvedGallery = Object.freeze({
-  "lucanus-maculifemoratus": Object.freeze([Object.freeze({ src: "assets/insects/approved/lucanus-maculifemoratus-morphology-white-bg-imagegen-v1.png", alt: "흰 배경에서 전신 형태를 확인하는 사슴벌레", title: "사슴벌레 · 형태 정보 참고", role: "형태·정보 참고", body: "검수 통과한 흰 배경 형태 참고 이미지입니다. 생태 장면이나 대표 서식지 기록으로 해석하지 않습니다.", sourceAttribution: "OpenAI built-in image generation, local-image edit from a project review source", license: "Generated project asset; approved for Insect Atlas distribution on 2026-09-03", generationPrompt: "Replace the source background only with seamless pure white. Preserve the exact full insect body, pose, diagnostic features, framing, and anatomy.", generationSeed: "service-assigned; not exposed", generationWorkflow: "ImageGen local-image edit, 2026-09-03", reviewStatus: "approved" })]),
-  "anax-parthenope": Object.freeze([Object.freeze({ src: "assets/insects/approved/anax-parthenope-representative-imagegen-v1.png", alt: "갈대에 앉은 왕잠자리의 전신", title: "왕잠자리 · 형태 정보 참고", role: "형태·정보 참고", body: "검수 통과한 전신 형태 참고 이미지입니다. 종 식별은 현재 기록된 외형 단서와 함께 확인합니다.", sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; approved for Insect Atlas distribution on 2026-09-03", generationPrompt: "adult lesser emperor dragonfly perched on reed; large compound eyes, long segmented abdomen, two pairs transparent wings, six legs", generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, then an unchanged copy into the project approved path", reviewStatus: "approved" })]),
-  "sympetrum-depressiusculum": Object.freeze([Object.freeze({ src: "assets/insects/approved/sympetrum-depressiusculum-representative-imagegen-v1.png", alt: "갈대에 앉은 고추잠자리의 전신", title: "고추잠자리 · 형태 정보 참고", role: "형태·정보 참고", body: "검수 통과한 전신 형태 참고 이미지입니다. 종 식별은 현재 기록된 외형 단서와 함께 확인합니다.", sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; approved for Insect Atlas distribution on 2026-09-03", generationPrompt: "adult red dragonfly perched on reed; red segmented abdomen, large compound eyes, two pairs transparent wings, six legs", generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, then an unchanged copy into the project approved path", reviewStatus: "approved" })]),
+const primaryIds = Object.freeze(["lucanus-maculifemoratus", "trypoxylus-dichotomus", "harmonia-axyridis", "protaetia-brevitarsis", "anoplophora-malasiaca", "papilio-xuthus", "pieris-rapae", "sasakia-charonda", "sericinus-montela", "anax-parthenope", "sympetrum-depressiusculum", "acrida-cinerea", "gampsocleis-sedakovii", "teleogryllus-emma", "tenodera-sinensis", "hierodula-patellifera", "cryptotympana-atrata", "halyomorpha-halys", "camponotus-japonicus", "apis-cerana"]);
+const detailIds = Object.freeze(["dorcus-titanus-castanicolor", "dorcus-hopei-binodulosus", "pyrocoelia-rufa", "luciola-lateralis", "orthetrum-albistylum", "rhyothemis-fuliginosa", "anotogaster-sieboldi", "calopteryx-japonica", "calopteryx-atrata", "bombus-ignitus"]);
+const roleDetails = Object.freeze({
+  ecology: Object.freeze({ label: "생태 관찰", body: "서식 환경에서의 관찰 후보입니다. 최종 정리 전 검수 대기 이미지입니다.", prompt: "scientific-educational natural-history ecology illustration; full insect body and diagnostic features readable in its Korean habitat; no labels, logos, watermark, deformed anatomy, or cropped body" }),
+  interaction: Object.freeze({ label: "상호작용 관찰", body: "먹이·식물·수변 등 환경과의 상호작용을 보여 주는 후보입니다. 최종 정리 전 검수 대기 이미지입니다.", prompt: "scientific-educational natural-history interaction illustration; safe non-graphic ecological context; full insect anatomy readable; no labels, logos, watermark, deformed anatomy, or cropped body" }),
+  morphology: Object.freeze({ label: "형태·정보 참고", body: "형태와 정보 확인을 위한 참고 이미지입니다. 생태 장면이나 대표 서식지 기록으로 해석하지 않습니다.", prompt: "full insect body, diagnostic features and readable anatomy; white or quiet information background; no labels, logos, watermark, deformed anatomy, or cropped body" }),
+  individual: Object.freeze({ label: "형태·정보 참고", body: "검수 통과한 전신 형태 참고 이미지입니다. 종 식별은 현재 기록된 외형 단서와 함께 확인합니다.", prompt: "one centered adult insect; full body entirely in frame; quiet Korean habitat background; no text, labels, logos, watermark, hands, specimen pins, collage, extra limbs, deformed anatomy, hybrid species, cropped body, or background insects" }),
+  "anatomy-test": Object.freeze({ label: "생성 형태 테스트", body: "형태 단서 확인을 위한 생성 테스트입니다. 최종 정리 전 검수 대기 이미지입니다.", prompt: "scientific educational morphology test; complete anatomy and diagnostic features visible; no labels, logos, watermark, extra limbs, or malformed body parts" }),
 });
+const specialPaths = Object.freeze({
+  "lucanus-maculifemoratus:morphology": "assets/insects/approved/lucanus-maculifemoratus-morphology-white-bg-imagegen-v1.png",
+  "anax-parthenope:individual": "assets/insects/approved/anax-parthenope-representative-imagegen-v1.png",
+  "sympetrum-depressiusculum:individual": "assets/insects/approved/sympetrum-depressiusculum-representative-imagegen-v1.png",
+});
+const explicitlyPassed = new Set(["lucanus-maculifemoratus:morphology", "anax-parthenope:individual", "sympetrum-depressiusculum:individual"]);
+const galleryItem = (id, kind) => {
+  const details = roleDetails[kind]; const key = `${id}:${kind}`;
+  return Object.freeze({
+    src: specialPaths[key] || `assets/insects/approved/${id}-${kind}-imagegen-v1.png`, alt: "", role: details.label, body: details.body,
+    sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-03", generationPrompt: details.prompt,
+    generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, then an unchanged copy into the project approved path", reviewStatus: explicitlyPassed.has(key) ? "approved" : "published-pending-user-review",
+  });
+};
+const supplementalKinds = Object.freeze({
+  "lucanus-maculifemoratus": ["anatomy-test"], "trypoxylus-dichotomus": ["anatomy-test"], "tenodera-sinensis": ["anatomy-test"], "anax-parthenope": ["individual"], "sympetrum-depressiusculum": ["individual"],
+});
+const galleryById = Object.freeze(Object.fromEntries([...primaryIds, ...detailIds].map((id) => [id, Object.freeze([
+  galleryItem(id, "ecology"), galleryItem(id, "interaction"), ...(primaryIds.includes(id) ? [galleryItem(id, "morphology")] : []), ...((supplementalKinds[id] || []).map((kind) => galleryItem(id, kind))),
+])])));
 const record = (id, koreanName, scientificName, order, family, habitat, diet, cues, familiarityLevel = 2, options = {}) => Object.freeze({
   id, koreanName, scientificName, taxonomy: { order, family }, appearancePeriod: { label: "현생 · 출현 시기 확인 중", kind: "modern" },
   habitat, diet, size: { label: "크기 확인 중", millimeters: null }, familiarityLevel, keyAppearanceCues: cues,
-  gallery: options.gallery || [], sources: source, licenseStatus: options.licenseStatus || "이미지 미배정", reviewStatus: options.reviewStatus || "draft", access: "free",
+  gallery: options.gallery || galleryById[id] || [], sources: source, licenseStatus: options.licenseStatus || (galleryById[id]?.length ? "등록 이미지 검수 대기" : "이미지 미배정"), reviewStatus: options.reviewStatus || (galleryById[id]?.length ? "gallery-published-pending-user-review" : "draft"), access: "free",
 });
 
 export const insects = Object.freeze([
-  record("lucanus-maculifemoratus", "사슴벌레", "Lucanus maculifemoratus", "딱정벌레목", "사슴벌레과", ["활엽수림", "수액원"], "식물", ["짝 큰턱", "딱지날개", "6다리"], 4, { gallery: approvedGallery["lucanus-maculifemoratus"], licenseStatus: "검수 통과 이미지 1장", reviewStatus: "image-approved" }),
+  record("lucanus-maculifemoratus", "사슴벌레", "Lucanus maculifemoratus", "딱정벌레목", "사슴벌레과", ["활엽수림", "수액원"], "식물", ["짝 큰턱", "딱지날개", "6다리"], 4),
   record("trypoxylus-dichotomus", "장수풍뎅이", "Trypoxylus dichotomus", "딱정벌레목", "풍뎅이과", ["활엽수림", "수액원"], "식물", ["머리뿔", "앞가슴뿔", "딱지날개"], 4),
   record("harmonia-axyridis", "무당벌레", "Harmonia axyridis", "딱정벌레목", "무당벌레과", ["초지", "정원"], "다른 동물", ["둥근 딱지날개", "검은 점무늬", "6다리"], 4),
   record("protaetia-brevitarsis", "꽃무지", "Protaetia brevitarsis", "딱정벌레목", "풍뎅이과", ["초지", "꽃밭"], "식물", ["금속성 녹색 몸", "타원형 딱지날개", "6다리"], 3),
@@ -22,8 +46,8 @@ export const insects = Object.freeze([
   record("pieris-rapae", "배추흰나비", "Pieris rapae", "나비목", "흰나비과", ["밭", "초지"], "식물", ["흰 날개", "검은 날개끝", "6다리"], 4),
   record("sasakia-charonda", "왕오색나비", "Sasakia charonda", "나비목", "네발나비과", ["활엽수림", "숲 가장자리"], "식물", ["청자색 광택", "날개 띠무늬", "6다리"], 3),
   record("sericinus-montela", "꼬리명주나비", "Sericinus montela", "나비목", "호랑나비과", ["강변", "숲 가장자리"], "식물", ["긴 뒷날개 꼬리", "검정·붉은 무늬", "6다리"], 3),
-  record("anax-parthenope", "왕잠자리", "Anax parthenope", "잠자리목", "왕잠자리과", ["연못", "습지"], "다른 동물", ["큰 겹눈", "긴 배", "두 쌍의 날개"], 3, { gallery: approvedGallery["anax-parthenope"], licenseStatus: "검수 통과 이미지 1장", reviewStatus: "image-approved" }),
-  record("sympetrum-depressiusculum", "고추잠자리", "Sympetrum depressiusculum", "잠자리목", "잠자리과", ["습지", "논 주변"], "다른 동물", ["붉은 배", "겹눈", "두 쌍의 날개"], 4, { gallery: approvedGallery["sympetrum-depressiusculum"], licenseStatus: "검수 통과 이미지 1장", reviewStatus: "image-approved" }),
+  record("anax-parthenope", "왕잠자리", "Anax parthenope", "잠자리목", "왕잠자리과", ["연못", "습지"], "다른 동물", ["큰 겹눈", "긴 배", "두 쌍의 날개"], 3),
+  record("sympetrum-depressiusculum", "고추잠자리", "Sympetrum depressiusculum", "잠자리목", "잠자리과", ["습지", "논 주변"], "다른 동물", ["붉은 배", "겹눈", "두 쌍의 날개"], 4),
   record("acrida-cinerea", "방아깨비", "Acrida cinerea", "메뚜기목", "메뚜기과", ["초지", "논둑"], "식물", ["기울어진 얼굴", "긴 뒷다리", "6다리"], 3),
   record("gampsocleis-sedakovii", "여치", "Gampsocleis sedakovii", "메뚜기목", "여치과", ["초지", "관목"], "여러 가지", ["긴 더듬이", "접힌 앞날개", "긴 뒷다리"], 3),
   record("teleogryllus-emma", "귀뚜라미", "Teleogryllus emma", "메뚜기목", "귀뚜라미과", ["밭 가장자리", "낙엽층"], "여러 가지", ["아주 긴 더듬이", "접힌 앞날개", "긴 뒷다리"], 3),
