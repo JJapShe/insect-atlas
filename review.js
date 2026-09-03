@@ -5,6 +5,7 @@ const manifestUrls = [
   "tools/generation-tests/representative-ecology-interaction-20260902.json",
   "tools/generation-tests/deferred-representatives-ecology-interaction-20260903.json",
   "tools/generation-tests/detail-ecology-interaction-20260903.json",
+  "tools/generation-tests/world-favorites-20260903.json",
 ];
 const decisionManifestUrl = "tools/review-decisions/image-review-decisions-20260903.json";
 const koreanNames = new Map();

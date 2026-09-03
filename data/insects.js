@@ -30,11 +30,27 @@ const supplementalKinds = Object.freeze({
 const galleryById = Object.freeze(Object.fromEntries([...primaryIds, ...detailIds].map((id) => [id, Object.freeze([
   galleryItem(id, "ecology"), galleryItem(id, "interaction"), ...(primaryIds.includes(id) ? [galleryItem(id, "morphology")] : []), ...((supplementalKinds[id] || []).map((kind) => galleryItem(id, kind))),
 ])])));
-const record = (id, koreanName, scientificName, order, family, habitat, diet, cues, familiarityLevel = 2, options = {}) => Object.freeze({
-  id, koreanName, scientificName, taxonomy: { order, family }, appearancePeriod: { label: "현생 · 출현 시기 확인 중", kind: "modern" },
-  habitat, diet, size: { label: "크기 확인 중", millimeters: null }, familiarityLevel, keyAppearanceCues: cues,
-  gallery: options.gallery || galleryById[id] || [], sources: source, licenseStatus: options.licenseStatus || (galleryById[id]?.length ? "등록 이미지 검수 대기" : "이미지 미배정"), reviewStatus: options.reviewStatus || (galleryById[id]?.length ? "gallery-published-pending-user-review" : "draft"), access: "free",
+const worldGalleryItem = (id, prompt, body) => Object.freeze({
+  src: `assets/insects/approved/${id}-ecology-imagegen-v1.png`, alt: "", role: "생태 관찰", body,
+  sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-03", generationPrompt: prompt,
+  generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, then an unchanged copy into review and registered-gallery paths", reviewStatus: "published-pending-user-review",
 });
+const worldGallery = Object.freeze({
+  "dynastes-hercules": Object.freeze([worldGalleryItem("dynastes-hercules", "adult male Hercules beetle with an extremely long forked head horn, shorter thoracic horn, olive-brown marked elytra, six legs, on a humid tropical rainforest log", "열대우림의 썩은 나무 주변에서 형태를 관찰하는 헤라클레스장수풍뎅이입니다.")]),
+  "hymenopus-coronatus": Object.freeze([worldGalleryItem("hymenopus-coronatus", "adult orchid mantis with pale pink-white petal-like leg lobes, triangular head, raptorial forelegs and six legs among orchid blossoms", "난초 꽃 사이에서 꽃잎과 비슷한 몸빛과 다리를 관찰하는 난초사마귀입니다.")]),
+  "scarabaeus-sacer": Object.freeze([worldGalleryItem("scarabaeus-sacer", "sacred scarab dung beetle rolling one rounded dung ball backwards with hind legs, shovel-like toothed forelegs and six legs on warm savanna ground", "뒷다리로 공을 굴리는 행동과 넓은 앞다리를 관찰하는 쇠똥구리입니다.")]),
+  "goliathus-goliatus": Object.freeze([worldGalleryItem("goliathus-goliatus", "adult Goliath beetle with a stout scarabaeid body, bold black-and-white elytral pattern, small male head horn and six legs on a tropical African tree trunk", "굵은 몸과 검정·흰색 무늬를 관찰하는 골리앗꽃무지입니다.")]),
+  "attacus-atlas": Object.freeze([worldGalleryItem("attacus-atlas", "adult Atlas moth with fully spread rust-brown wings, cream and maroon patterns, transparent wing windows and snake-head-like forewing tips on a tropical leaf", "넓은 날개와 뱀 머리를 닮은 앞날개 끝무늬를 관찰하는 아틀라스나방입니다.")]),
+  "phyllium-philippinicum": Object.freeze([worldGalleryItem("phyllium-philippinicum", "Philippine leaf insect with a flattened green leaf-like body, leaf-vein pattern, broad leaf-like legs and complete six-leg anatomy on a tropical shrub", "잎맥과 닮은 몸과 다리로 위장한 필리핀잎벌레입니다.")]),
+});
+const record = (id, koreanName, scientificName, order, family, habitat, diet, cues, familiarityLevel = 2, options = {}) => {
+  const gallery = options.gallery || galleryById[id] || [];
+  return Object.freeze({
+    id, koreanName, scientificName, taxonomy: { order, family }, appearancePeriod: { label: "현생 · 출현 시기 확인 중", kind: "modern" },
+    habitat, diet, size: { label: "크기 확인 중", millimeters: null }, familiarityLevel, keyAppearanceCues: cues,
+    gallery, sources: options.sources || source, licenseStatus: options.licenseStatus || (gallery.length ? "등록 이미지 검수 대기" : "이미지 미배정"), reviewStatus: options.reviewStatus || (gallery.length ? "gallery-published-pending-user-review" : "draft"), access: "free",
+  });
+};
 
 export const insects = Object.freeze([
   record("lucanus-maculifemoratus", "사슴벌레", "Lucanus maculifemoratus", "딱정벌레목", "사슴벌레과", ["활엽수림", "수액원"], "식물", ["짝 큰턱", "딱지날개", "6다리"], 4),
@@ -67,4 +83,10 @@ export const insects = Object.freeze([
   record("calopteryx-japonica", "물잠자리", "Calopteryx japonica", "잠자리목", "물잠자리과", ["맑은 하천", "수변 식생"], "다른 동물", ["금속광택 몸", "접어 세운 날개", "긴 배"], 3),
   record("calopteryx-atrata", "검은물잠자리", "Calopteryx atrata", "잠자리목", "물잠자리과", ["숲 계류", "수변 식생"], "다른 동물", ["검은 날개", "접어 세운 날개", "긴 배"], 3),
   record("bombus-ignitus", "호박벌", "Bombus (Bombus) ignitus", "벌목", "꿀벌과", ["초지", "산지 초원"], "식물", ["검정·노란 털", "꽃가루 바구니", "두 쌍의 날개"], 3),
+  record("dynastes-hercules", "헤라클레스장수풍뎅이", "Dynastes hercules", "딱정벌레목", "풍뎅이과", ["중남미 열대우림", "썩은 나무"], "식물", ["매우 긴 머리뿔", "짧은 앞가슴뿔", "큰 딱지날개"], 4, { gallery: worldGallery["dynastes-hercules"], sources: Object.freeze([{ label: "GBIF Backbone Taxonomy · Dynastes hercules", url: "https://www.gbif.org/taxon/6DPX9" }]) }),
+  record("hymenopus-coronatus", "난초사마귀", "Hymenopus coronatus", "사마귀목", "난초사마귀과", ["동남아시아 열대림", "난초 주변"], "다른 동물", ["꽃잎 같은 다리", "삼각형 머리", "포획앞다리"], 4, { gallery: worldGallery["hymenopus-coronatus"], sources: Object.freeze([{ label: "GBIF Backbone Taxonomy · Hymenopus coronatus", url: "https://www.gbif.org/species/1406471" }]) }),
+  record("scarabaeus-sacer", "성스러운 쇠똥구리", "Scarabaeus sacer", "딱정벌레목", "풍뎅이과", ["사바나", "건조 초지"], "여러 가지", ["둥근 검은 몸", "넓은 앞다리", "공 굴리기"], 4, { gallery: worldGallery["scarabaeus-sacer"], sources: Object.freeze([{ label: "GBIF Backbone Taxonomy · Scarabaeus sacer", url: "https://www.gbif.org/taxon/4V2G9" }]) }),
+  record("goliathus-goliatus", "골리앗꽃무지", "Goliathus goliatus", "딱정벌레목", "풍뎅이과", ["열대 아프리카 숲", "나무줄기"], "식물", ["아주 큰 몸", "검정·흰색 무늬", "딱지날개"], 4, { gallery: worldGallery["goliathus-goliatus"], sources: Object.freeze([{ label: "GBIF Backbone Taxonomy · Goliathus goliatus", url: "https://www.gbif.org/species/1076779" }]) }),
+  record("attacus-atlas", "아틀라스나방", "Attacus atlas", "나비목", "왕잠자리나방과", ["동남아시아 열대림", "큰 잎"], "식물", ["매우 넓은 날개", "투명한 날개창", "뱀 머리 같은 날개끝"], 4, { gallery: worldGallery["attacus-atlas"], sources: Object.freeze([{ label: "GBIF Backbone Taxonomy · Attacus atlas", url: "https://www.gbif.org/taxon/JMDM" }]) }),
+  record("phyllium-philippinicum", "필리핀잎벌레", "Phyllium philippinicum", "대벌레목", "잎대벌레과", ["필리핀 열대림", "관목"], "식물", ["잎맥 무늬", "넓은 잎 모양 다리", "나뭇잎 위장"], 4, { gallery: worldGallery["phyllium-philippinicum"], sources: Object.freeze([{ label: "GBIF Catalogue of Life · Phyllium philippinicum", url: "https://www.gbif.org/taxon/VGCRL" }]) }),
 ]);
