@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-09-03",
+  "workflow": "OpenAI built-in image generation; pose-diversity replacement, with prior public candidates retained in review storage",
+  "records": [
+    {"id":"harmonia-axyridis","koreanName":"무당벌레","role":"interaction","asset":"assets/insects/review/pose-diversity-20260903/harmonia-axyridis-interaction-2-pose-v3-imagegen-v1.png","generationPrompt":"single beetle taking off with elytra open","reviewStatus":"published-pending-user-review"},
+    {"id":"papilio-xuthus","koreanName":"호랑나비","role":"interaction","asset":"assets/insects/review/pose-diversity-20260903/papilio-xuthus-interaction-pose-v2-imagegen-v1.png","generationPrompt":"nectar feeding with wings folded closed","reviewStatus":"published-pending-user-review"},
+    {"id":"pieris-rapae","koreanName":"배추흰나비","role":"interaction","asset":"assets/insects/review/pose-diversity-20260903/pieris-rapae-interaction-pose-v2-imagegen-v1.png","generationPrompt":"under-leaf resting with folded wings","reviewStatus":"published-pending-user-review"},
+    {"id":"acrida-cinerea","koreanName":"메뚜기","role":"ecology","asset":"assets/insects/review/pose-diversity-20260903/acrida-cinerea-ecology-pose-v2-imagegen-v1.png","generationPrompt":"mid-leap between grass stems","reviewStatus":"published-pending-user-review"},
+    {"id":"tenodera-sinensis","koreanName":"왕사마귀","role":"ecology","asset":"assets/insects/review/pose-diversity-20260903/tenodera-sinensis-ecology-pose-v2-imagegen-v1.png","generationPrompt":"front hunting pose holding intact moth","reviewStatus":"published-pending-user-review"},
+    {"id":"gampsocleis-sedakovii","koreanName":"여치","role":"ecology","asset":"assets/insects/review/pose-diversity-20260903/gampsocleis-sedakovii-ecology-pose-v2-imagegen-v1.png","generationPrompt":"dusk calling posture with lifted forewings","reviewStatus":"published-pending-user-review"},
+    {"id":"teleogryllus-emma","koreanName":"귀뚜라미","role":"interaction","asset":"assets/insects/review/pose-diversity-20260903/teleogryllus-emma-interaction-2-pose-v2-imagegen-v1.png","generationPrompt":"calling at earthen crevice entrance","reviewStatus":"published-pending-user-review"},
+    {"id":"anoplophora-malasiaca","koreanName":"알락하늘소","role":"interaction","asset":"assets/insects/review/pose-diversity-20260903/anoplophora-malasiaca-interaction-2-pose-v2-imagegen-v1.png","generationPrompt":"short flight before landing","reviewStatus":"published-pending-user-review"},
+    {"id":"apis-cerana","koreanName":"동양종꿀벌","role":"interaction","asset":"assets/insects/review/pose-diversity-20260903/apis-cerana-interaction-2-pose-v2-imagegen-v1.png","generationPrompt":"returning to hive with pollen","reviewStatus":"published-pending-user-review"},
+    {"id":"orthetrum-albistylum","koreanName":"흰꼬리좀잠자리","role":"interaction","asset":"assets/insects/review/pose-diversity-20260903/orthetrum-albistylum-interaction-2-pose-v2-imagegen-v1.png","generationPrompt":"head-on flight with intact mosquito","reviewStatus":"published-pending-user-review"},
+    {"id":"calopteryx-atrata","koreanName":"물잠자리","role":"interaction","asset":"assets/insects/review/pose-diversity-20260903/calopteryx-atrata-interaction-2-pose-v2-imagegen-v1.png","generationPrompt":"front three-quarter stream flight","reviewStatus":"published-pending-user-review"},
+    {"id":"harmonia-axyridis","koreanName":"무당벌레","role":"interaction","asset":"assets/insects/review/pose-diversity-20260903/rejected/harmonia-axyridis-interaction-2-pose-v2-imagegen-v1.png","generationPrompt":"prior takeoff candidate with multiple beetles","reviewStatus":"rejected composition candidate"}
+  ]
+}

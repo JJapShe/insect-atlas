@@ -8,6 +8,7 @@ const manifestUrls = [
   "tools/generation-tests/world-favorites-20260903.json",
   "tools/generation-tests/gallery-expansion-20260903.json",
   "tools/generation-tests/identity-consistency-20260903.json",
+  "tools/generation-tests/pose-diversity-20260903.json",
 ];
 const decisionManifestUrl = "tools/review-decisions/image-review-decisions-20260903.json";
 const koreanNames = new Map();
