@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Insect Atlas · 검수</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background:#101612; color:#eff7ec; }
+    body { margin:0; padding:24px; } h1 { margin:0 0 8px; } p { color:#b8c7b6; }
+    .note { border:1px solid #40523d; padding:12px 14px; border-radius:10px; background:#182019; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin-top:20px; }
+    article { border:1px solid #334331; border-radius:12px; overflow:hidden; background:#161d17; }
+    img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; background:#0a0f0b; }
+    .copy { padding:12px; } h2 { margin:0 0 4px; font-size:1rem; } small { color:#b8c7b6; }
+    .tag { color:#b8e5a8; font-size:.78rem; } a { color:#b8e5a8; }
+  </style>
+</head>
+<body>
+  <h1>Insect Atlas · 검수 전용</h1>
+  <p>세부 분류 10종의 생태·상호작용 후보. 이 화면의 이미지는 모두 승인 전 검수 자산입니다.</p>
+  <div class="note">기본 형태 검수 통과: 전신·날개·다리 가독성 확인. 종 수준 동정은 국립생물자원관 등 권위 자료 대조 전까지 초안입니다. 경쟁·포획 장면은 유혈·신체 변형 없는 설명용 행동 후보입니다.</div>
+  <div class="grid" id="grid"></div>
+  <p><a href="tools/reviews/representative-screening-20260902.json">검수 판정 JSON</a> · <a href="tools/reviews/interaction-content-policy-20260903.json">상호작용 표현 기준 JSON</a></p>
+  <script>
+    const species = [
+      ['넓적사슴벌레','dorcus-titanus-castanicolor'],['왕사슴벌레','dorcus-hopei-binodulosus'],['늦반딧불이','pyrocoelia-rufa'],['애반딧불이','luciola-lateralis'],['밀잠자리','orthetrum-albistylum'],
+      ['나비잠자리','rhyothemis-fuliginosa'],['장수잠자리','anotogaster-sieboldi'],['물잠자리','calopteryx-japonica'],['검은물잠자리','calopteryx-atrata'],['호박벌','bombus-ignitus']
+    ];
+    const grid = document.querySelector('#grid');
+    for (const [name, id] of species) {
+      for (const [role, folder, suffix] of [['생태','detail-ecology-seed-20260903','ecology'],['상호작용','detail-interaction-seed-20260903','interaction']]) {
+        const article = document.createElement('article');
+        article.innerHTML = `<img alt="${name} ${role} 검수 후보" src="assets/insects/review/${folder}/${id}-${suffix}-imagegen-v1.png"><div class="copy"><h2>${name}</h2><small class="tag">${role} · review only</small></div>`;
+        grid.append(article);
+      }
+    }
+  </script>
+</body>
+</html>
