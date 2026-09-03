@@ -1,0 +1,24 @@
+{
+  "createdAt": "2026-09-03",
+  "scope": "Draft ecology-first detail-taxon queue following the first twenty representative candidates.",
+  "classificationPolicy": "Korean name and scientific name are draft working labels. Before release, compare against the current authoritative National Institute of Biological Resources taxon record and retain its cited record URL.",
+  "visualPolicy": "Create an ecology image first. Generate an interaction image only after the ecology candidate passes basic anatomy screening. Create a white-background morphology reference only when it supports identification or information.",
+  "authoritativeStartingPoints": [
+    {"organization":"국립생물자원관","title":"곤충이야기: 딱정벌레","url":"https://species.nibr.go.kr/kiiks/social/beetle.do"},
+    {"organization":"국립생물자원관","title":"곤충이야기: 잠자리","url":"https://species.nibr.go.kr/kiiks/social/dragonfly.do"},
+    {"organization":"국립생물자원관","title":"생물표본정보: 호박벌 검색 결과","url":"https://species.nibr.go.kr/wildspecimens/biologi-smpl-loan?schStep=ktsn&schWord=120000027392"}
+  ],
+  "candidates": [
+    {"id":"dorcus-titanus-castanicolor","koreanName":"넓적사슴벌레","scientificName":"Dorcus titanus castanicolor","group":"딱정벌레목 · 사슴벌레과","sourceKey":"곤충이야기: 딱정벌레","ecologyBrief":"수액이 나는 참나무 줄기에 붙어 먹이활동하는 성충, 야간 숲 환경.","reviewStatus":"taxonomy draft"},
+    {"id":"dorcus-hopei-binodulosus","koreanName":"왕사슴벌레","scientificName":"Dorcus hopei binodulosus","group":"딱정벌레목 · 사슴벌레과","sourceKey":"곤충이야기: 딱정벌레","ecologyBrief":"활엽수림의 수액원 주변에서 휴식·먹이활동하는 성충, 저녁 자연광.","reviewStatus":"taxonomy draft"},
+    {"id":"pyrocoelia-rufa","koreanName":"늦반딧불이","scientificName":"Pyrocoelia rufa","group":"딱정벌레목 · 반딧불이과","sourceKey":"곤충이야기: 딱정벌레","ecologyBrief":"초여름 습한 숲 가장자리의 야간 발광 장면, 한 개체에 초점.","reviewStatus":"taxonomy draft"},
+    {"id":"luciola-lateralis","koreanName":"애반딧불이","scientificName":"Luciola lateralis","group":"딱정벌레목 · 반딧불이과","sourceKey":"곤충이야기: 딱정벌레","ecologyBrief":"논·수로 가장자리의 저녁 비행 장면, 물가 식생과 한 개체에 초점.","reviewStatus":"taxonomy draft"},
+    {"id":"orthetrum-albistylum","koreanName":"밀잠자리","scientificName":"Orthetrum albistylum","group":"잠자리목 · 잠자리과","sourceKey":"곤충이야기: 잠자리","ecologyBrief":"연못 가장자리의 낮은 풀이나 줄기에 앉은 성충, 수변 서식지 맥락.","reviewStatus":"taxonomy draft"},
+    {"id":"rhyothemis-fuliginosa","koreanName":"나비잠자리","scientificName":"Rhyothemis fuliginosa","group":"잠자리목 · 잠자리과","sourceKey":"곤충이야기: 잠자리","ecologyBrief":"잔잔한 습지 위를 비행하거나 수생식물에 앉은 성충, 날개 무늬가 읽히는 구도.","reviewStatus":"taxonomy draft"},
+    {"id":"anotogaster-sieboldi","koreanName":"장수잠자리","scientificName":"Anotogaster sieboldi","group":"잠자리목 · 왕잠자리과","sourceKey":"곤충이야기: 잠자리","ecologyBrief":"그늘진 산지 계류 주변의 성충, 넓은 날개와 튼튼한 체형이 보이는 장면.","reviewStatus":"taxonomy draft"},
+    {"id":"calopteryx-japonica","koreanName":"물잠자리","scientificName":"Calopteryx japonica","group":"잠자리목 · 물잠자리과","sourceKey":"곤충이야기: 잠자리","ecologyBrief":"맑은 하천 가장자리 식물에 앉은 성충, 금속광택 몸과 날개가 읽히는 장면.","reviewStatus":"taxonomy draft"},
+    {"id":"calopteryx-atrata","koreanName":"검은물잠자리","scientificName":"Calopteryx atrata","group":"잠자리목 · 물잠자리과","sourceKey":"곤충이야기: 잠자리","ecologyBrief":"숲 계류 주변의 줄기에 앉은 성충, 어두운 날개와 자세가 읽히는 장면.","reviewStatus":"taxonomy draft"},
+    {"id":"bombus-ignitus","koreanName":"호박벌","scientificName":"Bombus (Bombus) ignitus","group":"벌목 · 꿀벌과","sourceKey":"생물표본정보: 호박벌 검색 결과","ecologyBrief":"국내 자생 초본 꽃에서 채밀하는 성충 한 개체, 꽃가루와 다리 구조가 보이는 장면.","reviewStatus":"taxonomy draft"}
+  ],
+  "releaseBoundary": "No candidate in this file is an approved taxonomy, production record, or representative image. Keep all generated material under assets/insects/review until authoritative comparison and morphology review complete."
+}

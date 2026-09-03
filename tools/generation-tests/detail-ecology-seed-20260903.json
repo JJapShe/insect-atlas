@@ -1,0 +1,23 @@
+{
+  "createdAt": "2026-09-03",
+  "scope": "First five ecology-first review candidates from domestic-detail-seed-20260903.",
+  "taxonomyManifest": "tools/taxonomy-plans/domestic-detail-seed-20260903.json",
+  "roleBoundary": "Ecology candidate only. It is neither a representative image nor an authoritative species identification.",
+  "sharedFields": {
+    "source": "OpenAI built-in image generation",
+    "license": "Generated project review asset; retain provenance record before any release",
+    "seed": "service-assigned; not exposed",
+    "workflow": "ImageGen generation, 2026-09-03",
+    "reviewStatus": "basic anatomy screen passed; taxonomy draft",
+    "representativeEligible": false,
+    "usageBoundary": "Review-only. Do not promote to assets/insects/approved or production data until authoritative taxon comparison and final morphology review complete."
+  },
+  "records": [
+    {"id":"dorcus-titanus-castanicolor","asset":"assets/insects/review/detail-ecology-seed-20260903/dorcus-titanus-castanicolor-ecology-imagegen-v1.png","scene":"One male stag beetle feeding at oak sap in a Korean decididuous forest at dusk.","prompt":"Morphology-aware realistic wildlife macro; one complete adult male broad-toothed stag beetle on a fresh oak sap run, complete six legs, antennae and mandibles visible; natural blue-hour forest; no extra insects, labels, text, watermark, hybrids, crop, or white background."},
+    {"id":"dorcus-hopei-binodulosus","asset":"assets/insects/review/detail-ecology-seed-20260903/dorcus-hopei-binodulosus-ecology-imagegen-v1.png","scene":"One male stag beetle at a sap run on an old broadleaf tree in evening forest.","prompt":"Morphology-aware realistic wildlife macro; one complete adult male giant stag beetle, robust dark body, six legs, antennae and forked mandibles readable; natural sap tree scene; no extra insects, labels, text, watermark, hybrids, crop, or white background."},
+    {"id":"pyrocoelia-rufa","asset":"assets/insects/review/detail-ecology-seed-20260903/pyrocoelia-rufa-ecology-imagegen-v1.png","scene":"One glowing adult firefly on a damp leaf in humid Korean woodland at night.","prompt":"Realistic night wildlife macro; one complete adult firefly, six legs and antennae readable, restrained amber abdominal glow, wet woodland understory; no extra insects, labels, text, watermark, hybrids, crop, fantasy light trails, or white background."},
+    {"id":"luciola-lateralis","asset":"assets/insects/review/detail-ecology-seed-20260903/luciola-lateralis-ecology-imagegen-v1.png","scene":"One adult firefly in flight beside a Korean rice-paddy irrigation channel at blue hour.","prompt":"Realistic wildlife photograph; exactly one complete adult aquatic firefly with small yellow-green abdomen glow in natural evening flight above paddy-edge vegetation; no extra insects, labels, text, watermark, hybrids, crop, exaggerated light trails, or white background."},
+    {"id":"orthetrum-albistylum","asset":"assets/insects/review/detail-ecology-seed-20260903/orthetrum-albistylum-ecology-imagegen-v1.png","scene":"One adult dragonfly perched on a reed at the shallow margin of a Korean pond.","prompt":"Morphology-aware realistic wildlife macro; one full adult dragonfly, four transparent wings, six legs gripping a reed, eyes and segmented abdomen readable; natural pond and reeds; no extra insects, labels, text, watermark, hybrids, crop, or white background."}
+  ],
+  "visualReview": {"reviewedAt":"2026-09-03","result":"5 of 5 candidates have one readable focal insect with an ecologically coherent scene and no obvious extra limbs, hybrid anatomy, or crop.","releaseDecision":"remain review-only; species-level similarity is not proof of authoritative identification."}
+}
