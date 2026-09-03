@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-09-03",
+  "workflow": "OpenAI built-in image generation; anatomy-led consistency replacement with the prior public candidate retained in review storage",
+  "records": [
+    {"id":"anax-parthenope","koreanName":"왕잠자리","role":"individual","asset":"assets/insects/review/identity-consistency-20260903/anax-parthenope-individual-v2-imagegen-v1.png","generationPrompt":"blue-green Anax parthenope with dark dorsal abdominal line","reviewStatus":"published-pending-user-review"},
+    {"id":"anotogaster-sieboldi","koreanName":"장수잠자리","role":"ecology","asset":"assets/insects/review/identity-consistency-20260903/anotogaster-sieboldi-ecology-v2-imagegen-v1.png","generationPrompt":"green-and-black Anotogaster sieboldii on a shaded Korean stream branch","reviewStatus":"published-pending-user-review"},
+    {"id":"anotogaster-sieboldi","koreanName":"장수잠자리","role":"interaction","asset":"assets/insects/review/identity-consistency-20260903/anotogaster-sieboldi-interaction-v2-imagegen-v1.png","generationPrompt":"green-and-black Anotogaster sieboldii flying low over a shaded Korean stream","reviewStatus":"published-pending-user-review"},
+    {"id":"hymenopus-coronatus","koreanName":"난초사마귀","role":"morphology","asset":"assets/insects/review/identity-consistency-20260903/hymenopus-coronatus-morphology-v2-imagegen-v1.png","generationPrompt":"pink-white Hymenopus coronatus with compact tapered abdomen","reviewStatus":"published-pending-user-review"},
+    {"id":"anax-parthenope","koreanName":"왕잠자리","role":"individual","asset":"assets/insects/review/identity-consistency-20260903/superseded/anax-parthenope-representative-imagegen-v1.png","generationPrompt":"prior candidate retained for comparison","reviewStatus":"superseded color inconsistency"},
+    {"id":"anotogaster-sieboldi","koreanName":"장수잠자리","role":"ecology","asset":"assets/insects/review/identity-consistency-20260903/superseded/anotogaster-sieboldi-ecology-imagegen-v1.png","generationPrompt":"prior candidate retained for comparison","reviewStatus":"superseded color inconsistency"},
+    {"id":"anotogaster-sieboldi","koreanName":"장수잠자리","role":"interaction","asset":"assets/insects/review/identity-consistency-20260903/superseded/anotogaster-sieboldi-interaction-imagegen-v1.png","generationPrompt":"prior candidate retained for comparison","reviewStatus":"superseded color inconsistency"},
+    {"id":"hymenopus-coronatus","koreanName":"난초사마귀","role":"morphology","asset":"assets/insects/review/identity-consistency-20260903/superseded/hymenopus-coronatus-morphology-imagegen-v1.png","generationPrompt":"prior candidate retained for comparison","reviewStatus":"superseded anatomy inconsistency"}
+  ]
+}

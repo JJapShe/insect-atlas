@@ -1,4 +1,4 @@
-import { insects } from "./data/insects.js?v=20260903-gallery-four";
+import { insects } from "./data/insects.js?v=20260903-identity-consistency";
 
 const state = { view: "explore", query: "", diet: "all", level: "all", classification: "all", mapMode: "classification", scope: "free", lightboxItems: [], lightboxIndex: 0, previousFocus: null, pinch: { distance: 0, scale: 1 } };
 const $ = (selector, scope = document) => scope.querySelector(selector);

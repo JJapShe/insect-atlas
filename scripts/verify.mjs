@@ -12,6 +12,8 @@ if (invalidRecord) throw new Error(`Invalid public information record: ${invalid
 const publicGalleryItems = insects.flatMap((insect) => insect.gallery || []);
 if (insects.some((insect) => insect.gallery.length !== 4)) throw new Error("Every public species must now contain exactly four registered gallery images.");
 if (publicGalleryItems.length !== 144 || publicGalleryItems.some((item) => !item.src?.startsWith("assets/insects/approved/") || !item.license || !item.generationPrompt || !item.generationSeed || !item.generationWorkflow || !["approved", "published-pending-user-review"].includes(item.reviewStatus))) throw new Error("Public galleries must contain only fully recorded registered assets.");
+const supersededPublicCandidates = new Set(["anax-parthenope-representative-imagegen-v1.png", "anotogaster-sieboldi-ecology-imagegen-v1.png", "anotogaster-sieboldi-interaction-imagegen-v1.png", "hymenopus-coronatus-morphology-imagegen-v1.png"]);
+if (publicGalleryItems.some((item) => supersededPublicCandidates.has(item.src.split("/").at(-1)))) throw new Error("Superseded identity-inconsistent candidates must not remain in public galleries.");
 await Promise.all(publicGalleryItems.map((item) => readFile(new URL(`../${item.src}`, import.meta.url))));
 const app = await readFile(new URL("../app.js", import.meta.url), "utf8");
 const body = app.replace(/^import .*?;\s*/m, "");

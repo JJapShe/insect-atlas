@@ -12,16 +12,25 @@ const roleDetails = Object.freeze({
 });
 const specialPaths = Object.freeze({
   "lucanus-maculifemoratus:morphology": "assets/insects/approved/lucanus-maculifemoratus-morphology-white-bg-imagegen-v1.png",
-  "anax-parthenope:individual": "assets/insects/approved/anax-parthenope-representative-imagegen-v1.png",
+  "anax-parthenope:individual": "assets/insects/approved/anax-parthenope-individual-v2-imagegen-v1.png",
+  "anotogaster-sieboldi:ecology": "assets/insects/approved/anotogaster-sieboldi-ecology-v2-imagegen-v1.png",
+  "anotogaster-sieboldi:interaction": "assets/insects/approved/anotogaster-sieboldi-interaction-v2-imagegen-v1.png",
+  "hymenopus-coronatus:morphology": "assets/insects/approved/hymenopus-coronatus-morphology-v2-imagegen-v1.png",
   "sympetrum-depressiusculum:individual": "assets/insects/approved/sympetrum-depressiusculum-representative-imagegen-v1.png",
   "hymenopus-coronatus:ecology": "assets/insects/approved/hymenopus-coronatus-ecology-4-imagegen-v1.png",
 });
-const explicitlyPassed = new Set(["lucanus-maculifemoratus:morphology", "anax-parthenope:individual", "sympetrum-depressiusculum:individual"]);
+const explicitlyPassed = new Set(["lucanus-maculifemoratus:morphology", "sympetrum-depressiusculum:individual"]);
+const generationPromptOverrides = Object.freeze({
+  "anax-parthenope:individual": "adult Anax parthenope with blue-green eyes and body, dark dorsal abdominal line, clear wings, and exactly six legs in a Korean pond setting",
+  "anotogaster-sieboldi:ecology": "adult Anotogaster sieboldii with bright green eyes, green body, black markings, clear wings, and exactly six legs on a shaded Korean stream branch",
+  "anotogaster-sieboldi:interaction": "adult Anotogaster sieboldii with the same green-and-black identity flying low over a shaded Korean stream",
+  "hymenopus-coronatus:morphology": "adult Hymenopus coronatus with pale pink-white petal-like leg lobes, compact tapered abdomen, and exactly six legs on a clean white information background",
+});
 const galleryItem = (id, kind) => {
   const details = roleDetails[kind] || roleDetails[kind.replace(/-\d+$/, "")]; const key = `${id}:${kind}`;
   return Object.freeze({
     src: specialPaths[key] || `assets/insects/approved/${id}-${kind}-imagegen-v1.png`, alt: "", role: details.label, body: details.body,
-    sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-03", generationPrompt: details.prompt,
+    sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-03", generationPrompt: generationPromptOverrides[key] || details.prompt,
     generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, then an unchanged copy into the project approved path", reviewStatus: explicitlyPassed.has(key) ? "approved" : "published-pending-user-review",
   });
 };
