@@ -1,4 +1,4 @@
-import { insects } from "./data/insects.js?v=20260903-catalog";
+import { insects } from "./data/insects.js?v=20260903-approved";
 
 const state = { view: "explore", query: "", diet: "all", level: "all", classification: "all", mapMode: "classification", scope: "free", lightboxItems: [], lightboxIndex: 0, previousFocus: null, pinch: { distance: 0, scale: 1 } };
 const $ = (selector, scope = document) => scope.querySelector(selector);
@@ -49,7 +49,8 @@ function renderExplore() {
   if (!visible.length) { grid.append($("#emptyCatalogTemplate").content.cloneNode(true)); return; }
   visible.forEach((insect) => {
     const card = document.createElement("button"); card.className = "map-species"; card.type = "button";
-    card.innerHTML = `<span class="eyebrow">${insect.taxonomy.order} · ${insect.taxonomy.family}</span><strong>${insect.koreanName}</strong><em>${insect.scientificName}</em><small>이미지 검수 대기 · 정보 보기</small>`;
+    const imageLabel = insect.gallery?.length ? `검수 통과 이미지 ${insect.gallery.length}장 · 정보 보기` : "이미지 검수 대기 · 정보 보기";
+    card.innerHTML = `<span class="eyebrow">${insect.taxonomy.order} · ${insect.taxonomy.family}</span><strong>${insect.koreanName}</strong><em>${insect.scientificName}</em><small>${imageLabel}</small>`;
     card.addEventListener("click", () => selectInsect(insect)); grid.append(card);
   });
 }

@@ -1,0 +1,28 @@
+{
+  "reviewedAt": "2026-09-03",
+  "reviewSurface": "Insect Atlas local review page",
+  "policy": "Only pass records are copied to assets/insects/approved and linked from public species data. Reject and pending records stay review-only.",
+  "records": [
+    {"asset":"assets/insects/review/morphology-white-background-20260903/lucanus-maculifemoratus-morphology-white-bg-imagegen-v1.png","id":"lucanus-maculifemoratus","decision":"pass","usage":"morphology-information-reference"},
+    {"asset":"assets/insects/review/representative-seed-20260902/anax-parthenope-representative-imagegen-v1.png","id":"anax-parthenope","decision":"pass","usage":"morphology-information-reference"},
+    {"asset":"assets/insects/review/representative-seed-20260902/sympetrum-depressiusculum-representative-imagegen-v1.png","id":"sympetrum-depressiusculum","decision":"pass","usage":"morphology-information-reference"},
+    {"asset":"assets/insects/review/representative-seed-20260902/lucanus-maculifemoratus-representative-imagegen-v1.png","id":"lucanus-maculifemoratus","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/trypoxylus-dichotomus-representative-imagegen-v1.png","id":"trypoxylus-dichotomus","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/harmonia-axyridis-representative-imagegen-v1.png","id":"harmonia-axyridis","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/protaetia-brevitarsis-representative-imagegen-v1.png","id":"protaetia-brevitarsis","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/anoplophora-malasiaca-representative-imagegen-v1.png","id":"anoplophora-malasiaca","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/papilio-xuthus-representative-imagegen-v1.png","id":"papilio-xuthus","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/pieris-rapae-representative-imagegen-v1.png","id":"pieris-rapae","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/sasakia-charonda-representative-imagegen-v1.png","id":"sasakia-charonda","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/sericinus-montela-representative-imagegen-v1.png","id":"sericinus-montela","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/acrida-cinerea-representative-imagegen-v1.png","id":"acrida-cinerea","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/gampsocleis-sedakovii-representative-imagegen-v1.png","id":"gampsocleis-sedakovii","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/teleogryllus-emma-representative-imagegen-v1.png","id":"teleogryllus-emma","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/tenodera-sinensis-representative-imagegen-v1.png","id":"tenodera-sinensis","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/hierodula-patellifera-representative-imagegen-v1.png","id":"hierodula-patellifera","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/cryptotympana-atrata-representative-imagegen-v1.png","id":"cryptotympana-atrata","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/halyomorpha-halys-representative-imagegen-v1.png","id":"halyomorpha-halys","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/camponotus-japonicus-representative-imagegen-v1.png","id":"camponotus-japonicus","decision":"reject"},
+    {"asset":"assets/insects/review/representative-seed-20260902/apis-cerana-representative-imagegen-v1.png","id":"apis-cerana","decision":"reject"}
+  ]
+}

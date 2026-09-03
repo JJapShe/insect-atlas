@@ -6,15 +6,16 @@ const manifestUrls = [
   "tools/generation-tests/deferred-representatives-ecology-interaction-20260903.json",
   "tools/generation-tests/detail-ecology-interaction-20260903.json",
 ];
+const decisionManifestUrl = "tools/review-decisions/image-review-decisions-20260903.json";
 const koreanNames = new Map();
 const decisionKey = "insect-atlas-review-decisions-v1";
-const decisions = JSON.parse(localStorage.getItem(decisionKey) || "{}");
-let assets = []; let roleFilter = "all";
+const localDecisions = JSON.parse(localStorage.getItem(decisionKey) || "{}");
+let publishedDecisions = {}; let assets = []; let roleFilter = "all";
 const $ = (selector) => document.querySelector(selector);
 const label = { morphology:"형태·정보", ecology:"생태", interaction:"상호작용", test:"생성 테스트" };
 
-function decisionOf(asset) { return decisions[asset.key] || "pending"; }
-function saveDecision(asset, decision) { decisions[asset.key] = decision; localStorage.setItem(decisionKey, JSON.stringify(decisions)); render(); }
+function decisionOf(asset) { return localDecisions[asset.key] || publishedDecisions[asset.key] || "pending"; }
+function saveDecision(asset, decision) { localDecisions[asset.key] = decision; localStorage.setItem(decisionKey, JSON.stringify(localDecisions)); render(); }
 function normalise(record, manifest) {
   const asset = record.asset;
   if (!asset) return null;
@@ -24,7 +25,8 @@ function normalise(record, manifest) {
   return { key:asset, asset, id:sourceId, name:record.koreanName || koreanNames.get(sourceId) || record.testSubject || sourceId, role, prompt:record.prompt || record.generationPrompt || manifest, status:record.reviewStatus || "review hold" };
 }
 async function loadAssets() {
-  const documents = await Promise.all(manifestUrls.map(async (url) => [url, await (await fetch(url)).json()]));
+  const [documents, decisionManifest] = await Promise.all([Promise.all(manifestUrls.map(async (url) => [url, await (await fetch(url)).json()])), fetch(decisionManifestUrl).then((response) => response.json())]);
+  publishedDecisions = Object.fromEntries((decisionManifest.records || []).map((record) => [record.asset, record.decision]));
   documents.forEach(([url, data]) => (data.records || []).forEach((record) => { if (record.id && record.koreanName) koreanNames.set(record.id, record.koreanName); }));
   assets = documents.flatMap(([url, data]) => (data.records || []).map((record) => normalise(record, url)).filter(Boolean));
   render();
