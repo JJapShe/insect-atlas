@@ -1,0 +1,12 @@
+{
+  "createdAt": "2026-09-03",
+  "scope": "Review-only insect behavior and interaction imagery.",
+  "permittedIllustrativeBehaviors": [
+    {"taxa":"사슴벌레·장수풍뎅이","behavior":"수액 자리를 두고 밀어내거나 뿔·큰턱을 맞대는 자원 경쟁","conditions":["신체 훼손 없음","유혈 없음","경쟁 개체의 전신과 다리가 읽힘"]},
+    {"taxa":"사마귀","behavior":"낫 모양 앞다리로 먹이 곤충을 잡고 있는 포획 행동","conditions":["먹잇감의 신체 변형 없음","유혈 없음","곤충의 앞다리·전신 형태가 읽힘"]},
+    {"taxa":"잠자리","behavior":"모기 등 작은 곤충을 다리로 잡은 비행 또는 덮침","conditions":["먹잇감은 작고 온전하게 보임","유혈·신체 훼손 없음","네 날개와 다리 수가 읽힘"]},
+    {"taxa":"물장군","behavior":"수중 생물을 앞다리로 고정하고 주둥이를 대는 섭식 행동","conditions":["먹잇감의 몸체 변형 없음","유혈 없음","물장군의 앞다리·주둥이·전신이 읽힘"]}
+  ],
+  "alwaysReject": ["피 또는 체액이 강조된 장면","절단·파열·변형된 신체","먹잇감의 해부학적 훼손","곤충의 추가·누락 팔다리 또는 날개","사실처럼 단정된 종 수준 행동 주장"],
+  "reviewBoundary": "These scenes are illustrative behavior candidates, not direct records of a particular observed individual or proof of species-level identification."
+}
