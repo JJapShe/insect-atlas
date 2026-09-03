@@ -43,5 +43,12 @@
     "manifest": "tools/generation-tests/morphology-white-background-20260903.json",
     "result": "20 of 20 non-destructive white-background variants pass the basic visual screen: clean background and readable full-body silhouette.",
     "usageDecision": "Use only for morphology and information confirmation. Ecology and interaction imagery remain the primary visual experience; all variants remain review-only."
+  },
+  "detailTaxonEcologyInteractionReview": {
+    "reviewedAt": "2026-09-03",
+    "manifest": "tools/generation-tests/detail-ecology-interaction-20260903.json",
+    "result": "20 of 20 ecology or interaction candidates for the ten domestic detail-taxon drafts pass the basic visual anatomy screen.",
+    "interactionBoundary": "Resource competition and insect capture are non-graphic illustrative behavior only: no blood, injury, torn anatomy, or prey-body deformation.",
+    "usageDecision": "Remain review-only and excluded from runtime until authoritative taxonomy comparison and final morphology review."
   }
 }
