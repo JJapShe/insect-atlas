@@ -1,0 +1,40 @@
+{
+  "createdAt": "2026-09-03",
+  "scope": "Non-destructive white-background morphology references derived from the first twenty review-only individual images.",
+  "experiencePriority": "Ecology images are the primary visual experience. These assets support morphology and information checks only.",
+  "records": [
+    {"id":"lucanus-maculifemoratus","asset":"assets/insects/review/morphology-white-background-20260903/lucanus-maculifemoratus-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/lucanus-maculifemoratus-representative-imagegen-v1.png"},
+    {"id":"trypoxylus-dichotomus","asset":"assets/insects/review/morphology-white-background-20260903/trypoxylus-dichotomus-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/trypoxylus-dichotomus-representative-imagegen-v1.png"},
+    {"id":"harmonia-axyridis","asset":"assets/insects/review/morphology-white-background-20260903/harmonia-axyridis-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/harmonia-axyridis-representative-imagegen-v1.png"},
+    {"id":"protaetia-brevitarsis","asset":"assets/insects/review/morphology-white-background-20260903/protaetia-brevitarsis-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/protaetia-brevitarsis-representative-imagegen-v1.png"},
+    {"id":"anoplophora-malasiaca","asset":"assets/insects/review/morphology-white-background-20260903/anoplophora-malasiaca-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/anoplophora-malasiaca-representative-imagegen-v1.png"},
+    {"id":"papilio-xuthus","asset":"assets/insects/review/morphology-white-background-20260903/papilio-xuthus-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/papilio-xuthus-representative-imagegen-v1.png"},
+    {"id":"pieris-rapae","asset":"assets/insects/review/morphology-white-background-20260903/pieris-rapae-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/pieris-rapae-representative-imagegen-v1.png"},
+    {"id":"sasakia-charonda","asset":"assets/insects/review/morphology-white-background-20260903/sasakia-charonda-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/sasakia-charonda-representative-imagegen-v1.png"},
+    {"id":"sericinus-montela","asset":"assets/insects/review/morphology-white-background-20260903/sericinus-montela-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/sericinus-montela-representative-imagegen-v1.png"},
+    {"id":"anax-parthenope","asset":"assets/insects/review/morphology-white-background-20260903/anax-parthenope-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/anax-parthenope-representative-imagegen-v1.png"},
+    {"id":"sympetrum-depressiusculum","asset":"assets/insects/review/morphology-white-background-20260903/sympetrum-depressiusculum-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/sympetrum-depressiusculum-representative-imagegen-v1.png"},
+    {"id":"acrida-cinerea","asset":"assets/insects/review/morphology-white-background-20260903/acrida-cinerea-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/acrida-cinerea-representative-imagegen-v1.png"},
+    {"id":"gampsocleis-sedakovii","asset":"assets/insects/review/morphology-white-background-20260903/gampsocleis-sedakovii-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/gampsocleis-sedakovii-representative-imagegen-v1.png"},
+    {"id":"teleogryllus-emma","asset":"assets/insects/review/morphology-white-background-20260903/teleogryllus-emma-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/teleogryllus-emma-representative-imagegen-v1.png"},
+    {"id":"tenodera-sinensis","asset":"assets/insects/review/morphology-white-background-20260903/tenodera-sinensis-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/tenodera-sinensis-representative-imagegen-v1.png"},
+    {"id":"hierodula-patellifera","asset":"assets/insects/review/morphology-white-background-20260903/hierodula-patellifera-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/hierodula-patellifera-representative-imagegen-v1.png"},
+    {"id":"cryptotympana-atrata","asset":"assets/insects/review/morphology-white-background-20260903/cryptotympana-atrata-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/cryptotympana-atrata-representative-imagegen-v1.png"},
+    {"id":"halyomorpha-halys","asset":"assets/insects/review/morphology-white-background-20260903/halyomorpha-halys-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/halyomorpha-halys-representative-imagegen-v1.png"},
+    {"id":"camponotus-japonicus","asset":"assets/insects/review/morphology-white-background-20260903/camponotus-japonicus-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/camponotus-japonicus-representative-imagegen-v1.png"},
+    {"id":"apis-cerana","asset":"assets/insects/review/morphology-white-background-20260903/apis-cerana-morphology-white-bg-imagegen-v1.png","sourceAsset":"assets/insects/review/representative-seed-20260902/apis-cerana-representative-imagegen-v1.png"}
+  ],
+  "sharedRecordFields": {
+    "assetRole": "morphology-information-reference",
+    "background": "#FFFFFF",
+    "prompt": "Replace the source background only with seamless pure white. Preserve the exact full insect body, pose, diagnostic features, framing, and anatomy. No labels, scale bars, shadows, new objects, or body alterations.",
+    "source": "OpenAI built-in image generation, local-image edit from a project review source",
+    "license": "Generated project review asset; retain this provenance record before any release",
+    "seed": "service-assigned; not exposed",
+    "workflow": "ImageGen local-image edit, 2026-09-03",
+    "reviewStatus": "anatomy review",
+    "representativeEligible": false,
+    "usageBoundary": "Morphology and information aid only; not a representative or ecology asset."
+  },
+  "visualReview": {"reviewedAt":"2026-09-03","result":"20 of 20 variants have a clean white background and a readable full-body silhouette. This is a basic visual screen, not authoritative species-level identification.","releaseDecision":"remain review-only; never promote from this manifest to assets/insects/approved or production data without authoritative taxon comparison"}
+}
