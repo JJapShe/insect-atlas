@@ -3,37 +3,31 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Insect Atlas · 검수</title>
+  <title>Insect Atlas · 이미지 검수</title>
   <style>
-    :root { color-scheme: dark; font-family: system-ui, sans-serif; background:#101612; color:#eff7ec; }
-    body { margin:0; padding:24px; } h1 { margin:0 0 8px; } p { color:#b8c7b6; }
-    .note { border:1px solid #40523d; padding:12px 14px; border-radius:10px; background:#182019; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin-top:20px; }
-    article { border:1px solid #334331; border-radius:12px; overflow:hidden; background:#161d17; }
-    img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; background:#0a0f0b; }
-    .copy { padding:12px; } h2 { margin:0 0 4px; font-size:1rem; } small { color:#b8c7b6; }
-    .tag { color:#b8e5a8; font-size:.78rem; } a { color:#b8e5a8; }
+    :root { color-scheme:dark; font-family:Inter,Pretendard,system-ui,sans-serif; background:#0a100c; color:#f0f7ee; --line:#304331; --muted:#a4b5a3; --accent:#a8e697; }
+    * { box-sizing:border-box; } body { margin:0; padding:24px; background:radial-gradient(circle at 8% 0,#2d582d55,transparent 32rem),#0a100c; }
+    h1,h2,p { margin-top:0; } .lede { color:var(--muted); max-width:780px; line-height:1.6; }
+    .bar { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:18px 0; padding:12px; border:1px solid var(--line); border-radius:12px; background:#121c13; }
+    button,select { font:inherit; color:inherit; border:1px solid var(--line); border-radius:9px; background:#1a291a; padding:8px 10px; cursor:pointer; } button.active { background:var(--accent); border-color:var(--accent); color:#10200f; font-weight:800; } button.pass { border-color:#79c96b; } button.hold { border-color:#e0bf6c; } button.reject { border-color:#df7777; }
+    #summary { margin-left:auto; color:var(--muted); } .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; }
+    article { overflow:hidden; border:1px solid var(--line); border-radius:13px; background:#121a13; } img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; background:#070b07; cursor:zoom-in; }
+    .copy { padding:12px; } .copy h2 { margin-bottom:5px; font-size:1.02rem; } .meta { color:var(--muted); font-size:.79rem; line-height:1.45; } .controls { display:flex; gap:6px; margin-top:11px; } .controls button { flex:1; padding:7px 5px; font-size:.78rem; }
+    .status { display:inline-block; margin-top:7px; padding:3px 7px; border-radius:999px; background:#263427; color:#d4ead0; font-size:.74rem; } .status.pass { background:#24542a; }.status.reject { background:#5a2828; }.status.hold { background:#57491e; }
+    dialog { width:min(1100px,96vw); border:1px solid var(--line); border-radius:16px; padding:0; background:#101711; color:inherit; } dialog::backdrop { background:#000c; } dialog img { width:100%; max-height:78vh; object-fit:contain; cursor:default; } dialog section { padding:14px 16px; } dialog button { float:right; }
+    @media (max-width:600px) { body { padding:14px; } #summary { width:100%; margin-left:0; } }
   </style>
 </head>
 <body>
-  <h1>Insect Atlas · 검수 전용</h1>
-  <p>세부 분류 10종의 생태·상호작용 후보. 이 화면의 이미지는 모두 승인 전 검수 자산입니다.</p>
-  <div class="note">기본 형태 검수 통과: 전신·날개·다리 가독성 확인. 종 수준 동정은 국립생물자원관 등 권위 자료 대조 전까지 초안입니다. 경쟁·포획 장면은 유혈·신체 변형 없는 설명용 행동 후보입니다.</div>
-  <div class="grid" id="grid"></div>
-  <p><a href="tools/reviews/representative-screening-20260902.json">검수 판정 JSON</a> · <a href="tools/reviews/interaction-content-policy-20260903.json">상호작용 표현 기준 JSON</a></p>
-  <script>
-    const species = [
-      ['넓적사슴벌레','dorcus-titanus-castanicolor'],['왕사슴벌레','dorcus-hopei-binodulosus'],['늦반딧불이','pyrocoelia-rufa'],['애반딧불이','luciola-lateralis'],['밀잠자리','orthetrum-albistylum'],
-      ['나비잠자리','rhyothemis-fuliginosa'],['장수잠자리','anotogaster-sieboldi'],['물잠자리','calopteryx-japonica'],['검은물잠자리','calopteryx-atrata'],['호박벌','bombus-ignitus']
-    ];
-    const grid = document.querySelector('#grid');
-    for (const [name, id] of species) {
-      for (const [role, folder, suffix] of [['생태','detail-ecology-seed-20260903','ecology'],['상호작용','detail-interaction-seed-20260903','interaction']]) {
-        const article = document.createElement('article');
-        article.innerHTML = `<img alt="${name} ${role} 검수 후보" src="assets/insects/review/${folder}/${id}-${suffix}-imagegen-v1.png"><div class="copy"><h2>${name}</h2><small class="tag">${role} · review only</small></div>`;
-        grid.append(article);
-      }
-    }
-  </script>
+  <h1>Insect Atlas · 전체 이미지 검수</h1>
+  <p class="lede">생성 테스트, 형태·정보 참고, 생태, 상호작용 후보를 한 번에 봅니다. 모든 자산은 review 전용이며, 통과·보류·탈락 선택은 이 Chrome의 검수 세션에 저장됩니다. 승인 경로와 본 사이트 갤러리는 이 화면만으로 변경되지 않습니다.</p>
+  <section class="bar" aria-label="검수 필터">
+    <button class="active" data-filter="all">전체</button><button data-filter="morphology">형태·정보</button><button data-filter="ecology">생태</button><button data-filter="interaction">상호작용</button><button data-filter="test">생성 테스트</button>
+    <select id="decisionFilter" aria-label="판정 필터"><option value="all">모든 판정</option><option value="pending">보류</option><option value="pass">통과</option><option value="reject">탈락</option></select>
+    <span id="summary">불러오는 중…</span>
+  </section>
+  <main id="grid" class="grid" aria-live="polite"></main>
+  <dialog id="viewer"><button id="closeViewer" aria-label="큰 보기 닫기">×</button><img id="viewerImage" alt=""><section><strong id="viewerTitle"></strong><p id="viewerMeta" class="meta"></p></section></dialog>
+  <script type="module" src="./review.js"></script>
 </body>
 </html>
