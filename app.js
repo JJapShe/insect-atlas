@@ -1,4 +1,4 @@
-import { insects } from "./data/insects.js?v=20260903-world-favorites";
+import { insects } from "./data/insects.js?v=20260903-gallery-four";
 
 const state = { view: "explore", query: "", diet: "all", level: "all", classification: "all", mapMode: "classification", scope: "free", lightboxItems: [], lightboxIndex: 0, previousFocus: null, pinch: { distance: 0, scale: 1 } };
 const $ = (selector, scope = document) => scope.querySelector(selector);
@@ -68,7 +68,9 @@ function renderCatalog() {
 
 function selectInsect(insect) {
   const gallery = (insect.gallery || []).map((item) => ({ ...item, alt: item.alt || `${insect.koreanName} ${item.role || "갤러리 이미지"}`, title: item.title || `${insect.koreanName} · ${item.role || "갤러리 이미지"}` }));
-  $("#detailPanel").innerHTML = `<p class="eyebrow">선택한 곤충</p><h3>${insect.koreanName}</h3><p class="scientific-name">${insect.scientificName}</p><p>${insect.keyAppearanceCues?.join(" · ") || "외형 단서 준비 중"}</p><div class="detail-tags"><span>${insect.taxonomy?.order || "목 미정"}</span><span>${insect.appearancePeriod?.label || "시기 미정"}</span><span>${insect.habitat?.[0] || "서식지 미정"}</span></div>${gallery.length ? `<button class="primary-action" id="openGallery" type="button">갤러리 ${gallery.length}장 보기</button>` : `<p class="image-pending">이미지는 현재 검수 중입니다. 종 정보는 먼저 볼 수 있어요.</p>`}`;
+  const preview = gallery.slice(0, 3).map((item, index) => `<button class="gallery-preview-card" data-gallery-preview="${index}" type="button" aria-label="${item.title} 크게 보기"><img src="${item.src}" alt="${item.alt}" loading="eager"><span>${item.role}</span></button>`).join("");
+  $("#detailPanel").innerHTML = `<p class="eyebrow">선택한 곤충</p><h3>${insect.koreanName}</h3><p class="scientific-name">${insect.scientificName}</p><p>${insect.keyAppearanceCues?.join(" · ") || "외형 단서 준비 중"}</p><div class="detail-tags"><span>${insect.taxonomy?.order || "목 미정"}</span><span>${insect.appearancePeriod?.label || "시기 미정"}</span><span>${insect.habitat?.[0] || "서식지 미정"}</span></div>${gallery.length ? `<div class="gallery-preview" aria-label="${insect.koreanName} 대표 이미지 미리보기">${preview}</div><button class="primary-action" id="openGallery" type="button">갤러리 ${gallery.length}장 보기</button>` : `<p class="image-pending">이미지는 현재 검수 중입니다. 종 정보는 먼저 볼 수 있어요.</p>`}`;
+  $$("[data-gallery-preview]", $("#detailPanel")).forEach((button) => button.addEventListener("click", () => openLightbox(gallery, Number(button.dataset.galleryPreview))));
   $("#openGallery")?.addEventListener("click", () => openLightbox(gallery, 0));
 }
 

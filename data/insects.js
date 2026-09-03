@@ -14,10 +14,11 @@ const specialPaths = Object.freeze({
   "lucanus-maculifemoratus:morphology": "assets/insects/approved/lucanus-maculifemoratus-morphology-white-bg-imagegen-v1.png",
   "anax-parthenope:individual": "assets/insects/approved/anax-parthenope-representative-imagegen-v1.png",
   "sympetrum-depressiusculum:individual": "assets/insects/approved/sympetrum-depressiusculum-representative-imagegen-v1.png",
+  "hymenopus-coronatus:ecology": "assets/insects/approved/hymenopus-coronatus-ecology-4-imagegen-v1.png",
 });
 const explicitlyPassed = new Set(["lucanus-maculifemoratus:morphology", "anax-parthenope:individual", "sympetrum-depressiusculum:individual"]);
 const galleryItem = (id, kind) => {
-  const details = roleDetails[kind]; const key = `${id}:${kind}`;
+  const details = roleDetails[kind] || roleDetails[kind.replace(/-\d+$/, "")]; const key = `${id}:${kind}`;
   return Object.freeze({
     src: specialPaths[key] || `assets/insects/approved/${id}-${kind}-imagegen-v1.png`, alt: "", role: details.label, body: details.body,
     sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-03", generationPrompt: details.prompt,
@@ -27,21 +28,25 @@ const galleryItem = (id, kind) => {
 const supplementalKinds = Object.freeze({
   "lucanus-maculifemoratus": ["anatomy-test"], "trypoxylus-dichotomus": ["anatomy-test"], "tenodera-sinensis": ["anatomy-test"], "anax-parthenope": ["individual"], "sympetrum-depressiusculum": ["individual"],
 });
-const galleryById = Object.freeze(Object.fromEntries([...primaryIds, ...detailIds].map((id) => [id, Object.freeze([
+const baseGalleryById = Object.freeze(Object.fromEntries([...primaryIds, ...detailIds].map((id) => [id, Object.freeze([
   galleryItem(id, "ecology"), galleryItem(id, "interaction"), ...(primaryIds.includes(id) ? [galleryItem(id, "morphology")] : []), ...((supplementalKinds[id] || []).map((kind) => galleryItem(id, kind))),
 ])])));
+const primaryInteractionExtraIds = Object.freeze(primaryIds.filter((id) => !(id in supplementalKinds)));
+const galleryById = Object.freeze(Object.fromEntries([...primaryIds, ...detailIds].map((id) => Object.freeze([id, Object.freeze([
+  ...baseGalleryById[id], ...(primaryInteractionExtraIds.includes(id) ? [galleryItem(id, "interaction-2")] : []), ...(detailIds.includes(id) ? [galleryItem(id, "morphology"), galleryItem(id, "interaction-2")] : []),
+])]))));
 const worldGalleryItem = (id, prompt, body) => Object.freeze({
-  src: `assets/insects/approved/${id}-ecology-imagegen-v1.png`, alt: "", role: "생태 관찰", body,
+  src: specialPaths[`${id}:ecology`] || `assets/insects/approved/${id}-ecology-imagegen-v1.png`, alt: "", role: "생태 관찰", body,
   sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-03", generationPrompt: prompt,
   generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, then an unchanged copy into review and registered-gallery paths", reviewStatus: "published-pending-user-review",
 });
 const worldGallery = Object.freeze({
-  "dynastes-hercules": Object.freeze([worldGalleryItem("dynastes-hercules", "adult male Hercules beetle with an extremely long forked head horn, shorter thoracic horn, olive-brown marked elytra, six legs, on a humid tropical rainforest log", "열대우림의 썩은 나무 주변에서 형태를 관찰하는 헤라클레스장수풍뎅이입니다.")]),
-  "hymenopus-coronatus": Object.freeze([worldGalleryItem("hymenopus-coronatus", "adult orchid mantis with pale pink-white petal-like leg lobes, triangular head, raptorial forelegs and six legs among orchid blossoms", "난초 꽃 사이에서 꽃잎과 비슷한 몸빛과 다리를 관찰하는 난초사마귀입니다.")]),
-  "scarabaeus-sacer": Object.freeze([worldGalleryItem("scarabaeus-sacer", "sacred scarab dung beetle rolling one rounded dung ball backwards with hind legs, shovel-like toothed forelegs and six legs on warm savanna ground", "뒷다리로 공을 굴리는 행동과 넓은 앞다리를 관찰하는 쇠똥구리입니다.")]),
-  "goliathus-goliatus": Object.freeze([worldGalleryItem("goliathus-goliatus", "adult Goliath beetle with a stout scarabaeid body, bold black-and-white elytral pattern, small male head horn and six legs on a tropical African tree trunk", "굵은 몸과 검정·흰색 무늬를 관찰하는 골리앗꽃무지입니다.")]),
-  "attacus-atlas": Object.freeze([worldGalleryItem("attacus-atlas", "adult Atlas moth with fully spread rust-brown wings, cream and maroon patterns, transparent wing windows and snake-head-like forewing tips on a tropical leaf", "넓은 날개와 뱀 머리를 닮은 앞날개 끝무늬를 관찰하는 아틀라스나방입니다.")]),
-  "phyllium-philippinicum": Object.freeze([worldGalleryItem("phyllium-philippinicum", "Philippine leaf insect with a flattened green leaf-like body, leaf-vein pattern, broad leaf-like legs and complete six-leg anatomy on a tropical shrub", "잎맥과 닮은 몸과 다리로 위장한 필리핀잎벌레입니다.")]),
+  "dynastes-hercules": Object.freeze([worldGalleryItem("dynastes-hercules", "adult male Hercules beetle with an extremely long forked head horn, shorter thoracic horn, olive-brown marked elytra, six legs, on a humid tropical rainforest log", "열대우림의 썩은 나무 주변에서 형태를 관찰하는 헤라클레스장수풍뎅이입니다."), galleryItem("dynastes-hercules", "morphology"), galleryItem("dynastes-hercules", "interaction"), galleryItem("dynastes-hercules", "interaction-2")]),
+  "hymenopus-coronatus": Object.freeze([worldGalleryItem("hymenopus-coronatus", "adult orchid mantis with pale pink-white petal-like leg lobes, triangular head, raptorial forelegs and six legs among orchid blossoms", "난초 꽃 사이에서 꽃잎과 비슷한 몸빛과 다리를 관찰하는 난초사마귀입니다."), galleryItem("hymenopus-coronatus", "morphology"), galleryItem("hymenopus-coronatus", "interaction"), galleryItem("hymenopus-coronatus", "interaction-2")]),
+  "scarabaeus-sacer": Object.freeze([worldGalleryItem("scarabaeus-sacer", "sacred scarab dung beetle rolling one rounded dung ball backwards with hind legs, shovel-like toothed forelegs and six legs on warm savanna ground", "뒷다리로 공을 굴리는 행동과 넓은 앞다리를 관찰하는 쇠똥구리입니다."), galleryItem("scarabaeus-sacer", "morphology"), galleryItem("scarabaeus-sacer", "interaction"), galleryItem("scarabaeus-sacer", "interaction-2")]),
+  "goliathus-goliatus": Object.freeze([worldGalleryItem("goliathus-goliatus", "adult Goliath beetle with a stout scarabaeid body, bold black-and-white elytral pattern, small male head horn and six legs on a tropical African tree trunk", "굵은 몸과 검정·흰색 무늬를 관찰하는 골리앗꽃무지입니다."), galleryItem("goliathus-goliatus", "morphology"), galleryItem("goliathus-goliatus", "interaction"), galleryItem("goliathus-goliatus", "interaction-2")]),
+  "attacus-atlas": Object.freeze([worldGalleryItem("attacus-atlas", "adult Atlas moth with fully spread rust-brown wings, cream and maroon patterns, transparent wing windows and snake-head-like forewing tips on a tropical leaf", "넓은 날개와 뱀 머리를 닮은 앞날개 끝무늬를 관찰하는 아틀라스나방입니다."), galleryItem("attacus-atlas", "morphology"), galleryItem("attacus-atlas", "interaction"), galleryItem("attacus-atlas", "interaction-2")]),
+  "phyllium-philippinicum": Object.freeze([worldGalleryItem("phyllium-philippinicum", "Philippine leaf insect with a flattened green leaf-like body, leaf-vein pattern, broad leaf-like legs and complete six-leg anatomy on a tropical shrub", "잎맥과 닮은 몸과 다리로 위장한 필리핀잎벌레입니다."), galleryItem("phyllium-philippinicum", "morphology"), galleryItem("phyllium-philippinicum", "interaction"), galleryItem("phyllium-philippinicum", "interaction-2")]),
 });
 const record = (id, koreanName, scientificName, order, family, habitat, diet, cues, familiarityLevel = 2, options = {}) => {
   const gallery = options.gallery || galleryById[id] || [];

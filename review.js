@@ -6,6 +6,7 @@ const manifestUrls = [
   "tools/generation-tests/deferred-representatives-ecology-interaction-20260903.json",
   "tools/generation-tests/detail-ecology-interaction-20260903.json",
   "tools/generation-tests/world-favorites-20260903.json",
+  "tools/generation-tests/gallery-expansion-20260903.json",
 ];
 const decisionManifestUrl = "tools/review-decisions/image-review-decisions-20260903.json";
 const koreanNames = new Map();
@@ -25,11 +26,20 @@ function normalise(record, manifest) {
   const role = rawRole.includes("ecology") || rawRole === "habitat-ecology" ? "ecology" : rawRole.includes("interaction") || rawRole.includes("context") || rawRole.includes("resource") ? "interaction" : rawRole === "morphology" || manifest.includes("morphology") ? "morphology" : rawRole === "test" || manifest.includes("famous") ? "test" : "morphology";
   return { key:asset, asset, id:sourceId, name:record.koreanName || koreanNames.get(sourceId) || record.testSubject || sourceId, role, prompt:record.prompt || record.generationPrompt || manifest, status:record.reviewStatus || "review hold" };
 }
+function recordsForManifest(data) {
+  const directRecords = data.records || [];
+  const batchedRecords = (data.batches || []).flatMap((batch) => (batch.ids || []).map((id) => ({
+    id, koreanName: batch.koreanNames?.[id], role: batch.role,
+    asset: batch.assetTemplate.replace("{id}", id), generationPrompt: batch.generationPrompt,
+    reviewStatus: batch.reviewStatus,
+  })));
+  return [...directRecords, ...batchedRecords];
+}
 async function loadAssets() {
   const [documents, decisionManifest] = await Promise.all([Promise.all(manifestUrls.map(async (url) => [url, await (await fetch(url)).json()])), fetch(decisionManifestUrl).then((response) => response.json())]);
   publishedDecisions = Object.fromEntries((decisionManifest.records || []).map((record) => [record.asset, record.decision]));
-  documents.forEach(([url, data]) => (data.records || []).forEach((record) => { if (record.id && record.koreanName) koreanNames.set(record.id, record.koreanName); }));
-  assets = documents.flatMap(([url, data]) => (data.records || []).map((record) => normalise(record, url)).filter(Boolean));
+  documents.forEach(([url, data]) => recordsForManifest(data).forEach((record) => { if (record.id && record.koreanName) koreanNames.set(record.id, record.koreanName); }));
+  assets = documents.flatMap(([url, data]) => recordsForManifest(data).map((record) => normalise(record, url)).filter(Boolean));
   render();
 }
 function render() {

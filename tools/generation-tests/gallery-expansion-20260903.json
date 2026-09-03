@@ -1,0 +1,54 @@
+{
+  "generatedAt": "2026-09-03",
+  "workflow": "OpenAI built-in image generation; unchanged copies retained in review storage and registered gallery storage",
+  "reviewStatus": "published-pending-user-review",
+  "records": [
+    {"id": "hymenopus-coronatus", "koreanName": "난초사마귀", "role": "ecology", "asset": "assets/insects/review/gallery-expansion-20260903/hymenopus-coronatus-ecology-2-imagegen-v1.png", "generationPrompt": "scientific-educational representative ecology image", "reviewStatus": "superseded anatomy candidate"},
+    {"id": "hymenopus-coronatus", "koreanName": "난초사마귀", "role": "ecology", "asset": "assets/insects/review/gallery-expansion-20260903/hymenopus-coronatus-ecology-3-imagegen-v1.png", "generationPrompt": "scientific-educational representative ecology image with an anatomically natural straight segmented abdomen", "reviewStatus": "superseded anatomy candidate"},
+    {"id": "hymenopus-coronatus", "koreanName": "난초사마귀", "role": "ecology", "asset": "assets/insects/review/gallery-expansion-20260903/hymenopus-coronatus-ecology-4-imagegen-v1.png", "generationPrompt": "scientific-educational representative ecology image with a compact naturally proportioned abdomen", "reviewStatus": "published-pending-user-review"}
+  ],
+  "batches": [
+    {
+      "role": "interaction-2",
+      "assetTemplate": "assets/insects/review/gallery-expansion-20260903/{id}-interaction-2-imagegen-v1.png",
+      "generationPrompt": "scientific-educational natural-history interaction illustration; safe, non-graphic ecological context; full insect anatomy and diagnostic features readable; no text, logos, watermark, deformed anatomy, cropped body, or hybrid species",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["harmonia-axyridis", "protaetia-brevitarsis", "anoplophora-malasiaca", "papilio-xuthus", "pieris-rapae", "sasakia-charonda", "sericinus-montela", "acrida-cinerea", "gampsocleis-sedakovii", "teleogryllus-emma", "hierodula-patellifera", "cryptotympana-atrata", "halyomorpha-halys", "camponotus-japonicus", "apis-cerana"]
+    },
+    {
+      "role": "morphology",
+      "assetTemplate": "assets/insects/review/gallery-expansion-20260903/{id}-morphology-imagegen-v1.png",
+      "generationPrompt": "scientific-educational morphology reference; one complete adult insect on a clean white information background; full body and diagnostic features readable; no text, logos, watermark, pins, deformed anatomy, cropped body, or hybrid species",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["dorcus-titanus-castanicolor", "dorcus-hopei-binodulosus", "pyrocoelia-rufa", "luciola-lateralis", "orthetrum-albistylum", "rhyothemis-fuliginosa", "anotogaster-sieboldi", "calopteryx-japonica", "calopteryx-atrata", "bombus-ignitus"]
+    },
+    {
+      "role": "interaction-2",
+      "assetTemplate": "assets/insects/review/gallery-expansion-20260903/{id}-interaction-2-imagegen-v1.png",
+      "generationPrompt": "scientific-educational natural-history interaction illustration; safe, non-graphic ecological context; full insect anatomy and diagnostic features readable; no text, logos, watermark, deformed anatomy, cropped body, or hybrid species",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["dorcus-titanus-castanicolor", "dorcus-hopei-binodulosus", "pyrocoelia-rufa", "luciola-lateralis", "orthetrum-albistylum", "rhyothemis-fuliginosa", "anotogaster-sieboldi", "calopteryx-japonica", "calopteryx-atrata", "bombus-ignitus"]
+    },
+    {
+      "role": "morphology",
+      "assetTemplate": "assets/insects/review/gallery-expansion-20260903/{id}-morphology-imagegen-v1.png",
+      "generationPrompt": "scientific-educational morphology reference; one complete adult insect on a clean white information background; full body and diagnostic features readable; no text, logos, watermark, pins, deformed anatomy, cropped body, or hybrid species",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["dynastes-hercules", "hymenopus-coronatus", "scarabaeus-sacer", "goliathus-goliatus", "attacus-atlas", "phyllium-philippinicum"]
+    },
+    {
+      "role": "interaction",
+      "assetTemplate": "assets/insects/review/gallery-expansion-20260903/{id}-interaction-imagegen-v1.png",
+      "generationPrompt": "scientific-educational natural-history interaction illustration; safe, non-graphic ecological context; full insect anatomy and diagnostic features readable; no text, logos, watermark, deformed anatomy, cropped body, or hybrid species",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["dynastes-hercules", "hymenopus-coronatus", "scarabaeus-sacer", "goliathus-goliatus", "attacus-atlas", "phyllium-philippinicum"]
+    },
+    {
+      "role": "interaction-2",
+      "assetTemplate": "assets/insects/review/gallery-expansion-20260903/{id}-interaction-2-imagegen-v1.png",
+      "generationPrompt": "scientific-educational natural-history interaction illustration; safe, non-graphic ecological context; full insect anatomy and diagnostic features readable; no text, logos, watermark, deformed anatomy, cropped body, or hybrid species",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["dynastes-hercules", "hymenopus-coronatus", "scarabaeus-sacer", "goliathus-goliatus", "attacus-atlas", "phyllium-philippinicum"]
+    }
+  ]
+}

@@ -10,7 +10,8 @@ if (!Array.isArray(insects) || insects.length !== 36) throw new Error("Productio
 const invalidRecord = insects.find((insect) => !insect.id || !insect.koreanName || !insect.scientificName || !insect.taxonomy?.order || !Array.isArray(insect.gallery) || (insect.gallery.length === 0 && insect.reviewStatus !== "draft") || (insect.gallery.length > 0 && insect.reviewStatus !== "gallery-published-pending-user-review"));
 if (invalidRecord) throw new Error(`Invalid public information record: ${invalidRecord?.id || "unknown"}`);
 const publicGalleryItems = insects.flatMap((insect) => insect.gallery || []);
-if (publicGalleryItems.length !== 91 || publicGalleryItems.some((item) => !item.src?.startsWith("assets/insects/approved/") || !item.license || !item.generationPrompt || !item.generationSeed || !item.generationWorkflow || !["approved", "published-pending-user-review"].includes(item.reviewStatus))) throw new Error("Public galleries must contain only fully recorded registered assets.");
+if (insects.some((insect) => insect.gallery.length !== 4)) throw new Error("Every public species must now contain exactly four registered gallery images.");
+if (publicGalleryItems.length !== 144 || publicGalleryItems.some((item) => !item.src?.startsWith("assets/insects/approved/") || !item.license || !item.generationPrompt || !item.generationSeed || !item.generationWorkflow || !["approved", "published-pending-user-review"].includes(item.reviewStatus))) throw new Error("Public galleries must contain only fully recorded registered assets.");
 await Promise.all(publicGalleryItems.map((item) => readFile(new URL(`../${item.src}`, import.meta.url))));
 const app = await readFile(new URL("../app.js", import.meta.url), "utf8");
 const body = app.replace(/^import .*?;\s*/m, "");
