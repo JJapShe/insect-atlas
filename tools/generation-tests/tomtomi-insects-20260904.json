@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-09-04",
+  "tool": "OpenAI built-in image generation",
+  "sourceAttribution": "No external artwork was supplied as input.",
+  "license": "Generated project assets; published pending user review.",
+  "generationSeed": "service-assigned; not exposed",
+  "generationWorkflow": "Built-in generation, visual anatomy and identity review, unchanged copies retained in review and approved paths.",
+  "batches": [
+    {
+      "role": "ecology",
+      "assetTemplate": "assets/insects/review/tomtomi-insects-20260904/{id}-ecology-imagegen-v1.png",
+      "generationPrompt": "Species-specific natural-history ecology portrait: complete adult anatomy and diagnostic colour/pattern visible in its characteristic habitat; no text, watermark, hands, extra limbs, malformed anatomy or cropped body.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["morpho-menelaus", "chrysochroa-fulgidissima", "paraponera-clavata", "euproctis-subflava", "meloe-proscarabaeus", "vespa-mandarinia", "pheropsophus-jessoensis", "fulgora-laternaria", "deinacrida-heteracantha", "phobaeticus-chani", "thysania-agrippina"],
+      "koreanNames": {"morpho-menelaus":"모르포나비", "chrysochroa-fulgidissima":"비단벌레", "paraponera-clavata":"총알개미", "euproctis-subflava":"독나방", "meloe-proscarabaeus":"남가뢰", "vespa-mandarinia":"장수말벌", "pheropsophus-jessoensis":"폭탄먼지벌레", "fulgora-laternaria":"악어머리뿔매미", "deinacrida-heteracantha":"자이언트웨타", "phobaeticus-chani":"포베티쿠스 차니", "thysania-agrippina":"아그리피나 밤나방"}
+    },
+    {
+      "role": "morphology",
+      "assetTemplate": "assets/insects/review/tomtomi-insects-20260904/{id}-morphology-imagegen-v1.png",
+      "generationPrompt": "Species-specific complete adult dorsal morphology reference on clean white background; diagnostic features and exactly six legs visible; no labels, pins, text, watermark, hands, extra limbs, malformed anatomy or cropped body.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["morpho-menelaus", "chrysochroa-fulgidissima", "paraponera-clavata", "euproctis-subflava", "meloe-proscarabaeus", "vespa-mandarinia", "pheropsophus-jessoensis", "fulgora-laternaria", "deinacrida-heteracantha", "phobaeticus-chani", "thysania-agrippina"]
+    },
+    {
+      "role": "interaction",
+      "assetTemplate": "assets/insects/review/tomtomi-insects-20260904/{id}-interaction-imagegen-v1.png",
+      "generationPrompt": "Species-specific safe, non-graphic ecological interaction (plant, sap, nectar, leaf or travel) with complete adult anatomy visible; no people, text, watermark, extra limbs, malformed anatomy or cropped body.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["morpho-menelaus", "chrysochroa-fulgidissima", "paraponera-clavata", "euproctis-subflava", "meloe-proscarabaeus", "vespa-mandarinia", "pheropsophus-jessoensis", "fulgora-laternaria", "deinacrida-heteracantha", "phobaeticus-chani", "thysania-agrippina"]
+    },
+    {
+      "role": "interaction-2",
+      "assetTemplate": "assets/insects/review/tomtomi-insects-20260904/{id}-interaction-2-imagegen-v1.png",
+      "generationPrompt": "Species-specific second ecology pose with diagnostic anatomy and colour/pattern visible, distinct from the primary ecology pose; no text, watermark, hands, extra limbs, malformed anatomy or cropped body.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["morpho-menelaus", "chrysochroa-fulgidissima", "paraponera-clavata", "euproctis-subflava", "meloe-proscarabaeus", "vespa-mandarinia", "pheropsophus-jessoensis", "fulgora-laternaria", "deinacrida-heteracantha", "phobaeticus-chani", "thysania-agrippina"]
+    }
+  ]
+}

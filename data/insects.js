@@ -1,6 +1,10 @@
 // Public species information is intentionally separate from review-only image assets.
 // No gallery image is exposed here until it has passed authoritative taxonomy, rights, and image review.
 const source = Object.freeze([{ label: "국립생물자원관 국가생물종지식정보시스템", url: "https://species.nibr.go.kr/" }]);
+const tomtomiSources = Object.freeze([
+  { label: "TOMTOMI 곤충송 수록 곤충 선정 근거", url: "https://www.youtube.com/watch?v=agrVrfr2t8M" },
+  { label: "국내 분류명 교차 확인 · 국립생물자원관 국가생물종목록", url: "https://www.nibr.go.kr/aiibook/catImage/22/National%20Species%203.pdf" },
+]);
 const primaryIds = Object.freeze(["lucanus-maculifemoratus", "trypoxylus-dichotomus", "harmonia-axyridis", "protaetia-brevitarsis", "anoplophora-malasiaca", "papilio-xuthus", "pieris-rapae", "sasakia-charonda", "sericinus-montela", "anax-parthenope", "sympetrum-depressiusculum", "acrida-cinerea", "gampsocleis-sedakovii", "teleogryllus-emma", "tenodera-sinensis", "hierodula-patellifera", "cryptotympana-atrata", "halyomorpha-halys", "camponotus-japonicus", "apis-cerana"]);
 const detailIds = Object.freeze(["dorcus-titanus-castanicolor", "dorcus-hopei-binodulosus", "pyrocoelia-rufa", "luciola-lateralis", "orthetrum-albistylum", "rhyothemis-fuliginosa", "anotogaster-sieboldi", "calopteryx-japonica", "calopteryx-atrata", "bombus-ignitus"]);
 const roleDetails = Object.freeze({
@@ -29,6 +33,10 @@ const specialPaths = Object.freeze({
   "calopteryx-atrata:interaction-2": "assets/insects/approved/calopteryx-atrata-interaction-2-pose-v2-imagegen-v1.png",
   "sympetrum-depressiusculum:individual": "assets/insects/approved/sympetrum-depressiusculum-representative-imagegen-v1.png",
   "hymenopus-coronatus:ecology": "assets/insects/approved/hymenopus-coronatus-ecology-4-imagegen-v1.png",
+  "morpho-menelaus:ecology": "assets/insects/approved/morpho-menelaus-ecology-imagegen-v1.png",
+  "morpho-menelaus:morphology": "assets/insects/approved/morpho-menelaus-morphology-imagegen-v1.png",
+  "morpho-menelaus:interaction": "assets/insects/approved/morpho-menelaus-interaction-imagegen-v1.png",
+  "morpho-menelaus:interaction-2": "assets/insects/approved/morpho-menelaus-interaction-2-imagegen-v1.png",
 });
 const explicitlyPassed = new Set(["lucanus-maculifemoratus:morphology", "sympetrum-depressiusculum:individual"]);
 const generationPromptOverrides = Object.freeze({
@@ -47,6 +55,10 @@ const generationPromptOverrides = Object.freeze({
   "apis-cerana:interaction-2": "Apis cerana returning to a Korean hive entrance carrying yellow pollen",
   "orthetrum-albistylum:interaction-2": "Orthetrum albistylum flying toward camera with an intact mosquito held non-graphically in its legs",
   "calopteryx-atrata:interaction-2": "Calopteryx atrata flying over a Korean mountain stream with fully spread black wings",
+  "morpho-menelaus:ecology": "adult Morpho menelaus with a broad iridescent blue dorsal wing surface, black wing border and complete body perched on a wet rainforest leaf in South American tropical forest; no text, watermark, extra limbs, malformed anatomy or cropped body",
+  "morpho-menelaus:morphology": "scientific educational full dorsal reference of one adult Morpho menelaus, broad iridescent blue wings with black outer margin, six legs and full body centered on a clean white background; no labels, watermark, pins, extra limbs or malformed anatomy",
+  "morpho-menelaus:interaction": "adult Morpho menelaus with wings folded closed, showing the brown underside with eye spots while drinking nectar from one rainforest flower; safe non-graphic interaction, full body, no text, watermark, extra limbs or malformed anatomy",
+  "morpho-menelaus:interaction-2": "adult Morpho menelaus in mid-flight in a South American rainforest clearing, one blue dorsal wing surface visible and one brown eye-spotted underside visible, complete six-leg anatomy, no text, watermark, extra limbs, malformed anatomy or cropped body",
 });
 const galleryItem = (id, kind) => {
   const details = roleDetails[kind] || roleDetails[kind.replace(/-\d+$/, "")]; const key = `${id}:${kind}`;
@@ -79,11 +91,65 @@ const worldGallery = Object.freeze({
   "attacus-atlas": Object.freeze([worldGalleryItem("attacus-atlas", "adult Atlas moth with fully spread rust-brown wings, cream and maroon patterns, transparent wing windows and snake-head-like forewing tips on a tropical leaf", "넓은 날개와 뱀 머리를 닮은 앞날개 끝무늬를 관찰하는 아틀라스나방입니다."), galleryItem("attacus-atlas", "morphology"), galleryItem("attacus-atlas", "interaction"), galleryItem("attacus-atlas", "interaction-2")]),
   "phyllium-philippinicum": Object.freeze([worldGalleryItem("phyllium-philippinicum", "Philippine leaf insect with a flattened green leaf-like body, leaf-vein pattern, broad leaf-like legs and complete six-leg anatomy on a tropical shrub", "잎맥과 닮은 몸과 다리로 위장한 필리핀잎벌레입니다."), galleryItem("phyllium-philippinicum", "morphology"), galleryItem("phyllium-philippinicum", "interaction"), galleryItem("phyllium-philippinicum", "interaction-2")]),
 });
+const tomtomiGalleryIds = Object.freeze(["morpho-menelaus", "chrysochroa-fulgidissima", "paraponera-clavata", "euproctis-subflava", "meloe-proscarabaeus", "vespa-mandarinia", "pheropsophus-jessoensis", "fulgora-laternaria", "deinacrida-heteracantha", "phobaeticus-chani", "thysania-agrippina"]);
+const tomtomiGallery = Object.freeze(Object.fromEntries(tomtomiGalleryIds.map((id) => [id, Object.freeze([
+  galleryItem(id, "ecology"), galleryItem(id, "morphology"), galleryItem(id, "interaction"), galleryItem(id, "interaction-2"),
+])])));
+// Adult-stage ranges are concise educational guides, not an individual longevity guarantee.
+const lifeSpanById = Object.freeze({
+  "lucanus-maculifemoratus": Object.freeze({ label: "성충 약 1~3개월", note: "유충기를 포함한 전체 생활사는 훨씬 길어요." }),
+  "trypoxylus-dichotomus": Object.freeze({ label: "성충 약 1~3개월", note: "번식·먹이 환경에 따라 달라져요." }),
+  "harmonia-axyridis": Object.freeze({ label: "성충 약 수개월", note: "월동 개체는 더 오래 살 수 있어요." }),
+  "protaetia-brevitarsis": Object.freeze({ label: "성충 약 1~3개월", note: "유충은 부식질에서 지내요." }),
+  "anoplophora-malasiaca": Object.freeze({ label: "성충 약 1~2개월", note: "유충기는 나무 속에서 더 길게 이어져요." }),
+  "papilio-xuthus": Object.freeze({ label: "성충 약 2~4주", note: "계절과 세대에 따라 차이가 있어요." }),
+  "pieris-rapae": Object.freeze({ label: "성충 약 2~4주", note: "온도와 먹이식물 상태에 따라 달라져요." }),
+  "sasakia-charonda": Object.freeze({ label: "성충 약 2~4주", note: "유충·번데기 시기를 포함하면 더 길어요." }),
+  "sericinus-montela": Object.freeze({ label: "성충 약 2~4주", note: "계절에 따라 생활사 속도가 달라져요." }),
+  "anax-parthenope": Object.freeze({ label: "성충 약 수주", note: "수중 유충기는 보통 성충기보다 길어요." }),
+  "sympetrum-depressiusculum": Object.freeze({ label: "성충 약 수주", note: "수중 유충기는 계절을 지나며 자라요." }),
+  "acrida-cinerea": Object.freeze({ label: "성충 약 수개월", note: "한 해 안에 생활사를 마치는 경우가 많아요." }),
+  "gampsocleis-sedakovii": Object.freeze({ label: "성충 약 수개월", note: "계절·기온에 따라 활동 기간이 달라져요." }),
+  "teleogryllus-emma": Object.freeze({ label: "성충 약 수개월", note: "알 단계로 월동하는 생활사가 알려져 있어요." }),
+  "tenodera-sinensis": Object.freeze({ label: "성충 약 2~5개월", note: "알집으로 겨울을 나는 한해살이형 생활사예요." }),
+  "hierodula-patellifera": Object.freeze({ label: "성충 약 2~5개월", note: "알집으로 겨울을 나는 한해살이형 생활사예요." }),
+  "cryptotympana-atrata": Object.freeze({ label: "성충 약 2~4주", note: "땅속 유충기는 여러 해가 걸릴 수 있어요." }),
+  "halyomorpha-halys": Object.freeze({ label: "성충 약 수개월", note: "성충으로 월동할 수 있어요." }),
+  "camponotus-japonicus": Object.freeze({ label: "일개미 약 수개월", note: "여왕개미는 훨씬 오래 살 수 있어요." }),
+  "apis-cerana": Object.freeze({ label: "일벌 약 수주", note: "월동 일벌·여왕벌은 생활 기간이 더 길 수 있어요." }),
+  "dorcus-titanus-castanicolor": Object.freeze({ label: "성충 약 1~3개월", note: "유충기는 부식목에서 길게 지내요." }),
+  "dorcus-hopei-binodulosus": Object.freeze({ label: "성충 약 1~3개월", note: "유충기는 부식목에서 길게 지내요." }),
+  "pyrocoelia-rufa": Object.freeze({ label: "성충 약 1~3주", note: "발광은 주로 짝을 찾는 데 쓰여요." }),
+  "luciola-lateralis": Object.freeze({ label: "성충 약 1~3주", note: "유충은 수로·논 주변에서 생활해요." }),
+  "orthetrum-albistylum": Object.freeze({ label: "성충 약 수주", note: "수중 유충기는 성충기보다 길어요." }),
+  "rhyothemis-fuliginosa": Object.freeze({ label: "성충 약 수주", note: "수중 유충기를 거쳐 성충이 돼요." }),
+  "anotogaster-sieboldi": Object.freeze({ label: "성충 약 수주", note: "산지 계류의 수중 유충기가 더 길어요." }),
+  "calopteryx-japonica": Object.freeze({ label: "성충 약 수주", note: "맑은 물의 수중 유충기를 거쳐요." }),
+  "calopteryx-atrata": Object.freeze({ label: "성충 약 수주", note: "맑은 물의 수중 유충기를 거쳐요." }),
+  "bombus-ignitus": Object.freeze({ label: "일벌 약 수주", note: "여왕벌은 월동하며 더 오래 살 수 있어요." }),
+  "dynastes-hercules": Object.freeze({ label: "성충 약 3~6개월", note: "유충기를 포함하면 생활사가 더 길어요." }),
+  "hymenopus-coronatus": Object.freeze({ label: "성충 약 수개월", note: "탈피 횟수와 먹이 환경에 따라 달라져요." }),
+  "scarabaeus-sacer": Object.freeze({ label: "성충 약 수개월", note: "계절과 건조도에 따라 활동 기간이 달라져요." }),
+  "goliathus-goliatus": Object.freeze({ label: "성충 약 수개월", note: "유충기는 부식 유기물에서 자라요." }),
+  "attacus-atlas": Object.freeze({ label: "성충 약 1~2주", note: "성충은 먹지 않고 번식에 집중해요." }),
+  "phyllium-philippinicum": Object.freeze({ label: "성충 약 수개월", note: "잎을 먹으며 여러 번 탈피해요." }),
+  "morpho-menelaus": Object.freeze({ label: "성충 약 2~4주", note: "계절과 환경에 따라 활동 기간이 달라져요." }),
+  "chrysochroa-fulgidissima": Object.freeze({ label: "성충 약 1~3개월", note: "유충기는 나무 속에서 더 길게 이어져요." }),
+  "paraponera-clavata": Object.freeze({ label: "일개미 약 수개월", note: "여왕개미는 훨씬 오래 살 수 있어요." }),
+  "euproctis-subflava": Object.freeze({ label: "성충 약 수주", note: "유충의 털은 만지지 않고 관찰해야 해요." }),
+  "meloe-proscarabaeus": Object.freeze({ label: "성충 약 수개월", note: "방어 물질을 지녀 손으로 만지지 않는 편이 좋아요." }),
+  "vespa-mandarinia": Object.freeze({ label: "일벌 약 수주", note: "여왕벌은 월동하며 더 오래 살 수 있어요." }),
+  "pheropsophus-jessoensis": Object.freeze({ label: "성충 약 수개월", note: "위협을 받으면 뜨거운 방어 분비물을 낼 수 있어요." }),
+  "fulgora-laternaria": Object.freeze({ label: "성충 약 수개월", note: "열대 지역의 수목에서 생활하는 뿔매미류예요." }),
+  "deinacrida-heteracantha": Object.freeze({ label: "성충 약 수개월", note: "뉴질랜드 섬의 보호 대상 대형 웨타예요." }),
+  "phobaeticus-chani": Object.freeze({ label: "성충 약 수개월", note: "나뭇가지 위장으로 천천히 움직여요." }),
+  "thysania-agrippina": Object.freeze({ label: "성충 약 수주", note: "야행성 성충의 활동 기간은 비교적 짧아요." }),
+});
 const record = (id, koreanName, scientificName, order, family, habitat, diet, cues, familiarityLevel = 2, options = {}) => {
   const gallery = options.gallery || galleryById[id] || [];
   return Object.freeze({
     id, koreanName, scientificName, taxonomy: { order, family }, appearancePeriod: { label: "현생 · 출현 시기 확인 중", kind: "modern" },
-    habitat, diet, size: { label: "크기 확인 중", millimeters: null }, familiarityLevel, keyAppearanceCues: cues,
+    habitat, diet, size: { label: "크기 확인 중", millimeters: null }, lifespan: options.lifespan || lifeSpanById[id] || Object.freeze({ label: "성충 수명 확인 중", note: "종별 근거를 정리하고 있어요." }), familiarityLevel, keyAppearanceCues: cues,
     gallery, sources: options.sources || source, licenseStatus: options.licenseStatus || (gallery.length ? "등록 이미지 검수 대기" : "이미지 미배정"), reviewStatus: options.reviewStatus || (gallery.length ? "gallery-published-pending-user-review" : "draft"), access: "free",
   });
 };
@@ -125,4 +191,15 @@ export const insects = Object.freeze([
   record("goliathus-goliatus", "골리앗꽃무지", "Goliathus goliatus", "딱정벌레목", "풍뎅이과", ["열대 아프리카 숲", "나무줄기"], "식물", ["아주 큰 몸", "검정·흰색 무늬", "딱지날개"], 4, { gallery: worldGallery["goliathus-goliatus"], sources: Object.freeze([{ label: "GBIF Backbone Taxonomy · Goliathus goliatus", url: "https://www.gbif.org/species/1076779" }]) }),
   record("attacus-atlas", "아틀라스나방", "Attacus atlas", "나비목", "왕잠자리나방과", ["동남아시아 열대림", "큰 잎"], "식물", ["매우 넓은 날개", "투명한 날개창", "뱀 머리 같은 날개끝"], 4, { gallery: worldGallery["attacus-atlas"], sources: Object.freeze([{ label: "GBIF Backbone Taxonomy · Attacus atlas", url: "https://www.gbif.org/taxon/JMDM" }]) }),
   record("phyllium-philippinicum", "필리핀잎벌레", "Phyllium philippinicum", "대벌레목", "잎대벌레과", ["필리핀 열대림", "관목"], "식물", ["잎맥 무늬", "넓은 잎 모양 다리", "나뭇잎 위장"], 4, { gallery: worldGallery["phyllium-philippinicum"], sources: Object.freeze([{ label: "GBIF Catalogue of Life · Phyllium philippinicum", url: "https://www.gbif.org/taxon/VGCRL" }]) }),
+  record("morpho-menelaus", "모르포나비", "Morpho menelaus", "나비목", "네발나비과", ["남아메리카 열대우림", "숲 가장자리"], "식물", ["금속성 파란 날개", "검은 날개 테두리", "넓은 날개"], 4, { gallery: tomtomiGallery["morpho-menelaus"], sources: tomtomiSources }),
+  record("chrysochroa-fulgidissima", "비단벌레", "Chrysochroa fulgidissima", "딱정벌레목", "비단벌레과", ["활엽수림", "고사목 주변"], "식물", ["무지개 금속광택", "길쭉한 딱지날개", "톱니 더듬이"], 3, { gallery: tomtomiGallery["chrysochroa-fulgidissima"], sources: tomtomiSources }),
+  record("paraponera-clavata", "총알개미", "Paraponera clavata", "벌목", "개미과", ["중남미 열대우림", "숲 바닥"], "여러 가지", ["큰 검은 몸", "잘록한 허리", "굽은 더듬이"], 3, { gallery: tomtomiGallery["paraponera-clavata"], sources: tomtomiSources }),
+  record("euproctis-subflava", "독나방", "Euproctis subflava", "나비목", "독나방과", ["활엽수림", "정원 수목"], "식물", ["황갈색 날개", "털 난 몸", "자극성 유충 털"], 2, { gallery: tomtomiGallery["euproctis-subflava"], sources: tomtomiSources }),
+  record("meloe-proscarabaeus", "남가뢰", "Meloe proscarabaeus", "딱정벌레목", "가뢰과", ["초지", "꽃밭 주변"], "식물", ["짧은 딱지날개", "부푼 배", "검푸른 금속광택"], 2, { gallery: tomtomiGallery["meloe-proscarabaeus"], sources: tomtomiSources }),
+  record("vespa-mandarinia", "장수말벌", "Vespa mandarinia", "벌목", "말벌과", ["산림", "숲 가장자리"], "다른 동물", ["큰 주황색 머리", "검정·노랑 줄무늬", "강한 턱"], 4, { gallery: tomtomiGallery["vespa-mandarinia"], sources: tomtomiSources }),
+  record("pheropsophus-jessoensis", "폭탄먼지벌레", "Pheropsophus jessoensis", "딱정벌레목", "딱정벌레과", ["숲 바닥", "돌 아래"], "다른 동물", ["검정 딱지날개", "주황색 머리·가슴", "긴 다리"], 2, { gallery: tomtomiGallery["pheropsophus-jessoensis"], sources: tomtomiSources }),
+  record("fulgora-laternaria", "악어머리뿔매미", "Fulgora laternaria", "노린재목", "뿔매미과", ["남아메리카 열대림", "나무줄기"], "식물", ["큰 머리 돌기", "날개 눈무늬", "나무껍질 위장"], 3, { gallery: tomtomiGallery["fulgora-laternaria"], sources: tomtomiSources }),
+  record("deinacrida-heteracantha", "자이언트웨타", "Deinacrida heteracantha", "메뚜기목", "웨타과", ["뉴질랜드 섬 숲", "낙엽층"], "식물", ["매우 큰 몸", "긴 더듬이", "튼튼한 뒷다리"], 4, { gallery: tomtomiGallery["deinacrida-heteracantha"], sources: tomtomiSources }),
+  record("phobaeticus-chani", "포베티쿠스 차니", "Phobaeticus chani", "대벌레목", "대벌레과", ["보르네오 열대림", "나무 위"], "식물", ["매우 긴 막대 몸", "가느다란 다리", "나뭇가지 위장"], 4, { gallery: tomtomiGallery["phobaeticus-chani"], sources: tomtomiSources }),
+  record("thysania-agrippina", "아그리피나 밤나방", "Thysania agrippina", "나비목", "불나방과", ["중남미 열대림", "숲 가장자리"], "식물", ["매우 넓은 회색 날개", "물결무늬", "야행성"], 4, { gallery: tomtomiGallery["thysania-agrippina"], sources: tomtomiSources }),
 ]);

@@ -1,15 +1,32 @@
-import { insects } from "./data/insects.js?v=20260903-pose-diversity";
+import { insects } from "./data/insects.js?v=20260904-tomtomi-gallery";
 
-const state = { view: "explore", query: "", diet: "all", level: "all", classification: "all", mapMode: "classification", scope: "free", lightboxItems: [], lightboxIndex: 0, previousFocus: null, pinch: { distance: 0, scale: 1 } };
+const state = { view: "explore", query: "", diet: "all", level: "all", taxonomyOrder: "all", taxonomyFamily: "all", scope: "free", lightboxItems: [], lightboxIndex: 0, previousFocus: null, pinch: { distance: 0, scale: 1 } };
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
+const familiarity = Object.freeze({ 1: "새로운 친구", 2: "알아가요", 3: "친숙", 4: "매우 친숙" });
+const orderHues = Object.freeze({ "딱정벌레목": 38, "나비목": 286, "잠자리목": 197, "메뚜기목": 104, "사마귀목": 78, "매미목": 338, "노린재목": 12, "벌목": 28, "대벌레목": 153 });
+
+function taxonomyTree() {
+  return [...insects.reduce((orders, insect) => {
+    const { order, family } = insect.taxonomy;
+    if (!orders.has(order)) orders.set(order, new Map());
+    const families = orders.get(order); families.set(family, (families.get(family) || 0) + 1);
+    return orders;
+  }, new Map())].map(([order, families]) => ({ order, total: [...families.values()].reduce((sum, count) => sum + count, 0), families: [...families].map(([family, total]) => ({ family, total })) }));
+}
+
+function taxonomyStyle(insect) {
+  const hue = orderHues[insect.taxonomy.order] ?? 210;
+  const familyIndex = taxonomyTree().find((group) => group.order === insect.taxonomy.order)?.families.findIndex((group) => group.family === insect.taxonomy.family) ?? 0;
+  return `--order-hue:${hue};--family-hue:${(hue + familyIndex * 9) % 360};`;
+}
 
 function filteredInsects() {
   const query = state.query.trim().toLowerCase();
   return insects.filter((insect) => {
     const terms = [insect.koreanName, insect.scientificName, insect.taxonomy?.order, insect.taxonomy?.family, ...(insect.habitat || [])].join(" ").toLowerCase();
-    const classificationMatches = state.classification === "all" || (state.classification === "order" && Boolean(insect.taxonomy?.order)) || (state.classification === "family" && Boolean(insect.taxonomy?.family));
-    return (!query || terms.includes(query)) && (state.diet === "all" || insect.diet === state.diet) && (state.level === "all" || String(insect.familiarityLevel) === state.level) && classificationMatches;
+    const taxonomyMatches = (state.taxonomyOrder === "all" || insect.taxonomy?.order === state.taxonomyOrder) && (state.taxonomyFamily === "all" || insect.taxonomy?.family === state.taxonomyFamily);
+    return (!query || terms.includes(query)) && (state.diet === "all" || insect.diet === state.diet) && (state.level === "all" || String(insect.familiarityLevel) === state.level) && taxonomyMatches;
   });
 }
 
@@ -27,7 +44,30 @@ function updateMetrics() {
   $("#adminImagePendingCount").textContent = insects.filter((item) => !(item.gallery || []).length).length;
   $("#adminSourceCount").textContent = insects.filter((item) => item.sources).length;
   $$("[data-scope] strong").forEach((node) => { node.textContent = state.scope === "all" ? insects.length : insects.filter((item) => item.access === "free").length; });
-  $$("#classificationTabs strong").forEach((node) => { node.textContent = insects.length; });
+}
+
+function renderTaxonomyFilter() {
+  const root = $("#taxonomyFilter"); root.replaceChildren();
+  const all = document.createElement("button"); all.type = "button"; all.className = "taxonomy-all"; all.textContent = `전체 ${insects.length}`;
+  all.setAttribute("aria-pressed", String(state.taxonomyOrder === "all")); all.classList.toggle("active", state.taxonomyOrder === "all");
+  all.addEventListener("click", () => { state.taxonomyOrder = "all"; state.taxonomyFamily = "all"; renderTaxonomyFilter(); renderExplore(); renderCatalog(); }); root.append(all);
+  taxonomyTree().forEach(({ order, total, families }) => {
+    const group = document.createElement("section"); group.className = "taxonomy-order"; group.style.setProperty("--order-hue", orderHues[order] ?? 210);
+    const orderButton = document.createElement("button"); orderButton.type = "button"; orderButton.className = "taxonomy-order-button"; orderButton.innerHTML = `<span>${order}</span><strong>${total}</strong>`;
+    const selected = state.taxonomyOrder === order; orderButton.classList.toggle("active", selected); orderButton.setAttribute("aria-pressed", String(selected));
+    orderButton.addEventListener("click", () => { state.taxonomyOrder = selected ? "all" : order; state.taxonomyFamily = "all"; renderTaxonomyFilter(); renderExplore(); renderCatalog(); }); group.append(orderButton);
+    if (selected) {
+      const familyList = document.createElement("div"); familyList.className = "taxonomy-family-list";
+      families.forEach(({ family, total }, index) => {
+        const familyButton = document.createElement("button"); familyButton.type = "button"; familyButton.className = "taxonomy-family-button"; familyButton.style.setProperty("--family-hue", ((orderHues[order] ?? 210) + index * 9) % 360);
+        familyButton.innerHTML = `<span>${family}</span><strong>${total}</strong>`; const familySelected = state.taxonomyFamily === family;
+        familyButton.classList.toggle("active", familySelected); familyButton.setAttribute("aria-pressed", String(familySelected));
+        familyButton.addEventListener("click", () => { state.taxonomyFamily = familySelected ? "all" : family; renderTaxonomyFilter(); renderExplore(); renderCatalog(); }); familyList.append(familyButton);
+      });
+      group.append(familyList);
+    }
+    root.append(group);
+  });
 }
 
 function setView(nextView) {
@@ -48,9 +88,9 @@ function renderExplore() {
   grid.replaceChildren();
   if (!visible.length) { grid.append($("#emptyCatalogTemplate").content.cloneNode(true)); return; }
   visible.forEach((insect) => {
-    const card = document.createElement("button"); card.className = "map-species"; card.type = "button";
+    const card = document.createElement("button"); card.className = "map-species"; card.type = "button"; card.style.cssText = taxonomyStyle(insect);
     const imageLabel = insect.gallery?.length ? `검수 통과 이미지 ${insect.gallery.length}장 · 정보 보기` : "이미지 검수 대기 · 정보 보기";
-    card.innerHTML = `<span class="eyebrow">${insect.taxonomy.order} · ${insect.taxonomy.family}</span><strong>${insect.koreanName}</strong><em>${insect.scientificName}</em><small>${imageLabel}</small>`;
+    card.innerHTML = `<span class="taxonomy-order-label">${insect.taxonomy.order}</span><span class="taxonomy-family-label">${insect.taxonomy.family}</span><strong>${insect.koreanName}</strong><em>${insect.scientificName}</em><small><b>친숙도 ${familiarity[insect.familiarityLevel] || "미정"}</b>${imageLabel}</small>`;
     card.addEventListener("click", () => selectInsect(insect)); grid.append(card);
   });
 }
@@ -60,8 +100,8 @@ function renderCatalog() {
   grid.replaceChildren();
   if (!visible.length) { grid.append($("#emptyCatalogTemplate").content.cloneNode(true)); return; }
   visible.forEach((insect) => {
-    const card = document.createElement("button"); card.className = "species-card"; card.type = "button";
-    card.innerHTML = `<span class="card-art" aria-hidden="true">⌬</span><span class="eyebrow">${insect.taxonomy.order} · ${insect.taxonomy.family}</span><strong>${insect.koreanName}</strong><em>${insect.scientificName}</em><span>${insect.appearancePeriod.label}</span>`;
+    const card = document.createElement("button"); card.className = "species-card"; card.type = "button"; card.style.cssText = taxonomyStyle(insect);
+    card.innerHTML = `<span class="card-art" aria-hidden="true">⌬</span><span class="taxonomy-order-label">${insect.taxonomy.order}</span><span class="taxonomy-family-label">${insect.taxonomy.family}</span><strong>${insect.koreanName}</strong><em>${insect.scientificName}</em><span class="familiarity-chip">친숙도 · ${familiarity[insect.familiarityLevel] || "미정"}</span>`;
     card.addEventListener("click", () => selectInsect(insect)); grid.append(card);
   });
 }
@@ -69,9 +109,10 @@ function renderCatalog() {
 function selectInsect(insect) {
   const gallery = (insect.gallery || []).map((item) => ({ ...item, alt: item.alt || `${insect.koreanName} ${item.role || "갤러리 이미지"}`, title: item.title || `${insect.koreanName} · ${item.role || "갤러리 이미지"}` }));
   const preview = gallery.slice(0, 3).map((item, index) => `<button class="gallery-preview-card" data-gallery-preview="${index}" type="button" aria-label="${item.title} 크게 보기"><img src="${item.src}" alt="${item.alt}" loading="eager"><span>${item.role}</span></button>`).join("");
-  $("#detailPanel").innerHTML = `<p class="eyebrow">선택한 곤충</p><h3>${insect.koreanName}</h3><p class="scientific-name">${insect.scientificName}</p><p>${insect.keyAppearanceCues?.join(" · ") || "외형 단서 준비 중"}</p><div class="detail-tags"><span>${insect.taxonomy?.order || "목 미정"}</span><span>${insect.appearancePeriod?.label || "시기 미정"}</span><span>${insect.habitat?.[0] || "서식지 미정"}</span></div>${gallery.length ? `<div class="gallery-preview" aria-label="${insect.koreanName} 대표 이미지 미리보기">${preview}</div><button class="primary-action" id="openGallery" type="button">갤러리 ${gallery.length}장 보기</button>` : `<p class="image-pending">이미지는 현재 검수 중입니다. 종 정보는 먼저 볼 수 있어요.</p>`}`;
+  const facts = [["서식지", (insect.habitat || []).join(" · ") || "정리 중"], ["먹이", insect.diet || "정리 중"], ["특징", (insect.keyAppearanceCues || []).join(" · ") || "정리 중"], ["성충 수명", insect.lifespan?.label || "확인 중"]].map(([label, value]) => `<div class="fact"><dt>${label}</dt><dd>${value}</dd></div>`).join("");
+  const galleryBlock = gallery.length ? `<div class="gallery-preview" aria-label="${insect.koreanName} 대표 이미지 미리보기">${preview}</div>` : `<p class="image-pending">이미지는 현재 검수 중입니다. 종 정보는 먼저 볼 수 있어요.</p>`;
+  $("#detailPanel").innerHTML = `<p class="eyebrow">선택한 곤충</p><h3>${insect.koreanName}</h3><p class="scientific-name">${insect.scientificName}</p><div class="detail-tags"><span>${insect.taxonomy?.order || "목 미정"}</span><span>${insect.taxonomy?.family || "과 미정"}</span><span>친숙도 · ${familiarity[insect.familiarityLevel] || "미정"}</span></div>${galleryBlock}<section class="insect-facts" aria-label="${insect.koreanName} 생활 정보"><div class="facts-heading"><p class="eyebrow">생활 정보</p><span>성충기 기준</span></div><dl>${facts}</dl><p class="lifespan-note">${insect.lifespan?.note || "수명은 기온·먹이·월동 여부에 따라 달라질 수 있어요."}</p></section>`;
   $$("[data-gallery-preview]", $("#detailPanel")).forEach((button) => button.addEventListener("click", () => openLightbox(gallery, Number(button.dataset.galleryPreview))));
-  $("#openGallery")?.addEventListener("click", () => openLightbox(gallery, 0));
 }
 
 function showDialog(dialog) { state.previousFocus = document.activeElement; dialog.hidden = false; dialog.setAttribute("aria-hidden", "false"); document.body.classList.add("modal-open"); $("[role=dialog]", dialog)?.focus(); }
@@ -89,9 +130,7 @@ function bindEvents() {
   $("#searchInput").addEventListener("input", (event) => { state.query = event.target.value; renderExplore(); renderCatalog(); });
   $$("#dietFilter button").forEach((button) => button.addEventListener("click", () => { state.diet = button.dataset.diet; setPressed("#dietFilter button", "active", "diet", state.diet); renderExplore(); renderCatalog(); }));
   $$("#levelFilter button").forEach((button) => button.addEventListener("click", () => { state.level = button.dataset.level; setPressed("#levelFilter button", "active", "level", state.level); renderExplore(); renderCatalog(); }));
-  $("#resetFilters").addEventListener("click", () => { state.query = ""; state.diet = "all"; state.level = "all"; $("#searchInput").value = ""; setPressed("#dietFilter button", "active", "diet", "all"); setPressed("#levelFilter button", "active", "level", "all"); renderExplore(); renderCatalog(); });
-  $$("[data-map-mode]").forEach((button) => button.addEventListener("click", () => { state.mapMode = button.dataset.mapMode; $$("[data-map-mode]").forEach((item) => { const active = item === button; item.classList.toggle("active", active); item.setAttribute("aria-selected", String(active)); }); }));
-  $$("[data-classification]").forEach((button) => button.addEventListener("click", () => { state.classification = button.dataset.classification; setPressed("[data-classification]", "active", "classification", state.classification); renderExplore(); }));
+  $("#resetFilters").addEventListener("click", () => { state.query = ""; state.diet = "all"; state.level = "all"; state.taxonomyOrder = "all"; state.taxonomyFamily = "all"; $("#searchInput").value = ""; setPressed("#dietFilter button", "active", "diet", "all"); setPressed("#levelFilter button", "active", "level", "all"); renderTaxonomyFilter(); renderExplore(); renderCatalog(); });
   $$("[data-scope]").forEach((button) => button.addEventListener("click", () => { state.scope = button.dataset.scope; setPressed("[data-scope]", "active", "scope", state.scope); updateMetrics(); }));
   $("#tierButton").addEventListener("click", () => showDialog($("#subscriptionDialog")));
   $$('[data-dialog-close]').forEach((button) => button.addEventListener("click", () => closeDialog($("#subscriptionDialog"))));
@@ -104,4 +143,4 @@ function bindEvents() {
   document.addEventListener("keydown", (event) => { if (event.key === "Escape") { [$("#imageLightbox"), $("#subscriptionDialog")].filter((dialog) => !dialog.hidden).forEach(closeDialog); } if (!$("#imageLightbox").hidden && event.key === "ArrowRight") moveLightbox(1); if (!$("#imageLightbox").hidden && event.key === "ArrowLeft") moveLightbox(-1); });
 }
 
-bindEvents(); updateMetrics(); renderExplore(); renderCatalog();
+bindEvents(); updateMetrics(); renderTaxonomyFilter(); renderExplore(); renderCatalog();
