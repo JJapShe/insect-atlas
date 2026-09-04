@@ -6,7 +6,7 @@ const files = ["index.html", "styles.css", "app.js", "review.html", "review.js",
 for (const file of files) await readFile(new URL(`../${file}`, import.meta.url), "utf8");
 const decisions = JSON.parse(await readFile(new URL("../tools/review-decisions/image-review-decisions-20260903.json", import.meta.url), "utf8"));
 if ((decisions.records || []).filter((record) => record.decision === "pass").length !== 3 || (decisions.records || []).filter((record) => record.decision === "reject").length !== 18) throw new Error("Published review decision counts are incomplete.");
-if (!Array.isArray(insects) || insects.length !== 47) throw new Error("Production insects data must contain the expected public information records.");
+if (!Array.isArray(insects) || insects.length !== 63) throw new Error("Production insects data must contain the expected public information records.");
 const invalidRecord = insects.find((insect) => !insect.id || !insect.koreanName || !insect.scientificName || !insect.taxonomy?.order || !insect.taxonomy?.family || !insect.lifespan?.label || !Array.isArray(insect.gallery) || (insect.gallery.length === 0 && insect.reviewStatus !== "draft") || (insect.gallery.length > 0 && insect.reviewStatus !== "gallery-published-pending-user-review"));
 if (invalidRecord) throw new Error(`Invalid public information record: ${invalidRecord?.id || "unknown"}`);
 const publicGalleryItems = insects.flatMap((insect) => insect.gallery || []);

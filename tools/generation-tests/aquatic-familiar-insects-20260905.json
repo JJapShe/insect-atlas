@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-09-05",
+  "tool": "OpenAI built-in image generation",
+  "sourceAttribution": "No external artwork was supplied as input.",
+  "license": "Generated project assets; published pending user review.",
+  "generationSeed": "service-assigned; not exposed",
+  "generationWorkflow": "Built-in generation, visual anatomy and identity review, unchanged copies retained in review and approved paths.",
+  "batches": [
+    {
+      "role": "ecology",
+      "assetTemplate": "assets/insects/review/aquatic-familiar-insects-20260905/{id}-ecology-imagegen-v1.png",
+      "generationPrompt": "Natural-history ecology reference with a complete adult body, diagnostic shape and exactly six legs readable in the appropriate Korean habitat; no labels, watermark, extra limbs, malformed anatomy or cropped body.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["culex-pipiens-pallens", "musca-domestica", "cybister-japonicus", "lethocerus-deyrolli"],
+      "koreanNames": {"culex-pipiens-pallens":"빨간집모기", "musca-domestica":"집파리", "cybister-japonicus":"물방개", "lethocerus-deyrolli":"물장군"}
+    },
+    {
+      "role": "morphology",
+      "assetTemplate": "assets/insects/review/aquatic-familiar-insects-20260905/{id}-morphology-imagegen-v1.png",
+      "generationPrompt": "Scientific information reference on a clean white background: one full adult insect, diagnostic features and exactly six legs readable; no labels, pins, text, watermark, extra limbs or malformed anatomy.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["culex-pipiens-pallens", "musca-domestica", "cybister-japonicus", "lethocerus-deyrolli"]
+    },
+    {
+      "role": "interaction",
+      "assetTemplate": "assets/insects/review/aquatic-familiar-insects-20260905/{id}-interaction-imagegen-v1.png",
+      "generationPrompt": "Safe non-graphic ecological interaction or behavior with full adult anatomy readable; the water-bug prey, when shown, is whole and uninjured, with no blood, no wounds and no deformation; no text, watermark, extra limbs or malformed anatomy.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["culex-pipiens-pallens", "musca-domestica", "cybister-japonicus", "lethocerus-deyrolli"]
+    },
+    {
+      "role": "interaction-2",
+      "assetTemplate": "assets/insects/review/aquatic-familiar-insects-20260905/{id}-interaction-2-imagegen-v1.png",
+      "generationPrompt": "Second distinct non-graphic ecology pose that clearly differs from the primary ecology image, with complete adult body and diagnostic features readable; no text, watermark, extra limbs, malformed anatomy or cropped body.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["culex-pipiens-pallens", "musca-domestica", "cybister-japonicus", "lethocerus-deyrolli"]
+    }
+  ]
+}

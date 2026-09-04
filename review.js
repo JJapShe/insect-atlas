@@ -10,6 +10,10 @@ const manifestUrls = [
   "tools/generation-tests/identity-consistency-20260903.json",
   "tools/generation-tests/pose-diversity-20260903.json",
   "tools/generation-tests/tomtomi-insects-20260904.json",
+  "tools/generation-tests/international-beetles-20260904.json",
+  "tools/generation-tests/aquatic-familiar-insects-20260905.json",
+  "tools/generation-tests/woodland-life-stages-20260905.json",
+  "tools/generation-tests/seven-insects-20260905.json",
 ];
 const decisionManifestUrl = "tools/review-decisions/image-review-decisions-20260903.json";
 const koreanNames = new Map();

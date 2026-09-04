@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-09-05",
+  "tool": "OpenAI built-in image generation",
+  "sourceAttribution": "No external artwork was supplied as input.",
+  "license": "Generated project assets; published pending user review.",
+  "generationSeed": "service-assigned; not exposed",
+  "generationWorkflow": "Built-in generation, visual anatomy and identity review, unchanged copies retained in review and approved paths.",
+  "batches": [
+    {
+      "role": "ecology",
+      "assetTemplate": "assets/insects/review/woodland-life-stages-20260905/{id}-ecology-imagegen-v1.png",
+      "generationPrompt": "Natural-history ecology reference with a full visible body and diagnostic anatomy in the appropriate Korean woodland habitat; no labels, watermark, extra limbs, malformed anatomy or cropped body.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["ramulus-mikado", "ascotis-selenaria-larva", "callambulyx-tatarinovii"],
+      "koreanNames": {"ramulus-mikado":"대벌레", "ascotis-selenaria-larva":"자벌레", "callambulyx-tatarinovii":"녹색박각시"}
+    },
+    {
+      "role": "morphology",
+      "assetTemplate": "assets/insects/review/woodland-life-stages-20260905/{id}-morphology-imagegen-v1.png",
+      "generationPrompt": "Scientific white-background morphology reference: full adult or stated larval stage and its diagnostic appendages readable; no labels, pins, text, watermark, extra limbs or malformed anatomy.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["ramulus-mikado", "ascotis-selenaria-larva", "callambulyx-tatarinovii"]
+    },
+    {
+      "role": "interaction",
+      "assetTemplate": "assets/insects/review/woodland-life-stages-20260905/{id}-interaction-imagegen-v1.png",
+      "generationPrompt": "Safe non-graphic ecological behavior: the walking stick uses twig mimicry, the geometer larva uses its characteristic looping posture, or the moth drinks flower nectar; full anatomy readable; no text, watermark, extra limbs or malformed anatomy.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["ramulus-mikado", "ascotis-selenaria-larva", "callambulyx-tatarinovii"]
+    },
+    {
+      "role": "interaction-2",
+      "assetTemplate": "assets/insects/review/woodland-life-stages-20260905/{id}-interaction-2-imagegen-v1.png",
+      "generationPrompt": "Second distinct ecology pose, not a duplicate of the first, with complete body and diagnostic features readable; no text, watermark, extra limbs, malformed anatomy or cropped body.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["ramulus-mikado", "ascotis-selenaria-larva", "callambulyx-tatarinovii"]
+    }
+  ]
+}

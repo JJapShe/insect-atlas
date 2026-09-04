@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-09-05",
+  "tool": "OpenAI built-in image generation",
+  "sourceAttribution": "No external artwork was supplied as input.",
+  "license": "Generated project assets; published pending user review.",
+  "generationSeed": "service-assigned; not exposed",
+  "generationWorkflow": "Built-in generation, visual anatomy and identity review, unchanged copies retained in review and approved paths.",
+  "batches": [
+    {
+      "role": "ecology",
+      "assetTemplate": "assets/insects/review/international-beetles-20260904/{id}-ecology-imagegen-v1.png",
+      "generationPrompt": "Adult male rhinoceros beetle in its Southeast Asian habitat; complete body and diagnostic horns visible; no text, watermark, hands, extra limbs, malformed horns or cropped body.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["chalcosoma-chiron", "eupatorus-gracilicornis"],
+      "koreanNames": {"chalcosoma-chiron":"케이론장수풍뎅이", "eupatorus-gracilicornis":"오각뿔장수풍뎅이"}
+    },
+    {
+      "role": "morphology",
+      "assetTemplate": "assets/insects/review/international-beetles-20260904/{id}-morphology-imagegen-v1.png",
+      "generationPrompt": "Complete adult male morphology reference on a white background: diagnostic horns and exactly six legs readable; no labels, pins, text, watermark, extra limbs or malformed anatomy.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["chalcosoma-chiron", "eupatorus-gracilicornis"]
+    },
+    {
+      "role": "interaction",
+      "assetTemplate": "assets/insects/review/international-beetles-20260904/{id}-interaction-imagegen-v1.png",
+      "generationPrompt": "Safe, non-graphic tree or bamboo sap feeding behaviour with complete adult male anatomy visible; no people, text, watermark, extra limbs, malformed horns or cropped body.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["chalcosoma-chiron", "eupatorus-gracilicornis"]
+    },
+    {
+      "role": "interaction-2",
+      "assetTemplate": "assets/insects/review/international-beetles-20260904/{id}-interaction-2-imagegen-v1.png",
+      "generationPrompt": "Second distinct ecology pose with diagnostic horn count, open flight wings and six-leg anatomy visible; no text, watermark, extra limbs, malformed horns or cropped body.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["chalcosoma-chiron", "eupatorus-gracilicornis"]
+    }
+  ]
+}

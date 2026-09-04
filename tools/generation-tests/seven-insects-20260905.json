@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-09-05",
+  "tool": "OpenAI built-in image generation",
+  "sourceAttribution": "No external artwork was supplied as input.",
+  "license": "Generated project assets; published pending user review.",
+  "generationSeed": "service-assigned; not exposed",
+  "generationWorkflow": "Built-in generation, visual anatomy and identity review, unchanged copies retained in review and approved paths.",
+  "subjectSpecs": {
+    "actias-artemis": "Pale mint wings, four eyespots, exactly two long hindwing tails.",
+    "langia-zenzeroides-nawai": "Large grey-brown leaf-patterned wings with wavy markings and scalloped edges.",
+    "cicindela-chinensis-flammifera": "Metallic green-bronze body, large eyes, curved mandibles and long running legs.",
+    "carabus-smaragdinus": "Metallic green-copper ridged elytra and reddish-brown legs.",
+    "callipogon-relictus": "Black head and thorax, reddish-brown elytra, large mandibles and long antennae.",
+    "platerodrilus-ngi": "Adult female, wingless flattened dark brown segmented larviform body and three leg pairs.",
+    "prosopocoilus-inclinatus": "Male reddish-brown stag beetle with long curved saw-toothed mandibles."
+  },
+  "batches": [
+    {
+      "role": "ecology",
+      "assetTemplate": "assets/insects/review/seven-insects-20260905/{id}-ecology-imagegen-v1.png",
+      "generationPrompt": "Natural-history ecology reference: complete body and species diagnostic anatomy visible in the stated habitat; no text, watermark, extra limbs, malformed anatomy or cropped body.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["actias-artemis", "langia-zenzeroides-nawai", "cicindela-chinensis-flammifera", "carabus-smaragdinus", "callipogon-relictus", "platerodrilus-ngi", "prosopocoilus-inclinatus"],
+      "koreanNames": {"actias-artemis":"긴꼬리산누에나방", "langia-zenzeroides-nawai":"대왕박각시", "cicindela-chinensis-flammifera":"길앞잡이", "carabus-smaragdinus":"홍단딱정벌레", "callipogon-relictus":"장수하늘소", "platerodrilus-ngi":"삼엽충딱정벌레", "prosopocoilus-inclinatus":"톱사슴벌레"}
+    },
+    {
+      "role": "morphology",
+      "assetTemplate": "assets/insects/review/seven-insects-20260905/{id}-morphology-imagegen-v1.png",
+      "generationPrompt": "Scientific white-background morphology reference: full stated adult stage and diagnostic appendages visible; no labels, pins, text, watermark, extra limbs or malformed anatomy.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["actias-artemis", "langia-zenzeroides-nawai", "cicindela-chinensis-flammifera", "carabus-smaragdinus", "callipogon-relictus", "platerodrilus-ngi", "prosopocoilus-inclinatus"]
+    },
+    {
+      "role": "interaction",
+      "assetTemplate": "assets/insects/review/seven-insects-20260905/{id}-interaction-imagegen-v1.png",
+      "generationPrompt": "Safe non-graphic ecology: resting, feeding, running beside a small animal, or moving through habitat with complete anatomy visible; no text, watermark, extra limbs or malformed anatomy.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["actias-artemis", "langia-zenzeroides-nawai", "cicindela-chinensis-flammifera", "carabus-smaragdinus", "callipogon-relictus", "platerodrilus-ngi", "prosopocoilus-inclinatus"]
+    },
+    {
+      "role": "interaction-2",
+      "assetTemplate": "assets/insects/review/seven-insects-20260905/{id}-interaction-2-imagegen-v1.png",
+      "generationPrompt": "Second distinct ecology pose, such as flight or travel, with complete body and diagnostic features readable; no text, watermark, extra limbs, malformed anatomy or cropped body.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["actias-artemis", "langia-zenzeroides-nawai", "cicindela-chinensis-flammifera", "carabus-smaragdinus", "callipogon-relictus", "platerodrilus-ngi", "prosopocoilus-inclinatus"]
+    }
+  ]
+}
