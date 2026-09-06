@@ -1,4 +1,4 @@
-import { insects } from "./data/insects.js?v=20260905-seven-insects";
+import { insects } from "./data/insects.js?v=20260905-life-stages";
 
 const state = { view: "explore", query: "", diet: "all", level: "all", taxonomyOrder: "all", taxonomyFamily: "all", scope: "free", lightboxItems: [], lightboxIndex: 0, previousFocus: null, pinch: { distance: 0, scale: 1 } };
 const $ = (selector, scope = document) => scope.querySelector(selector);

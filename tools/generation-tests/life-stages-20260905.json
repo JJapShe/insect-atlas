@@ -1,0 +1,54 @@
+{
+  "generatedAt": "2026-09-05",
+  "tool": "OpenAI built-in image generation",
+  "sourceAttribution": "No external artwork was supplied as input.",
+  "license": "Generated project assets; published pending user review.",
+  "generationSeed": "service-assigned; not exposed",
+  "generationWorkflow": "Built-in generation, visual life-stage and anatomy review, unchanged copies retained in review and approved paths.",
+  "batches": [
+    {
+      "role": "egg",
+      "assetTemplate": "assets/insects/review/life-stages-20260905/{id}-egg-imagegen-v1.png",
+      "generationPrompt": "Natural-history egg-stage reference in the correct species habitat; no adult, larva, pupa, text, watermark, malformed anatomy or unrelated insects.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["lucanus-maculifemoratus", "trypoxylus-dichotomus", "harmonia-axyridis", "protaetia-brevitarsis", "anoplophora-malasiaca", "papilio-xuthus", "pieris-rapae", "sasakia-charonda", "sericinus-montela", "attacus-atlas", "callambulyx-tatarinovii", "actias-artemis", "langia-zenzeroides-nawai", "camponotus-japonicus", "apis-cerana", "dorcus-titanus-castanicolor", "dorcus-hopei-binodulosus", "pyrocoelia-rufa", "luciola-lateralis", "bombus-ignitus", "culex-pipiens-pallens", "musca-domestica", "cybister-japonicus", "dynastes-hercules", "scarabaeus-sacer", "goliathus-goliatus", "chalcosoma-chiron", "eupatorus-gracilicornis", "prosopocoilus-inclinatus", "cicindela-chinensis-flammifera", "carabus-smaragdinus", "callipogon-relictus", "chrysochroa-fulgidissima", "platerodrilus-ngi", "meloe-proscarabaeus"],
+      "koreanNames": {"lucanus-maculifemoratus":"사슴벌레", "trypoxylus-dichotomus":"장수풍뎅이", "harmonia-axyridis":"무당벌레", "protaetia-brevitarsis":"꽃무지", "anoplophora-malasiaca":"알락하늘소", "papilio-xuthus":"호랑나비", "pieris-rapae":"배추흰나비", "sasakia-charonda":"왕오색나비", "sericinus-montela":"꼬리명주나비", "attacus-atlas":"아틀라스나방", "callambulyx-tatarinovii":"녹색박각시", "actias-artemis":"긴꼬리산누에나방", "langia-zenzeroides-nawai":"대왕박각시", "camponotus-japonicus":"왕개미", "apis-cerana":"동양종꿀벌", "dorcus-titanus-castanicolor":"왕사슴벌레", "dorcus-hopei-binodulosus":"넓적사슴벌레", "pyrocoelia-rufa":"늦반딧불이", "luciola-lateralis":"애반딧불이", "bombus-ignitus":"호박벌", "culex-pipiens-pallens":"빨간집모기", "musca-domestica":"집파리", "cybister-japonicus":"물방개", "dynastes-hercules":"헤라클레스장수풍뎅이", "scarabaeus-sacer":"쇠똥구리", "goliathus-goliatus":"골리앗꽃무지", "chalcosoma-chiron":"케이론장수풍뎅이", "eupatorus-gracilicornis":"오각뿔장수풍뎅이", "prosopocoilus-inclinatus":"톱사슴벌레", "cicindela-chinensis-flammifera":"길앞잡이", "carabus-smaragdinus":"홍단딱정벌레", "callipogon-relictus":"장수하늘소", "chrysochroa-fulgidissima":"비단벌레", "platerodrilus-ngi":"삼엽충딱정벌레", "meloe-proscarabaeus":"남가뢰"}
+    },
+    {
+      "role": "larva",
+      "assetTemplate": "assets/insects/review/life-stages-20260905/{id}-larva-imagegen-v1.png",
+      "generationPrompt": "Natural-history larval-stage reference in the correct species habitat; no adult, egg, pupa, text, watermark, extra limbs or malformed anatomy.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["lucanus-maculifemoratus", "trypoxylus-dichotomus", "harmonia-axyridis", "protaetia-brevitarsis", "anoplophora-malasiaca", "papilio-xuthus", "pieris-rapae", "sasakia-charonda", "sericinus-montela", "attacus-atlas", "callambulyx-tatarinovii", "actias-artemis", "langia-zenzeroides-nawai", "camponotus-japonicus", "apis-cerana", "dorcus-titanus-castanicolor", "dorcus-hopei-binodulosus", "pyrocoelia-rufa", "luciola-lateralis", "bombus-ignitus", "culex-pipiens-pallens", "musca-domestica", "cybister-japonicus", "dynastes-hercules", "scarabaeus-sacer", "goliathus-goliatus", "chalcosoma-chiron", "eupatorus-gracilicornis", "prosopocoilus-inclinatus", "cicindela-chinensis-flammifera", "carabus-smaragdinus", "callipogon-relictus", "chrysochroa-fulgidissima", "platerodrilus-ngi", "meloe-proscarabaeus"]
+    },
+    {
+      "role": "pupa",
+      "assetTemplate": "assets/insects/review/life-stages-20260905/{id}-pupa-imagegen-v1.png",
+      "generationPrompt": "Natural-history pupal-stage reference in the correct species habitat; no adult, egg, larva, text, watermark, duplicate limbs or malformed anatomy.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["lucanus-maculifemoratus", "trypoxylus-dichotomus", "harmonia-axyridis", "protaetia-brevitarsis", "anoplophora-malasiaca", "papilio-xuthus", "pieris-rapae", "sasakia-charonda", "sericinus-montela", "attacus-atlas", "callambulyx-tatarinovii", "actias-artemis", "langia-zenzeroides-nawai", "camponotus-japonicus", "apis-cerana", "dorcus-titanus-castanicolor", "dorcus-hopei-binodulosus", "pyrocoelia-rufa", "luciola-lateralis", "bombus-ignitus", "culex-pipiens-pallens", "musca-domestica", "cybister-japonicus", "dynastes-hercules", "scarabaeus-sacer", "goliathus-goliatus", "chalcosoma-chiron", "eupatorus-gracilicornis", "prosopocoilus-inclinatus", "cicindela-chinensis-flammifera", "carabus-smaragdinus", "callipogon-relictus", "chrysochroa-fulgidissima", "platerodrilus-ngi", "meloe-proscarabaeus"]
+    },
+    {
+      "role": "egg",
+      "assetTemplate": "assets/insects/review/life-stages-20260905/{id}-egg-imagegen-v1.png",
+      "generationPrompt": "Natural-history egg-stage reference in the correct species habitat; no adult, larva, pupa, text, watermark, malformed anatomy or unrelated insects.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["morpho-menelaus", "thysania-agrippina", "euproctis-subflava", "ascotis-selenaria-larva", "pheropsophus-jessoensis", "paraponera-clavata", "vespa-mandarinia"],
+      "koreanNames": {"morpho-menelaus":"모르포나비", "thysania-agrippina":"아그리피나밤나방", "euproctis-subflava":"독나방", "ascotis-selenaria-larva":"자나방", "pheropsophus-jessoensis":"폭탄먼지벌레", "paraponera-clavata":"총알개미", "vespa-mandarinia":"장수말벌"}
+    },
+    {
+      "role": "larva",
+      "assetTemplate": "assets/insects/review/life-stages-20260905/{id}-larva-imagegen-v1.png",
+      "generationPrompt": "Natural-history larval-stage reference in the correct species habitat; no adult, egg, pupa, text, watermark, extra limbs or malformed anatomy.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["morpho-menelaus", "thysania-agrippina", "euproctis-subflava", "ascotis-selenaria-larva", "pheropsophus-jessoensis", "paraponera-clavata", "vespa-mandarinia"]
+    },
+    {
+      "role": "pupa",
+      "assetTemplate": "assets/insects/review/life-stages-20260905/{id}-pupa-imagegen-v1.png",
+      "generationPrompt": "Natural-history pupal-stage reference in the correct species habitat; no adult, egg, larva, text, watermark, duplicate limbs or malformed anatomy.",
+      "reviewStatus": "published-pending-user-review",
+      "ids": ["morpho-menelaus", "thysania-agrippina", "euproctis-subflava", "ascotis-selenaria-larva", "pheropsophus-jessoensis", "paraponera-clavata", "vespa-mandarinia"]
+    }
+  ]
+}
