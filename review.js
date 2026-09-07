@@ -1,3 +1,4 @@
+import { generatedImages } from "./data/incomplete-metamorphosis.js?v=20260907";
 const manifestUrls = [
   "tools/generation-tests/famous-insects-20260902.json",
   "tools/generation-tests/domestic-representative-insects-20260902.json",
@@ -22,7 +23,7 @@ const decisionKey = "insect-atlas-review-decisions-v1";
 const localDecisions = JSON.parse(localStorage.getItem(decisionKey) || "{}");
 let publishedDecisions = {}; let assets = []; let roleFilter = "all";
 const $ = (selector) => document.querySelector(selector);
-const label = { morphology:"형태·정보", ecology:"생태", interaction:"상호작용", egg:"알", larva:"유충", pupa:"번데기", test:"생성 테스트" };
+const label = { morphology:"형태·정보", ecology:"생태", interaction:"상호작용", egg:"알", larva:"유충", nymph:"약충", pupa:"번데기", test:"생성 테스트" };
 
 function decisionOf(asset) { return localDecisions[asset.key] || publishedDecisions[asset.key] || "pending"; }
 function saveDecision(asset, decision) { localDecisions[asset.key] = decision; localStorage.setItem(decisionKey, JSON.stringify(localDecisions)); render(); }
@@ -47,7 +48,7 @@ async function loadAssets() {
   const [documents, decisionManifest] = await Promise.all([Promise.all(manifestUrls.map(async (url) => [url, await (await fetch(url)).json()])), fetch(decisionManifestUrl).then((response) => response.json())]);
   publishedDecisions = Object.fromEntries((decisionManifest.records || []).map((record) => [record.asset, record.decision]));
   documents.forEach(([url, data]) => recordsForManifest(data).forEach((record) => { if (record.id && record.koreanName) koreanNames.set(record.id, record.koreanName); }));
-  assets = documents.flatMap(([url, data]) => recordsForManifest(data).map((record) => normalise(record, url)).filter(Boolean));
+  assets = [...documents.flatMap(([url, data]) => recordsForManifest(data).map((record) => normalise(record, url)).filter(Boolean)), ...generatedImages.map((record) => normalise(record, "불완전변태 생활사 20260907"))];
   render();
 }
 function render() {

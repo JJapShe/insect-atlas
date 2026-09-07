@@ -1,23 +1,39 @@
 import { readFile } from "node:fs/promises";
 import vm from "node:vm";
 import { insects } from "../data/insects.js";
+import { generatedImages, incompleteMetamorphosisIds } from "../data/incomplete-metamorphosis.js";
 
 const files = ["index.html", "styles.css", "app.js", "review.html", "review.js", "data/insects.js", "data/insect-schema.js"];
 for (const file of files) await readFile(new URL(`../${file}`, import.meta.url), "utf8");
 const decisions = JSON.parse(await readFile(new URL("../tools/review-decisions/image-review-decisions-20260903.json", import.meta.url), "utf8"));
 if ((decisions.records || []).filter((record) => record.decision === "pass").length !== 3 || (decisions.records || []).filter((record) => record.decision === "reject").length !== 18) throw new Error("Published review decision counts are incomplete.");
-if (!Array.isArray(insects) || insects.length !== 63) throw new Error("Production insects data must contain the expected public information records.");
+if (!Array.isArray(insects) || insects.length !== 64 || new Set(insects.map((insect) => insect.id)).size !== 64) throw new Error("Production data must contain 64 unique species, including one cricket record and the new mole cricket.");
 const invalidRecord = insects.find((insect) => !insect.id || !insect.koreanName || !insect.scientificName || !insect.taxonomy?.order || !insect.taxonomy?.family || !insect.lifespan?.label || !Array.isArray(insect.gallery) || (insect.gallery.length === 0 && insect.reviewStatus !== "draft") || (insect.gallery.length > 0 && insect.reviewStatus !== "gallery-published-pending-user-review"));
 if (invalidRecord) throw new Error(`Invalid public information record: ${invalidRecord?.id || "unknown"}`);
 const publicGalleryItems = insects.flatMap((insect) => insect.gallery || []);
-if (insects.some((insect) => insect.gallery.length && ![4, 7].includes(insect.gallery.length))) throw new Error("Illustrated public species must contain four standard images or seven images including a complete life-stage set.");
+if (insects.some((insect) => insect.gallery.length && ![4, 5, 6, 7].includes(insect.gallery.length))) throw new Error("Illustrated species must retain four standard images plus their registered life stages.");
 const completeMetamorphosisIds = new Set([
   "lucanus-maculifemoratus", "trypoxylus-dichotomus", "harmonia-axyridis", "protaetia-brevitarsis", "anoplophora-malasiaca", "papilio-xuthus", "pieris-rapae", "sasakia-charonda", "sericinus-montela", "attacus-atlas", "callambulyx-tatarinovii", "actias-artemis", "langia-zenzeroides-nawai", "camponotus-japonicus", "apis-cerana", "dorcus-titanus-castanicolor", "dorcus-hopei-binodulosus", "pyrocoelia-rufa", "luciola-lateralis", "bombus-ignitus", "culex-pipiens-pallens", "musca-domestica", "cybister-japonicus", "dynastes-hercules", "scarabaeus-sacer", "goliathus-goliatus", "chalcosoma-chiron", "eupatorus-gracilicornis", "prosopocoilus-inclinatus", "cicindela-chinensis-flammifera", "carabus-smaragdinus", "callipogon-relictus", "platerodrilus-ngi", "morpho-menelaus", "chrysochroa-fulgidissima", "paraponera-clavata", "euproctis-subflava", "meloe-proscarabaeus", "vespa-mandarinia", "pheropsophus-jessoensis", "thysania-agrippina", "ascotis-selenaria-larva",
 ]);
 const lifeStages = ["egg", "larva", "pupa"];
 const lifeStageSpecies = insects.filter((insect) => completeMetamorphosisIds.has(insect.id));
-if (completeMetamorphosisIds.size !== 42 || lifeStageSpecies.length !== completeMetamorphosisIds.size || lifeStageSpecies.some((insect) => insect.gallery.length !== 7) || insects.filter((insect) => !completeMetamorphosisIds.has(insect.id)).some((insect) => insect.gallery.length !== 4)) throw new Error("Every designated complete-metamorphosis species must have exactly seven gallery images, while all remaining species retain four.");
-if (publicGalleryItems.length !== 378) throw new Error("The completed catalog must contain exactly 378 registered gallery assets.");
+if (completeMetamorphosisIds.size !== 42 || lifeStageSpecies.length !== completeMetamorphosisIds.size || lifeStageSpecies.some((insect) => insect.gallery.length !== 7)) throw new Error("Every complete-metamorphosis species must retain seven gallery images.");
+if (incompleteMetamorphosisIds.length !== 22 || new Set(incompleteMetamorphosisIds).size !== 22 || insects.filter((insect) => !completeMetamorphosisIds.has(insect.id)).some((insect) => !incompleteMetamorphosisIds.includes(insect.id))) throw new Error("The incomplete-metamorphosis goal must cover all 22 remaining species.");
+if (publicGalleryItems.length !== 378 + generatedImages.length) throw new Error("Registered gallery count must match the baseline plus individually reviewed additions.");
+if (new Set(generatedImages.map((image) => image.src)).size !== generatedImages.length) throw new Error("New images must not be registered twice.");
+for (const image of generatedImages) {
+  if (!incompleteMetamorphosisIds.includes(image.id) || !["egg", "nymph", "ecology", "morphology", "interaction", "interaction-2"].includes(image.role) || !image.sources?.length || !image.reviewNotes || !image.body.includes("AI 생성")) throw new Error(`Missing life-stage provenance or invalid role: ${image.id}/${image.role}`);
+  if (!insects.find((insect) => insect.id === image.id)?.gallery.some((item) => item.src === image.src)) throw new Error(`Unregistered new image: ${image.src}`);
+  const reviewCopy = await readFile(new URL(`../${image.asset}`, import.meta.url));
+  const publicCopy = await readFile(new URL(`../${image.src}`, import.meta.url));
+  if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${image.src}`);
+}
+for (const id of incompleteMetamorphosisIds) {
+  const insect = insects.find((item) => item.id === id);
+  const stages = generatedImages.filter((image) => image.id === id && ["egg", "nymph"].includes(image.role));
+  if (!insect || insect.gallery.length !== 4 + stages.length || !insect.lifeCycle.includes("약충") || insect.gallery.some((image) => /번데기|유충 관찰/.test(image.role))) throw new Error(`Invalid incomplete-metamorphosis gallery: ${id}`);
+  if (process.argv.includes("--complete") && !["egg", "nymph"].every((stage) => stages.some((image) => image.role === stage))) throw new Error(`Goal unfinished: ${id} still needs egg/nymph images.`);
+}
 for (const insect of lifeStageSpecies) for (const stage of lifeStages) {
   const fileName = `${insect.id}-${stage}-imagegen-v1.png`;
   if (!insect.gallery.some((item) => item.src.endsWith(fileName))) throw new Error(`Missing ${stage} gallery asset for ${insect.id}.`);
@@ -36,6 +52,6 @@ const app = await readFile(new URL("../app.js", import.meta.url), "utf8");
 const body = app.replace(/^import .*?;\s*/m, "");
 new vm.Script(body.replace(/export\s+/g, ""));
 const review = await readFile(new URL("../review.js", import.meta.url), "utf8");
-new vm.Script(review.replace(/export\s+/g, ""));
+new vm.Script(review.replace(/^import .*?;\s*/gm, "").replace(/export\s+/g, ""));
 if (/assets\/insects\/review/.test(app)) throw new Error("Review-only assets must not be referenced by the public app runtime.");
 console.log(`PASS: files readable, ${insects.length} public information records include ${publicGalleryItems.length} registered gallery assets, review assets are excluded from app runtime, scripts are valid`);
