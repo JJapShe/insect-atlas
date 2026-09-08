@@ -20,6 +20,7 @@ const lifeStageDetails = Object.freeze({
   larva: Object.freeze({ label: "유충 관찰", body: "성충과 다른 몸 구조를 가진 유충 단계를 관찰하는 생활사 참고 이미지입니다." }),
   nymph: Object.freeze({ label: "약충 관찰", body: "성충과 닮았지만 날개와 몸이 아직 자라는 약충 단계를 관찰하는 생활사 참고 이미지입니다." }),
   pupa: Object.freeze({ label: "번데기 관찰", body: "성충으로 바뀌기 전의 번데기 단계를 관찰하는 생활사 참고 이미지입니다." }),
+  cocoon: Object.freeze({ label: "고치 관찰", body: "번식 뒤 만들어지는 고치 속 다음 세대를 관찰하는 생활사 참고 이미지입니다." }),
 });
 const specialPaths = Object.freeze({
   "lucanus-maculifemoratus:morphology": "assets/insects/approved/lucanus-maculifemoratus-morphology-white-bg-imagegen-v1.png",
@@ -152,11 +153,25 @@ const familiarLifeStageSpecs = Object.freeze({
   "aquarius-paludum": Object.freeze({ egg: "Aquarius paludum paludum egg stage: a neat row of tiny pale elongated eggs on a submerged Korean pond plant stem; no adult, nymph, larva or pupa", nymph: "Aquarius paludum paludum nymph stage: one small wingless dark water strider with six long water-repellent legs and short wing pads on a Korean pond; no adult, larva or pupa" }),
   "chrysopa-intima": Object.freeze({ egg: "Chrysopa intima egg stage: pale oval eggs, each at the tip of a separate thin stalk beneath a Korean garden leaf; no adult, larva or pupa", larva: "Chrysopa intima larval stage: one six-legged aphid lion with curved sickle jaws among intact aphids on a Korean garden leaf; no adult or pupa", pupa: "Chrysopa intima pupal stage: one small round whitish silk cocoon beneath a Korean garden leaf; no adult or larva" }),
   "lycorma-delicatula": Object.freeze({ egg: "Lycorma delicatula egg stage: rows of small brown eggs covered by a gray waxy protective coating on Korean tree bark; no adult, nymph, larva or pupa", nymph: "Lycorma delicatula late nymph stage: wingless black body with white spots, red abdomen and small dark wing pads on Korean tree bark; six legs, no adult, larva or pupa" }),
+  "anechura-japonica": Object.freeze({ egg: "Anechura japonica egg stage: one chestnut-brown female earwig beside a neat small cluster of pearly-white oval eggs beneath damp Korean leaf litter; six legs, short forewings and paired tail forceps; true maternal care, no labels or watermark" }),
+  "aphis-gossypii": Object.freeze({ nymph: "Aphis gossypii nymph stage: a small group of wingless pale-green immature aphids with short developing wing pads, six legs, antennae and rear cornicles on the underside of a cucumber leaf; no adult winged aphids, labels or watermark" }),
+  "blattella-germanica": Object.freeze({ nymph: "Blattella germanica nymph stage: one small wingless dark-brown cockroach nymph with a pale central back stripe, long antennae and six legs in a clean dim indoor baseboard crevice; no adults, labels or watermark" }),
+  "scolopendra-subspinipes-mutilans": Object.freeze({ egg: "Scolopendra subspinipes mutilans egg stage: one dark segmented centipede with an orange-red head coiled protectively around a compact cluster of small pale oval eggs under a decaying log; one pair of legs per segment, no labels or watermark" }),
+  "bradybaena-similaris": Object.freeze({ egg: "Bradybaena similaris egg stage: a neat small cluster of translucent pearl-like snail eggs in a shallow moist soil hollow beneath a fallen leaf, with one chestnut-brown banded adult snail nearby and four tentacles visible; no labels or watermark" }),
+  "eisenia-fetida": Object.freeze({ cocoon: "Eisenia fetida cocoon stage: one tiny amber oval earthworm cocoon nestled in dark moist compost beside a red-brown segmented adult with pale banding and a clear clitellum; no legs, labels or watermark" }),
 });
 const familiarLifeStageItem = (id, stage) => Object.freeze({
   src: `assets/insects/approved/${id}-${stage}-imagegen-v1.png`, alt: "", role: lifeStageDetails[stage].label, body: lifeStageDetails[stage].body,
   sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-08", generationPrompt: familiarLifeStageSpecs[id][stage],
   generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, visual life-stage and anatomy review, then unchanged copies into review and approved paths", reviewStatus: "published-pending-user-review",
+});
+const familiarExpansionGallery = Object.freeze({
+  "anechura-japonica": Object.freeze([galleryItem("anechura-japonica", "individual"), galleryItem("anechura-japonica", "ecology"), galleryItem("anechura-japonica", "interaction"), familiarLifeStageItem("anechura-japonica", "egg")]),
+  "aphis-gossypii": Object.freeze([galleryItem("aphis-gossypii", "individual"), galleryItem("aphis-gossypii", "ecology"), galleryItem("aphis-gossypii", "interaction"), familiarLifeStageItem("aphis-gossypii", "nymph")]),
+  "blattella-germanica": Object.freeze([galleryItem("blattella-germanica", "individual"), galleryItem("blattella-germanica", "ecology"), galleryItem("blattella-germanica", "interaction"), familiarLifeStageItem("blattella-germanica", "nymph")]),
+  "scolopendra-subspinipes-mutilans": Object.freeze([galleryItem("scolopendra-subspinipes-mutilans", "individual"), galleryItem("scolopendra-subspinipes-mutilans", "ecology"), galleryItem("scolopendra-subspinipes-mutilans", "interaction"), familiarLifeStageItem("scolopendra-subspinipes-mutilans", "egg")]),
+  "bradybaena-similaris": Object.freeze([galleryItem("bradybaena-similaris", "individual"), galleryItem("bradybaena-similaris", "ecology"), galleryItem("bradybaena-similaris", "interaction"), familiarLifeStageItem("bradybaena-similaris", "egg")]),
+  "eisenia-fetida": Object.freeze([galleryItem("eisenia-fetida", "individual"), galleryItem("eisenia-fetida", "ecology"), galleryItem("eisenia-fetida", "interaction"), familiarLifeStageItem("eisenia-fetida", "cocoon")]),
 });
 const withLifeStages = (id, gallery) => lifeStageSpecs[id] ? Object.freeze([...gallery, ...["egg", "larva", "pupa"].map((stage) => lifeStageItem(id, stage))]) : gallery;
 const supplementalKinds = Object.freeze({
@@ -282,7 +297,7 @@ const lifeSpanById = Object.freeze({
   "eisenia-fetida": Object.freeze({ label: "약 1~2년", note: "고치에서 어린 지렁이가 나오며 번데기는 거치지 않아요." }),
 });
 const record = (id, koreanName, scientificName, order, family, habitat, diet, cues, familiarityLevel = 2, options = {}) => {
-  const gallery = Object.freeze([...withLifeStages(id, options.gallery || galleryById[id] || []), ...galleryAdditions(id)]);
+  const gallery = Object.freeze([...withLifeStages(id, options.gallery || familiarExpansionGallery[id] || galleryById[id] || []), ...galleryAdditions(id)]);
   return Object.freeze({
     id, koreanName, scientificName, taxonomy: { order, family }, appearancePeriod: { label: "현생 · 출현 시기 확인 중", kind: "modern" }, lifeStageLabel: options.lifeStageLabel || "성충기 기준",
     lifeCycle: options.lifeCycle || (incompleteMetamorphosisIds.includes(id) ? "알 → 약충 → 성충 (불완전변태)" : ""),

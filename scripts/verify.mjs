@@ -7,10 +7,11 @@ const files = ["index.html", "styles.css", "app.js", "review.html", "review.js",
 for (const file of files) await readFile(new URL(`../${file}`, import.meta.url), "utf8");
 const decisions = JSON.parse(await readFile(new URL("../tools/review-decisions/image-review-decisions-20260903.json", import.meta.url), "utf8"));
 if ((decisions.records || []).filter((record) => record.decision === "pass").length !== 3 || (decisions.records || []).filter((record) => record.decision === "reject").length !== 18) throw new Error("Published review decision counts are incomplete.");
-const draftInformationIds = new Set(["anechura-japonica", "aphis-gossypii", "blattella-germanica", "scolopendra-subspinipes-mutilans", "bradybaena-similaris", "eisenia-fetida"]);
+const draftInformationIds = new Set();
 const illustratedNonInsectIds = new Set(["trichonephila-clavata", "armadillidium-vulgare", "acusta-despecta", "pandinus-imperator"]);
 const illustratedFamiliarInsectIds = new Set(["aquarius-paludum", "chrysopa-intima", "lycorma-delicatula"]);
-const familiarLifeStages = new Map([["aquarius-paludum", ["egg", "nymph"]], ["chrysopa-intima", ["egg", "larva", "pupa"]], ["lycorma-delicatula", ["egg", "nymph"]]]);
+const illustratedExpansionIds = new Set(["anechura-japonica", "aphis-gossypii", "blattella-germanica", "scolopendra-subspinipes-mutilans", "bradybaena-similaris", "eisenia-fetida"]);
+const familiarLifeStages = new Map([["aquarius-paludum", ["egg", "nymph"]], ["chrysopa-intima", ["egg", "larva", "pupa"]], ["lycorma-delicatula", ["egg", "nymph"]], ["anechura-japonica", ["egg"]], ["aphis-gossypii", ["nymph"]], ["blattella-germanica", ["nymph"]], ["scolopendra-subspinipes-mutilans", ["egg"]], ["bradybaena-similaris", ["egg"]], ["eisenia-fetida", ["cocoon"]]]);
 if (!Array.isArray(insects) || insects.length !== 77 || new Set(insects.map((insect) => insect.id)).size !== 77) throw new Error("Production data must contain 77 unique records, including the familiar-life expansion.");
 const invalidRecord = insects.find((insect) => !insect.id || !insect.koreanName || !insect.scientificName || !insect.taxonomy?.order || !insect.taxonomy?.family || !insect.lifespan?.label || !Array.isArray(insect.gallery) || (insect.gallery.length === 0 && insect.reviewStatus !== "draft") || (insect.gallery.length > 0 && insect.reviewStatus !== "gallery-published-pending-user-review"));
 if (invalidRecord) throw new Error(`Invalid public information record: ${invalidRecord?.id || "unknown"}`);
@@ -22,19 +23,31 @@ const completeMetamorphosisIds = new Set([
 const lifeStages = ["egg", "larva", "pupa"];
 const lifeStageSpecies = insects.filter((insect) => completeMetamorphosisIds.has(insect.id));
 if (completeMetamorphosisIds.size !== 42 || lifeStageSpecies.length !== completeMetamorphosisIds.size || lifeStageSpecies.some((insect) => insect.gallery.length !== 7)) throw new Error("Every complete-metamorphosis species must retain seven gallery images.");
-if (incompleteMetamorphosisIds.length !== 22 || new Set(incompleteMetamorphosisIds).size !== 22 || insects.filter((insect) => insect.reviewStatus !== "draft" && !completeMetamorphosisIds.has(insect.id) && !illustratedNonInsectIds.has(insect.id) && !illustratedFamiliarInsectIds.has(insect.id)).some((insect) => !incompleteMetamorphosisIds.includes(insect.id))) throw new Error("The incomplete-metamorphosis goal must cover all illustrated insect records.");
-if ([...draftInformationIds].some((id) => !insects.find((insect) => insect.id === id && insect.reviewStatus === "draft" && insect.gallery.length === 0))) throw new Error("New familiar-life records must remain information-first until their images pass review.");
+if (incompleteMetamorphosisIds.length !== 22 || new Set(incompleteMetamorphosisIds).size !== 22 || insects.filter((insect) => insect.reviewStatus !== "draft" && !completeMetamorphosisIds.has(insect.id) && !illustratedNonInsectIds.has(insect.id) && !illustratedFamiliarInsectIds.has(insect.id) && !illustratedExpansionIds.has(insect.id)).some((insect) => !incompleteMetamorphosisIds.includes(insect.id))) throw new Error("The incomplete-metamorphosis goal must cover all illustrated insect records.");
+if (draftInformationIds.size) throw new Error("Draft records remain after the familiar-life gallery publication.");
 for (const [id, stages] of familiarLifeStages) {
   const insect = insects.find((item) => item.id === id);
-  if (!insect || insect.gallery.length !== 4 + stages.length || !stages.every((stage) => insect.gallery.some((item) => item.src.endsWith(`${id}-${stage}-imagegen-v1.png`)))) throw new Error(`Familiar-life gallery is incomplete: ${id}`);
+  const baseImageCount = illustratedExpansionIds.has(id) ? 3 : 4;
+  if (!insect || insect.gallery.length !== baseImageCount + stages.length || !stages.every((stage) => insect.gallery.some((item) => item.src.endsWith(`${id}-${stage}-imagegen-v1.png`)))) throw new Error(`Familiar-life gallery is incomplete: ${id}`);
   for (const stage of stages) {
     const fileName = `${id}-${stage}-imagegen-v1.png`;
-    const reviewCopy = await readFile(new URL(`../assets/insects/review/familiar-life-expansion-20260908/${fileName}`, import.meta.url));
+    const reviewFolder = illustratedExpansionIds.has(id) ? "familiar-life-expansion-20260909" : "familiar-life-expansion-20260908";
+    const reviewCopy = await readFile(new URL(`../assets/insects/review/${reviewFolder}/${fileName}`, import.meta.url));
     const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
     if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
   }
 }
-const familiarLifeGalleryCount = [...illustratedNonInsectIds, ...illustratedFamiliarInsectIds].reduce((total, id) => total + insects.find((insect) => insect.id === id).gallery.length, 0);
+for (const id of illustratedExpansionIds) {
+  const insect = insects.find((item) => item.id === id);
+  if (!insect || insect.gallery.length !== 4) throw new Error(`Familiar-life expansion needs four varied images: ${id}`);
+  for (const image of insect.gallery) {
+    const fileName = image.src.split("/").at(-1);
+    const reviewCopy = await readFile(new URL(`../assets/insects/review/familiar-life-expansion-20260909/${fileName}`, import.meta.url));
+    const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
+    if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
+  }
+}
+const familiarLifeGalleryCount = [...illustratedNonInsectIds, ...illustratedFamiliarInsectIds, ...illustratedExpansionIds].reduce((total, id) => total + insects.find((insect) => insect.id === id).gallery.length, 0);
 if (publicGalleryItems.length !== 378 + generatedImages.length + familiarLifeGalleryCount) throw new Error("Registered gallery count must match the baseline plus individually reviewed additions.");
 if (new Set(generatedImages.map((image) => image.src)).size !== generatedImages.length) throw new Error("New images must not be registered twice.");
 for (const image of generatedImages) {
