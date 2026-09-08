@@ -240,14 +240,21 @@ const lifeSpanById = Object.freeze({
   "deinacrida-heteracantha": Object.freeze({ label: "성충 약 수개월", note: "뉴질랜드 섬의 보호 대상 대형 웨타예요." }),
   "phobaeticus-chani": Object.freeze({ label: "성충 약 수개월", note: "나뭇가지 위장으로 천천히 움직여요." }),
   "thysania-agrippina": Object.freeze({ label: "성충 약 수주", note: "야행성 성충의 활동 기간은 비교적 짧아요." }),
+  "aquarius-paludum": Object.freeze({ label: "성충 약 수개월", note: "알로 겨울을 나고 약충도 물 표면에서 자라며 번데기는 거치지 않아요." }),
+  "chrysopa-intima": Object.freeze({ label: "성충 약 수주", note: "알·유충·번데기를 거치는 완전변태 곤충이에요." }),
+  "lycorma-delicatula": Object.freeze({ label: "성충 약 수개월", note: "알로 겨울을 나며 약충을 거쳐 성충이 돼요. 번데기는 없어요." }),
+  "trichonephila-clavata": Object.freeze({ label: "성체 약 수개월", note: "알주머니에서 나온 새끼거미가 여러 번 탈피해 성체가 돼요." }),
+  "armadillidium-vulgare": Object.freeze({ label: "약 1~2년", note: "알과 새끼는 어미의 육아낭에서 보호되며 번데기는 거치지 않아요." }),
+  "acusta-despecta": Object.freeze({ label: "약 1~2년", note: "알에서 깨어난 어린 달팽이가 껍데기와 함께 자라요." }),
+  "pandinus-imperator": Object.freeze({ label: "사육 환경 약 5~8년", note: "야생에서의 수명은 환경에 따라 달라질 수 있어요." }),
 });
 const record = (id, koreanName, scientificName, order, family, habitat, diet, cues, familiarityLevel = 2, options = {}) => {
   const gallery = Object.freeze([...withLifeStages(id, options.gallery || galleryById[id] || []), ...galleryAdditions(id)]);
   return Object.freeze({
     id, koreanName, scientificName, taxonomy: { order, family }, appearancePeriod: { label: "현생 · 출현 시기 확인 중", kind: "modern" }, lifeStageLabel: options.lifeStageLabel || "성충기 기준",
-    lifeCycle: incompleteMetamorphosisIds.includes(id) ? "알 → 약충 → 성충 (불완전변태)" : "",
+    lifeCycle: options.lifeCycle || (incompleteMetamorphosisIds.includes(id) ? "알 → 약충 → 성충 (불완전변태)" : ""),
     habitat, diet, size: { label: "크기 확인 중", millimeters: null }, lifespan: options.lifespan || lifeSpanById[id] || Object.freeze({ label: "성충 수명 확인 중", note: "종별 근거를 정리하고 있어요." }), familiarityLevel, keyAppearanceCues: cues,
-    gallery, sources: options.sources || source, licenseStatus: options.licenseStatus || (gallery.length ? "등록 이미지 검수 대기" : "이미지 미배정"), reviewStatus: options.reviewStatus || (gallery.length ? "gallery-published-pending-user-review" : "draft"), access: "free",
+    gallery, sources: options.sources || source, region: options.region || "", licenseStatus: options.licenseStatus || (gallery.length ? "등록 이미지 검수 대기" : "이미지 미배정"), reviewStatus: options.reviewStatus || (gallery.length ? "gallery-published-pending-user-review" : "draft"), access: "free",
   });
 };
 
@@ -316,4 +323,11 @@ export const insects = Object.freeze([
   record("deinacrida-heteracantha", "자이언트웨타", "Deinacrida heteracantha", "메뚜기목", "웨타과", ["뉴질랜드 섬 숲", "낙엽층"], "식물", ["매우 큰 몸", "긴 더듬이", "튼튼한 뒷다리"], 4, { gallery: tomtomiGallery["deinacrida-heteracantha"], sources: tomtomiSources }),
   record("phobaeticus-chani", "포베티쿠스 차니", "Phobaeticus chani", "대벌레목", "대벌레과", ["보르네오 열대림", "나무 위"], "식물", ["매우 긴 막대 몸", "가느다란 다리", "나뭇가지 위장"], 4, { gallery: tomtomiGallery["phobaeticus-chani"], sources: tomtomiSources }),
   record("thysania-agrippina", "아그리피나 밤나방", "Thysania agrippina", "나비목", "불나방과", ["중남미 열대림", "숲 가장자리"], "식물", ["매우 넓은 회색 날개", "물결무늬", "야행성"], 4, { gallery: tomtomiGallery["thysania-agrippina"], sources: tomtomiSources }),
+  record("aquarius-paludum", "소금쟁이", "Aquarius paludum paludum", "노린재목", "소금쟁이과", ["연못", "논·수로", "흐름이 잔잔한 물가"], "다른 동물", ["물 위를 미끄러지듯 걷는 긴 다리", "물에 젖지 않는 미세 털", "가느다란 주둥이"], 4, { region: "국내 관찰 종", lifeCycle: "알 → 약충 → 성충 (불완전변태)", sources: [{ label: "한국민족문화대백과 · 소금쟁이", url: "https://encykorea.aks.ac.kr/Article/E0075028" }, { label: "국립생태원 · Aquarius paludum paludum 관찰 기록", url: "https://www.nie.re.kr/nie/cmmn/file/fileDown.do?atchFileId=c8a183e3bb1245dcac2e16ce516d842d&fileSn=1" }] }),
+  record("chrysopa-intima", "풀잠자리", "Chrysopa intima", "풀잠자리목", "풀잠자리과", ["정원", "초지", "수목 주변"], "다른 동물", ["투명한 연녹색 그물맥 날개", "금빛 겹눈", "진딧물을 잡는 유충"], 3, { region: "국내 관찰 종", lifeCycle: "알 → 유충 → 번데기 → 성충 (완전변태)", sources: [{ label: "국립생물자원관 · 국가생물종목록 (풀잠자리)", url: "https://www.nibr.go.kr/aiibook/catImage/35/Insects%20of%20North%20Korea.pdf" }] }),
+  record("lycorma-delicatula", "주홍날개꽃매미", "Lycorma delicatula", "노린재목", "꽃매미과", ["가로수", "정원 수목", "도시 주변"], "식물", ["앞날개의 회갈색 점무늬", "뒷날개의 붉은색·검은색", "검정 바탕에 흰 점의 약충"], 4, { region: "국내 관찰 종", lifeCycle: "알 → 약충 → 성충 (불완전변태)", sources: [{ label: "국립생물자원관 · 주홍날개꽃매미 국가생물종목록", url: "https://www.nibr.go.kr/aiibook/access/ecatalogt.jsp?Dir=988&callmode=admin&catimage=&eclang=ko&start=350&um=s" }] }),
+  record("trichonephila-clavata", "무당거미", "Trichonephila clavata", "거미목", "왕거미과", ["숲 가장자리", "정원", "수목 사이"], "다른 동물", ["노란 바탕의 길쭉한 배", "검정·노랑 줄무늬 다리", "큰 원형 그물"], 4, { region: "국내 관찰 종 · 비곤충", lifeStageLabel: "성체 기준", lifeCycle: "알주머니 → 새끼거미 → 성체", sources: [{ label: "World Spider Catalog · Trichonephila clavata", url: "https://www.wsc.nmbe.ch/species-list/5511/Trichonephila" }, { label: "국립생물자원관 · 무당거미 분류 연구", url: "https://www.nibr.go.kr/aiibook/access/ecatalogt.jsp?Dir=1248&callmode=admin&catimage=&eclang=ko&start=290&um=s" }] }),
+  record("armadillidium-vulgare", "공벌레", "Armadillidium vulgare", "등각목", "공벌레과", ["돌 아래", "화단", "습한 낙엽층"], "식물", ["여러 조각의 단단한 등판", "공처럼 몸을 마는 방어 자세", "많은 걷는 다리"], 4, { region: "국내 관찰 종 · 비곤충", lifeStageLabel: "성체 기준", lifeCycle: "알 → 새끼 → 성체", sources: [{ label: "국립생물자원관 · 공벌레 표본 기록", url: "https://www.nibr.go.kr/aiibook/access/ecatalogt.jsp?Dir=327&callmode=admin&catimage=&eclang=ko&start=182&um=s" }] }),
+  record("acusta-despecta", "명주달팽이", "Acusta despecta", "병안목", "달팽이과", ["정원", "밭 가장자리", "돌·낙엽 아래"], "식물", ["납작하고 둥근 갈색 껍데기", "긴 눈자루", "젖은 흔적을 남기는 발"], 4, { region: "국내 관찰 종 · 비곤충", lifeStageLabel: "성체 기준", lifeCycle: "알 → 어린 달팽이 → 성체", sources: [{ label: "서울대공원 · 명주달팽이", url: "https://grandpark.seoul.go.kr/animal/animalView.do?idx=2082&lang=ko&menu_id=S001002002003&pageIndex=1" }, { label: "농촌진흥청 농사로 · 명주달팽이", url: "https://www.nongsaro.go.kr/portal/ps/pss/pssa/hlsctSearchDtl.ps?hlsctCode=H00000535&menuId=PS00202&pageIndex=1&pageSize=10" }] }),
+  record("pandinus-imperator", "황제전갈", "Pandinus imperator", "전갈목", "전갈과", ["서아프리카 열대우림", "사바나", "통나무·돌 아래"], "다른 동물", ["광택 있는 검은 몸", "아주 큰 집게", "굵은 꼬리 끝의 독침"], 4, { region: "세계 대표 종 · 비곤충", lifeStageLabel: "성체 기준", lifeCycle: "새끼 → 탈피 → 성체", sources: [{ label: "부천자연생태박물관 · 황제전갈", url: "https://ecopark.bucheon.go.kr/site/program/board/basicboard/view?boardid=1139009&boardtypeid=27640&currentpage=3&menuid=149003003006&pagesize=4" }, { label: "Oregon Zoo · Common emperor scorpion", url: "https://www.oregonzoo.org/animals/common-emperor-scorpion" }] }),
 ]);

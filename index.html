@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Insect Atlas 곤충 아틀라스의 빈 프런트엔드 셸" />
-    <title>Insect Atlas · 곤충 탐험 지도</title>
+    <meta name="description" content="Insect Atlas · 친숙한 곤충과 작은 생물을 탐험하는 아틀라스" />
+    <title>Insect Atlas · 생물 탐험 지도</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="./styles.css?v=20260904-mobile-fixed-detail" />
   </head>
@@ -12,10 +12,10 @@
     <a class="skip-link" href="#mainContent">본문으로 건너뛰기</a>
     <div class="app-shell">
       <aside class="sidebar" id="sidebar" aria-label="주요 탐색">
-        <div class="brand"><span class="brand-mark" aria-hidden="true">IA</span><div><p class="eyebrow">곤충 탐험 지도</p><h1>Insect Atlas</h1></div></div>
+        <div class="brand"><span class="brand-mark" aria-hidden="true">IA</span><div><p class="eyebrow">작은 생물 탐험 지도</p><h1>Insect Atlas</h1></div></div>
         <nav class="nav-tabs" aria-label="화면 이동">
           <button class="nav-tab active" data-view-target="explore" type="button" aria-pressed="true">탐색 지도</button>
-          <button class="nav-tab" data-view-target="catalog" type="button" aria-pressed="false">곤충 도감</button>
+          <button class="nav-tab" data-view-target="catalog" type="button" aria-pressed="false">생물 도감</button>
           <button class="nav-tab" data-view-target="admin" type="button" aria-pressed="false">관리자</button>
         </nav>
         <section class="sidebar-panel" aria-label="검색과 필터">
@@ -23,18 +23,18 @@
           <label class="search-field"><span>검색</span><input id="searchInput" type="search" placeholder="이름, 목, 과, 서식지" autocomplete="off" /></label>
           <fieldset class="filter-group"><legend>먹이</legend><div class="segmented" id="dietFilter"><button class="active" data-diet="all" type="button">전체</button><button data-diet="식물" type="button">식물</button><button data-diet="다른 동물" type="button">다른 동물</button><button data-diet="여러 가지" type="button">여러 가지</button></div></fieldset>
           <fieldset class="filter-group"><legend>친숙도</legend><div class="segmented familiarity-filter" id="levelFilter"><button class="active" data-level="all" type="button">전체</button><button data-level="4" type="button">매우 친숙</button><button data-level="3" type="button">친숙</button><button data-level="2" type="button">알아가요</button><button data-level="1" type="button">새로운 친구</button></div><p class="help-text">학교·생활에서 접하는 정도를 기준으로 정리했어요.</p></fieldset>
-          <fieldset class="filter-group taxonomy-filter-group"><legend>분류</legend><div id="taxonomyFilter" class="taxonomy-filter" aria-label="목과 과로 곤충 거르기"></div></fieldset>
+          <fieldset class="filter-group taxonomy-filter-group"><legend>분류</legend><div id="taxonomyFilter" class="taxonomy-filter" aria-label="목과 과로 생물 거르기"></div></fieldset>
         </section>
       </aside>
       <button id="sidebarScrim" class="sidebar-scrim" type="button" aria-label="탐색 패널 닫기" hidden></button>
       <main id="mainContent" class="main" tabindex="-1">
-        <header class="topbar"><div><p class="eyebrow" id="modeLabel">무료 탐험판</p><h2 id="viewTitle">곤충 분류 · 시기 탐색</h2></div><div class="topbar-actions"><button id="tierButton" class="tier-button" type="button" aria-haspopup="dialog"><strong>무료 탐험</strong><small>기본 구조 보기</small></button><div class="metric-row" aria-label="도감 현황"><div><strong id="speciesCount">0</strong><span>종</span></div><div><strong id="orderCount">0</strong><span>목</span></div><div><strong id="galleryCount">0</strong><span>그림</span></div></div><button id="menuButton" class="icon-button menu-button" type="button" aria-label="탐색 패널 열기" aria-controls="sidebar" aria-expanded="false">☰</button></div></header>
+        <header class="topbar"><div><p class="eyebrow" id="modeLabel">무료 탐험판</p><h2 id="viewTitle">생물 분류 · 시기 탐색</h2></div><div class="topbar-actions"><button id="tierButton" class="tier-button" type="button" aria-haspopup="dialog"><strong>무료 탐험</strong><small>기본 구조 보기</small></button><div class="metric-row" aria-label="도감 현황"><div><strong id="speciesCount">0</strong><span>종</span></div><div><strong id="orderCount">0</strong><span>목</span></div><div><strong id="galleryCount">0</strong><span>그림</span></div></div><button id="menuButton" class="icon-button menu-button" type="button" aria-label="탐색 패널 열기" aria-controls="sidebar" aria-expanded="false">☰</button></div></header>
 
         <section class="view active" id="exploreView" aria-label="분류 탐색">
-          <div class="explore-layout"><section class="map-panel"><div class="map-grid" id="mapGrid" aria-live="polite"></div></section><aside class="detail-panel" id="detailPanel" aria-live="polite"><p class="eyebrow">선택한 곤충</p><h3>관찰을 시작해 보세요</h3><p>카드를 선택하면 목·과 분류, 친숙도, 서식지와 외형 단서를 확인할 수 있어요.</p><div class="detail-tags"><span>분류</span><span>친숙도</span><span>서식지</span></div></aside></div>
+          <div class="explore-layout"><section class="map-panel"><div class="map-grid" id="mapGrid" aria-live="polite"></div></section><aside class="detail-panel" id="detailPanel" aria-live="polite"><p class="eyebrow">선택한 생물</p><h3>관찰을 시작해 보세요</h3><p>카드를 선택하면 목·과 분류, 친숙도, 서식지와 외형 단서를 확인할 수 있어요.</p><div class="detail-tags"><span>분류</span><span>친숙도</span><span>서식지</span></div></aside></div>
         </section>
 
-        <section class="view" id="catalogView" aria-label="곤충 도감" hidden><div class="catalog-toolbar"><div><p class="eyebrow">곤충 도감</p><h3>관찰 기록을 모아 보는 곳</h3><p>종 정보는 이미지 검수와 분리되어 먼저 공개됩니다.</p></div><div class="loading-chip" id="loadingChip" hidden>불러오는 중…</div></div><div class="card-grid" id="catalogGrid" aria-live="polite"></div><template id="emptyCatalogTemplate"><div class="empty-state catalog-empty"><span class="empty-icon" aria-hidden="true">◌</span><h3>조건에 맞는 곤충이 없어요</h3><p>검색어나 필터를 조정해 보세요.</p></div></template></section>
+        <section class="view" id="catalogView" aria-label="생물 도감" hidden><div class="catalog-toolbar"><div><p class="eyebrow">생물 도감</p><h3>관찰 기록을 모아 보는 곳</h3><p>종 정보는 이미지 검수와 분리되어 먼저 공개됩니다.</p></div><div class="loading-chip" id="loadingChip" hidden>불러오는 중…</div></div><div class="card-grid" id="catalogGrid" aria-live="polite"></div><template id="emptyCatalogTemplate"><div class="empty-state catalog-empty"><span class="empty-icon" aria-hidden="true">◌</span><h3>조건에 맞는 생물이 없어요</h3><p>검색어나 필터를 조정해 보세요.</p></div></template></section>
 
         <section class="view" id="adminView" aria-label="관리자 화면" hidden><div class="admin-intro"><p class="eyebrow">관리자 · 구조 미리보기</p><h3>정보 공개와 이미지 검수를 분리한 작업대</h3><p>실제 인증·서버·데이터베이스는 연결하지 않았습니다.</p></div><div class="admin-grid"><article><span class="status-dot pending"></span><p class="eyebrow">종 레코드</p><strong id="adminSpeciesCount">0</strong><p>공개 정보 초안</p></article><article><span class="status-dot pending"></span><p class="eyebrow">이미지 배정</p><strong id="adminImagePendingCount">0</strong><p>검수 통과 전, 공개 갤러리에 미연결</p></article><article><span class="status-dot pending"></span><p class="eyebrow">출처·라이선스</p><strong id="adminSourceCount">0</strong><p>종별 출처 기록</p></article></div><section class="workflow-card"><h4>이미지 검수 흐름</h4><ol><li>형태 단서와 출처를 기록합니다.</li><li>검수 화면에서 확대해 통과·보류·탈락을 판정합니다.</li><li>통과한 자산만 배포 경로와 종 갤러리에 연결합니다.</li></ol></section></section>
       </main>

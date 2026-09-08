@@ -4,7 +4,7 @@ const state = { view: "explore", query: "", diet: "all", level: "all", taxonomyO
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 const familiarity = Object.freeze({ 1: "새로운 친구", 2: "알아가요", 3: "친숙", 4: "매우 친숙" });
-const orderHues = Object.freeze({ "딱정벌레목": 38, "나비목": 286, "잠자리목": 197, "메뚜기목": 104, "사마귀목": 78, "매미목": 338, "노린재목": 12, "벌목": 28, "대벌레목": 153 });
+const orderHues = Object.freeze({ "딱정벌레목": 38, "나비목": 286, "잠자리목": 197, "메뚜기목": 104, "사마귀목": 78, "매미목": 338, "노린재목": 12, "벌목": 28, "대벌레목": 153, "풀잠자리목": 176, "거미목": 322, "등각목": 216, "병안목": 96, "전갈목": 18 });
 
 function taxonomyTree() {
   return [...insects.reduce((orders, insect) => {
@@ -73,7 +73,7 @@ function renderTaxonomyFilter() {
 function setView(nextView) {
   state.view = nextView;
   document.body.dataset.view = nextView;
-  const titles = { explore: "곤충 분류 · 시기 탐색", catalog: "곤충 도감", admin: "관리자 작업대" };
+  const titles = { explore: "생물 분류 · 시기 탐색", catalog: "생물 도감", admin: "관리자 작업대" };
   const labels = { explore: "무료 탐험판", catalog: "관찰 기록", admin: "관리 구조" };
   $("#viewTitle").textContent = titles[nextView]; $("#modeLabel").textContent = labels[nextView];
   $$(".view").forEach((view) => { const active = view.id === `${nextView}View`; view.hidden = !active; view.classList.toggle("active", active); });
@@ -112,14 +112,14 @@ function selectInsect(insect) {
   const lifeStageLabel = insect.lifeStageLabel || "성충기 기준";
   const facts = [["서식지", (insect.habitat || []).join(" · ") || "정리 중"], ["먹이", insect.diet || "정리 중"], ["특징", (insect.keyAppearanceCues || []).join(" · ") || "정리 중"], ...(insect.lifeCycle ? [["성장 과정", insect.lifeCycle]] : []), [lifeStageLabel === "유충기 기준" ? "유충 기간" : "성충 수명", insect.lifespan?.label || "확인 중"]].map(([label, value]) => `<div class="fact"><dt>${label}</dt><dd>${value}</dd></div>`).join("");
   const galleryBlock = gallery.length ? `<div class="gallery-preview" aria-label="${insect.koreanName} 대표 이미지 미리보기">${preview}</div>` : `<p class="image-pending">이미지는 현재 검수 중입니다. 종 정보는 먼저 볼 수 있어요.</p>`;
-  $("#detailPanel").innerHTML = `<p class="eyebrow">선택한 곤충</p><h3>${insect.koreanName}</h3><p class="scientific-name">${insect.scientificName}</p><div class="detail-tags"><span>${insect.taxonomy?.order || "목 미정"}</span><span>${insect.taxonomy?.family || "과 미정"}</span><span>친숙도 · ${familiarity[insect.familiarityLevel] || "미정"}</span></div>${galleryBlock}<section class="insect-facts" aria-label="${insect.koreanName} 생활 정보"><div class="facts-heading"><p class="eyebrow">생활 정보</p><span>${lifeStageLabel}</span></div><dl>${facts}</dl><p class="lifespan-note">${insect.lifespan?.note || "수명은 기온·먹이·월동 여부에 따라 달라질 수 있어요."}</p></section>`;
+  $("#detailPanel").innerHTML = `<p class="eyebrow">선택한 생물</p><h3>${insect.koreanName}</h3><p class="scientific-name">${insect.scientificName}</p><div class="detail-tags"><span>${insect.taxonomy?.order || "목 미정"}</span><span>${insect.taxonomy?.family || "과 미정"}</span>${insect.region ? `<span>${insect.region}</span>` : ""}<span>친숙도 · ${familiarity[insect.familiarityLevel] || "미정"}</span></div>${galleryBlock}<section class="insect-facts" aria-label="${insect.koreanName} 생활 정보"><div class="facts-heading"><p class="eyebrow">생활 정보</p><span>${lifeStageLabel}</span></div><dl>${facts}</dl><p class="lifespan-note">${insect.lifespan?.note || "수명은 기온·먹이·월동 여부에 따라 달라질 수 있어요."}</p></section>`;
   $$("[data-gallery-preview]", $("#detailPanel")).forEach((button) => button.addEventListener("click", () => openLightbox(gallery, Number(button.dataset.galleryPreview))));
 }
 
 function showDialog(dialog) { state.previousFocus = document.activeElement; dialog.hidden = false; dialog.setAttribute("aria-hidden", "false"); document.body.classList.add("modal-open"); $("[role=dialog]", dialog)?.focus(); }
 function closeDialog(dialog) { dialog.hidden = true; dialog.setAttribute("aria-hidden", "true"); document.body.classList.remove("modal-open"); state.previousFocus?.focus?.(); }
 function openLightbox(items, index) { if (!items.length) return; state.lightboxItems = items; state.lightboxIndex = index; renderLightbox(); showDialog($("#imageLightbox")); }
-function renderLightbox() { const item = state.lightboxItems[state.lightboxIndex]; if (!item) return; $("#lightboxImage").src = item.src; $("#lightboxImage").alt = item.alt || "곤충 갤러리 이미지"; $("#lightboxTitle").textContent = item.title || "곤충 관찰 이미지"; $("#lightboxKind").textContent = item.role || "곤충 그림"; $("#lightboxBody").textContent = item.body || ""; $("#lightboxCount").textContent = `${state.lightboxIndex + 1} / ${state.lightboxItems.length}`; }
+function renderLightbox() { const item = state.lightboxItems[state.lightboxIndex]; if (!item) return; $("#lightboxImage").src = item.src; $("#lightboxImage").alt = item.alt || "생물 갤러리 이미지"; $("#lightboxTitle").textContent = item.title || "생물 관찰 이미지"; $("#lightboxKind").textContent = item.role || "생물 그림"; $("#lightboxBody").textContent = item.body || ""; $("#lightboxCount").textContent = `${state.lightboxIndex + 1} / ${state.lightboxItems.length}`; }
 function moveLightbox(direction) { const total = state.lightboxItems.length; if (!total) return; state.lightboxIndex = (state.lightboxIndex + direction + total) % total; renderLightbox(); }
 function distance(touches) { return Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY); }
 
