@@ -1,10 +1,12 @@
 import { insects } from "./data/insects.js?v=20260909-familiar-life";
+import { childContentFor } from "./data/child-content.js?v=20260909-child-content";
 
 const state = { view: "explore", query: "", diet: "all", level: "all", taxonomyOrder: "all", taxonomyFamily: "all", scope: "free", lightboxItems: [], lightboxIndex: 0, previousFocus: null, pinch: { distance: 0, scale: 1 } };
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 const familiarity = Object.freeze({ 1: "새로운 친구", 2: "알아가요", 3: "친숙", 4: "매우 친숙" });
 const orderHues = Object.freeze({ "딱정벌레목": 38, "나비목": 286, "잠자리목": 197, "메뚜기목": 104, "사마귀목": 78, "매미목": 338, "노린재목": 12, "벌목": 28, "대벌레목": 153, "풀잠자리목": 176, "집게벌레목": 8, "바퀴목": 342, "거미목": 322, "등각목": 216, "왕지네목": 348, "병안목": 96, "실지렁이목": 16, "전갈목": 18 });
+const escapeHTML = (value) => String(value).replace(/[&<>'\"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[character]);
 
 function taxonomyTree() {
   return [...insects.reduce((orders, insect) => {
@@ -110,9 +112,14 @@ function selectInsect(insect) {
   const gallery = (insect.gallery || []).map((item) => ({ ...item, alt: item.alt || `${insect.koreanName} ${item.role || "갤러리 이미지"}`, title: item.title || `${insect.koreanName} · ${item.role || "갤러리 이미지"}` }));
   const preview = gallery.map((item, index) => `<button class="gallery-preview-card" data-gallery-preview="${index}" type="button" aria-label="${item.title} 크게 보기"><img src="${item.src}" alt="${item.alt}" loading="eager"><span>${item.role}</span></button>`).join("");
   const lifeStageLabel = insect.lifeStageLabel || "성충기 기준";
-  const facts = [["서식지", (insect.habitat || []).join(" · ") || "정리 중"], ["먹이", insect.diet || "정리 중"], ["특징", (insect.keyAppearanceCues || []).join(" · ") || "정리 중"], ...(insect.lifeCycle ? [["성장 과정", insect.lifeCycle]] : []), [lifeStageLabel === "유충기 기준" ? "유충 기간" : "성충 수명", insect.lifespan?.label || "확인 중"]].map(([label, value]) => `<div class="fact"><dt>${label}</dt><dd>${value}</dd></div>`).join("");
+  const child = childContentFor(insect);
+  const lifespanLabel = lifeStageLabel === "유충기 기준" ? "유충 기간" : lifeStageLabel === "성체 기준" ? "성체 수명" : "성충 수명";
+  const facts = [["서식지", (insect.habitat || []).join(" · ") || "정리 중"], ["먹이", insect.diet || "정리 중"], ["특징", (insect.keyAppearanceCues || []).join(" · ") || "정리 중"], ...(insect.lifeCycle ? [["성장 과정", insect.lifeCycle]] : []), [lifespanLabel, insect.lifespan?.label || "확인 중"]].map(([label, value]) => `<div class="fact"><dt>${label}</dt><dd>${value}</dd></div>`).join("");
   const galleryBlock = gallery.length ? `<div class="gallery-preview" aria-label="${insect.koreanName} 갤러리">${preview}</div>` : `<p class="image-pending">이미지는 현재 검수 중입니다. 종 정보는 먼저 볼 수 있어요.</p>`;
-  $("#detailPanel").innerHTML = `<p class="eyebrow">선택한 생물</p><h3>${insect.koreanName}</h3><p class="scientific-name">${insect.scientificName}</p><div class="detail-tags"><span>${insect.taxonomy?.order || "목 미정"}</span><span>${insect.taxonomy?.family || "과 미정"}</span>${insect.region ? `<span>${insect.region}</span>` : ""}<span>친숙도 · ${familiarity[insect.familiarityLevel] || "미정"}</span></div>${galleryBlock}<section class="insect-facts" aria-label="${insect.koreanName} 생활 정보"><div class="facts-heading"><p class="eyebrow">생활 정보</p><span>${lifeStageLabel}</span></div><dl>${facts}</dl><p class="lifespan-note">${insect.lifespan?.note || "수명은 기온·먹이·월동 여부에 따라 달라질 수 있어요."}</p></section>`;
+  const sections = [["어디서 살까요?", child.habitat], ["무엇을 먹을까요?", child.diet], ["어떻게 생겼을까요?", child.appearance], ["어떻게 자랄까요?", child.growth], ["얼마나 살까요?", child.lifespan], ["관찰해 볼까요?", child.observe]];
+  const childSections = sections.map(([heading, body]) => `<section class="child-section"><h4>${heading}</h4><p>${escapeHTML(body)}</p></section>`).join("");
+  const sourceItems = child.sources.map((source) => `<li><a href="${escapeHTML(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(source.label)}</a><span>${escapeHTML(source.supports)} · 확인일 ${escapeHTML(source.checkedOn)}</span></li>`).join("");
+  $("#detailPanel").innerHTML = `<p class="eyebrow">선택한 생물</p><h3>${escapeHTML(insect.koreanName)}</h3><p class="scientific-name">${escapeHTML(insect.scientificName)}</p><div class="detail-tags"><span>${escapeHTML(insect.taxonomy?.order || "목 미정")}</span><span>${escapeHTML(insect.taxonomy?.family || "과 미정")}</span>${insect.region ? `<span>${escapeHTML(insect.region)}</span>` : ""}<span>친숙도 · ${escapeHTML(familiarity[insect.familiarityLevel] || "미정")}</span></div>${galleryBlock}<section class="child-content" aria-label="${escapeHTML(insect.koreanName)} 어린이 생활 정보"><p class="child-intro">${escapeHTML(child.intro)}</p>${childSections}<details class="source-details"><summary>보호자와 보는 자료 출처</summary><p>본문의 이름·분류·분포와 관찰 단서를 확인한 자료예요.</p><ul>${sourceItems}</ul></details></section><section class="insect-facts" aria-label="${escapeHTML(insect.koreanName)} 기존 정보"><div class="facts-heading"><p class="eyebrow">한눈에 보는 정보</p><span>${escapeHTML(lifeStageLabel)}</span></div><dl>${facts}</dl></section>`;
   $$("[data-gallery-preview]", $("#detailPanel")).forEach((button) => button.addEventListener("click", () => openLightbox(gallery, Number(button.dataset.galleryPreview))));
 }
 

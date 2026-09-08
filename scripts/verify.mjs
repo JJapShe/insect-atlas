@@ -2,8 +2,9 @@ import { readFile } from "node:fs/promises";
 import vm from "node:vm";
 import { insects } from "../data/insects.js";
 import { generatedImages, incompleteMetamorphosisIds } from "../data/incomplete-metamorphosis.js";
+import { childContentFor, childContentIds } from "../data/child-content.js";
 
-const files = ["index.html", "styles.css", "app.js", "review.html", "review.js", "data/insects.js", "data/insect-schema.js"];
+const files = ["index.html", "styles.css", "app.js", "review.html", "review.js", "data/insects.js", "data/insect-schema.js", "data/child-content.js"];
 for (const file of files) await readFile(new URL(`../${file}`, import.meta.url), "utf8");
 const decisions = JSON.parse(await readFile(new URL("../tools/review-decisions/image-review-decisions-20260903.json", import.meta.url), "utf8"));
 if ((decisions.records || []).filter((record) => record.decision === "pass").length !== 3 || (decisions.records || []).filter((record) => record.decision === "reject").length !== 18) throw new Error("Published review decision counts are incomplete.");
@@ -13,6 +14,11 @@ const illustratedFamiliarInsectIds = new Set(["aquarius-paludum", "chrysopa-inti
 const illustratedExpansionIds = new Set(["anechura-japonica", "aphis-gossypii", "blattella-germanica", "scolopendra-subspinipes-mutilans", "bradybaena-similaris", "eisenia-fetida"]);
 const familiarLifeStages = new Map([["aquarius-paludum", ["egg", "nymph"]], ["chrysopa-intima", ["egg", "larva", "pupa"]], ["lycorma-delicatula", ["egg", "nymph"]], ["anechura-japonica", ["egg"]], ["aphis-gossypii", ["nymph"]], ["blattella-germanica", ["nymph"]], ["scolopendra-subspinipes-mutilans", ["egg"]], ["bradybaena-similaris", ["egg"]], ["eisenia-fetida", ["cocoon"]]]);
 if (!Array.isArray(insects) || insects.length !== 77 || new Set(insects.map((insect) => insect.id)).size !== 77) throw new Error("Production data must contain 77 unique records, including the familiar-life expansion.");
+if (childContentIds.length !== insects.length || new Set(childContentIds).size !== insects.length || childContentIds.some((id) => !insects.some((insect) => insect.id === id))) throw new Error("Child content must map 1:1 to public species records.");
+for (const insect of insects) {
+  const content = childContentFor(insect);
+  if (![content.intro, content.habitat, content.diet, content.appearance, content.growth, content.lifespan, content.observe].every((value) => typeof value === "string" && value.length > 10) || !content.sources.length || content.sources.some((source) => !source.label || !source.url || !source.checkedOn || !source.supports)) throw new Error(`Incomplete child content: ${insect.id}`);
+}
 const invalidRecord = insects.find((insect) => !insect.id || !insect.koreanName || !insect.scientificName || !insect.taxonomy?.order || !insect.taxonomy?.family || !insect.lifespan?.label || !Array.isArray(insect.gallery) || (insect.gallery.length === 0 && insect.reviewStatus !== "draft") || (insect.gallery.length > 0 && insect.reviewStatus !== "gallery-published-pending-user-review"));
 if (invalidRecord) throw new Error(`Invalid public information record: ${invalidRecord?.id || "unknown"}`);
 const publicGalleryItems = insects.flatMap((insect) => insect.gallery || []);
@@ -79,7 +85,7 @@ if (publicGalleryItems.some((item) => supersededPublicCandidates.has(item.src.sp
 await Promise.all(publicGalleryItems.map((item) => readFile(new URL(`../${item.src}`, import.meta.url))));
 const app = await readFile(new URL("../app.js", import.meta.url), "utf8");
 if (app.includes("gallery.slice(0, 3)")) throw new Error("Life-stage galleries must expose every registered image in the detail panel.");
-const body = app.replace(/^import .*?;\s*/m, "");
+const body = app.replace(/^import .*?;\s*/gm, "");
 new vm.Script(body.replace(/export\s+/g, ""));
 const review = await readFile(new URL("../review.js", import.meta.url), "utf8");
 new vm.Script(review.replace(/^import .*?;\s*/gm, "").replace(/export\s+/g, ""));
