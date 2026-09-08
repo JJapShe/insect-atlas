@@ -4,7 +4,7 @@ const state = { view: "explore", query: "", diet: "all", level: "all", taxonomyO
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 const familiarity = Object.freeze({ 1: "새로운 친구", 2: "알아가요", 3: "친숙", 4: "매우 친숙" });
-const orderHues = Object.freeze({ "딱정벌레목": 38, "나비목": 286, "잠자리목": 197, "메뚜기목": 104, "사마귀목": 78, "매미목": 338, "노린재목": 12, "벌목": 28, "대벌레목": 153, "풀잠자리목": 176, "거미목": 322, "등각목": 216, "병안목": 96, "전갈목": 18 });
+const orderHues = Object.freeze({ "딱정벌레목": 38, "나비목": 286, "잠자리목": 197, "메뚜기목": 104, "사마귀목": 78, "매미목": 338, "노린재목": 12, "벌목": 28, "대벌레목": 153, "풀잠자리목": 176, "집게벌레목": 8, "바퀴목": 342, "거미목": 322, "등각목": 216, "왕지네목": 348, "병안목": 96, "실지렁이목": 16, "전갈목": 18 });
 
 function taxonomyTree() {
   return [...insects.reduce((orders, insect) => {
