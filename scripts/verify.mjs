@@ -7,7 +7,8 @@ const files = ["index.html", "styles.css", "app.js", "review.html", "review.js",
 for (const file of files) await readFile(new URL(`../${file}`, import.meta.url), "utf8");
 const decisions = JSON.parse(await readFile(new URL("../tools/review-decisions/image-review-decisions-20260903.json", import.meta.url), "utf8"));
 if ((decisions.records || []).filter((record) => record.decision === "pass").length !== 3 || (decisions.records || []).filter((record) => record.decision === "reject").length !== 18) throw new Error("Published review decision counts are incomplete.");
-const draftInformationIds = new Set(["aquarius-paludum", "chrysopa-intima", "lycorma-delicatula", "trichonephila-clavata", "armadillidium-vulgare", "acusta-despecta", "pandinus-imperator"]);
+const draftInformationIds = new Set(["aquarius-paludum", "chrysopa-intima", "lycorma-delicatula", "armadillidium-vulgare", "acusta-despecta", "pandinus-imperator"]);
+const illustratedNonInsectIds = new Set(["trichonephila-clavata"]);
 if (!Array.isArray(insects) || insects.length !== 71 || new Set(insects.map((insect) => insect.id)).size !== 71) throw new Error("Production data must contain 71 unique records, including the familiar-life expansion.");
 const invalidRecord = insects.find((insect) => !insect.id || !insect.koreanName || !insect.scientificName || !insect.taxonomy?.order || !insect.taxonomy?.family || !insect.lifespan?.label || !Array.isArray(insect.gallery) || (insect.gallery.length === 0 && insect.reviewStatus !== "draft") || (insect.gallery.length > 0 && insect.reviewStatus !== "gallery-published-pending-user-review"));
 if (invalidRecord) throw new Error(`Invalid public information record: ${invalidRecord?.id || "unknown"}`);
@@ -19,9 +20,9 @@ const completeMetamorphosisIds = new Set([
 const lifeStages = ["egg", "larva", "pupa"];
 const lifeStageSpecies = insects.filter((insect) => completeMetamorphosisIds.has(insect.id));
 if (completeMetamorphosisIds.size !== 42 || lifeStageSpecies.length !== completeMetamorphosisIds.size || lifeStageSpecies.some((insect) => insect.gallery.length !== 7)) throw new Error("Every complete-metamorphosis species must retain seven gallery images.");
-if (incompleteMetamorphosisIds.length !== 22 || new Set(incompleteMetamorphosisIds).size !== 22 || insects.filter((insect) => insect.reviewStatus !== "draft" && !completeMetamorphosisIds.has(insect.id)).some((insect) => !incompleteMetamorphosisIds.includes(insect.id))) throw new Error("The incomplete-metamorphosis goal must cover all illustrated insect records.");
+if (incompleteMetamorphosisIds.length !== 22 || new Set(incompleteMetamorphosisIds).size !== 22 || insects.filter((insect) => insect.reviewStatus !== "draft" && !completeMetamorphosisIds.has(insect.id) && !illustratedNonInsectIds.has(insect.id)).some((insect) => !incompleteMetamorphosisIds.includes(insect.id))) throw new Error("The incomplete-metamorphosis goal must cover all illustrated insect records.");
 if ([...draftInformationIds].some((id) => !insects.find((insect) => insect.id === id && insect.reviewStatus === "draft" && insect.gallery.length === 0))) throw new Error("New familiar-life records must remain information-first until their images pass review.");
-if (publicGalleryItems.length !== 378 + generatedImages.length) throw new Error("Registered gallery count must match the baseline plus individually reviewed additions.");
+if (publicGalleryItems.length !== 378 + generatedImages.length + 4) throw new Error("Registered gallery count must match the baseline plus individually reviewed additions.");
 if (new Set(generatedImages.map((image) => image.src)).size !== generatedImages.length) throw new Error("New images must not be registered twice.");
 for (const image of generatedImages) {
   if (!incompleteMetamorphosisIds.includes(image.id) || !["egg", "nymph", "ecology", "morphology", "interaction", "interaction-2"].includes(image.role) || !image.sources?.length || !image.reviewNotes || !image.body.includes("AI 생성")) throw new Error(`Missing life-stage provenance or invalid role: ${image.id}/${image.role}`);
