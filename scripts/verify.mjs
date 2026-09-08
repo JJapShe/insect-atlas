@@ -12,8 +12,10 @@ const draftInformationIds = new Set();
 const illustratedNonInsectIds = new Set(["trichonephila-clavata", "armadillidium-vulgare", "acusta-despecta", "pandinus-imperator"]);
 const illustratedFamiliarInsectIds = new Set(["aquarius-paludum", "chrysopa-intima", "lycorma-delicatula"]);
 const illustratedExpansionIds = new Set(["anechura-japonica", "aphis-gossypii", "blattella-germanica", "scolopendra-subspinipes-mutilans", "bradybaena-similaris", "eisenia-fetida"]);
+const familiarLocalIds = new Set(["coccinella-septempunctata", "zizeeria-maha", "meimuna-mongolica", "episyrphus-balteatus", "oxya-japonica", "atractomorpha-lata", "plutella-xylostella", "formica-japonica"]);
+const familiarLocalStages = new Map([["coccinella-septempunctata", "larva"], ["zizeeria-maha", "pupa"], ["meimuna-mongolica", "nymph"], ["episyrphus-balteatus", "larva"], ["oxya-japonica", "nymph"], ["atractomorpha-lata", "nymph"], ["plutella-xylostella", "pupa"], ["formica-japonica", "pupa"]]);
 const familiarLifeStages = new Map([["aquarius-paludum", ["egg", "nymph"]], ["chrysopa-intima", ["egg", "larva", "pupa"]], ["lycorma-delicatula", ["egg", "nymph"]], ["anechura-japonica", ["egg"]], ["aphis-gossypii", ["nymph"]], ["blattella-germanica", ["nymph"]], ["scolopendra-subspinipes-mutilans", ["egg"]], ["bradybaena-similaris", ["egg"]], ["eisenia-fetida", ["cocoon"]]]);
-if (!Array.isArray(insects) || insects.length !== 77 || new Set(insects.map((insect) => insect.id)).size !== 77) throw new Error("Production data must contain 77 unique records, including the familiar-life expansion.");
+if (!Array.isArray(insects) || insects.length !== 85 || new Set(insects.map((insect) => insect.id)).size !== 85 || [...familiarLocalIds].some((id) => !insects.some((insect) => insect.id === id))) throw new Error("Production data must contain 85 unique records, including eight familiar local species.");
 if (childContentIds.length !== insects.length || new Set(childContentIds).size !== insects.length || childContentIds.some((id) => !insects.some((insect) => insect.id === id))) throw new Error("Child content must map 1:1 to public species records.");
 for (const insect of insects) {
   const content = childContentFor(insect);
@@ -29,7 +31,7 @@ const completeMetamorphosisIds = new Set([
 const lifeStages = ["egg", "larva", "pupa"];
 const lifeStageSpecies = insects.filter((insect) => completeMetamorphosisIds.has(insect.id));
 if (completeMetamorphosisIds.size !== 42 || lifeStageSpecies.length !== completeMetamorphosisIds.size || lifeStageSpecies.some((insect) => insect.gallery.length !== 7)) throw new Error("Every complete-metamorphosis species must retain seven gallery images.");
-if (incompleteMetamorphosisIds.length !== 22 || new Set(incompleteMetamorphosisIds).size !== 22 || insects.filter((insect) => insect.reviewStatus !== "draft" && !completeMetamorphosisIds.has(insect.id) && !illustratedNonInsectIds.has(insect.id) && !illustratedFamiliarInsectIds.has(insect.id) && !illustratedExpansionIds.has(insect.id)).some((insect) => !incompleteMetamorphosisIds.includes(insect.id))) throw new Error("The incomplete-metamorphosis goal must cover all illustrated insect records.");
+if (incompleteMetamorphosisIds.length !== 22 || new Set(incompleteMetamorphosisIds).size !== 22 || insects.filter((insect) => insect.reviewStatus !== "draft" && !completeMetamorphosisIds.has(insect.id) && !illustratedNonInsectIds.has(insect.id) && !illustratedFamiliarInsectIds.has(insect.id) && !illustratedExpansionIds.has(insect.id) && !familiarLocalIds.has(insect.id)).some((insect) => !incompleteMetamorphosisIds.includes(insect.id))) throw new Error("The incomplete-metamorphosis goal must cover all illustrated insect records.");
 if (draftInformationIds.size) throw new Error("Draft records remain after the familiar-life gallery publication.");
 for (const [id, stages] of familiarLifeStages) {
   const insect = insects.find((item) => item.id === id);
@@ -53,7 +55,19 @@ for (const id of illustratedExpansionIds) {
     if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
   }
 }
-const familiarLifeGalleryCount = [...illustratedNonInsectIds, ...illustratedFamiliarInsectIds, ...illustratedExpansionIds].reduce((total, id) => total + insects.find((insect) => insect.id === id).gallery.length, 0);
+for (const [id, stage] of familiarLocalStages) {
+  const insect = insects.find((item) => item.id === id);
+  if (!insect || insect.gallery.length !== 4 || !insect.gallery.some((item) => item.src.endsWith(`${id}-${stage}-imagegen-v1.png`)) || !insect.sources?.length) throw new Error(`Familiar local record is incomplete: ${id}`);
+  for (const image of insect.gallery) {
+    const fileName = image.src.split("/").at(-1);
+    const reviewCopy = await readFile(new URL(`../assets/insects/review/familiar-local-20260909/${fileName}`, import.meta.url));
+    const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
+    if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
+  }
+}
+const familiarLocalManifest = JSON.parse(await readFile(new URL("../tools/generation-tests/familiar-local-20260909.json", import.meta.url), "utf8"));
+if (familiarLocalManifest.species?.length !== familiarLocalIds.size || familiarLocalManifest.species.some((entry) => !familiarLocalIds.has(entry.id) || entry.roles?.length !== 4 || !entry.sources?.length || !entry.supports)) throw new Error("Familiar local image provenance manifest is incomplete.");
+const familiarLifeGalleryCount = [...illustratedNonInsectIds, ...illustratedFamiliarInsectIds, ...illustratedExpansionIds, ...familiarLocalIds].reduce((total, id) => total + insects.find((insect) => insect.id === id).gallery.length, 0);
 if (publicGalleryItems.length !== 378 + generatedImages.length + familiarLifeGalleryCount) throw new Error("Registered gallery count must match the baseline plus individually reviewed additions.");
 if (new Set(generatedImages.map((image) => image.src)).size !== generatedImages.length) throw new Error("New images must not be registered twice.");
 for (const image of generatedImages) {

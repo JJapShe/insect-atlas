@@ -173,6 +173,26 @@ const familiarExpansionGallery = Object.freeze({
   "bradybaena-similaris": Object.freeze([galleryItem("bradybaena-similaris", "individual"), galleryItem("bradybaena-similaris", "ecology"), galleryItem("bradybaena-similaris", "interaction"), familiarLifeStageItem("bradybaena-similaris", "egg")]),
   "eisenia-fetida": Object.freeze([galleryItem("eisenia-fetida", "individual"), galleryItem("eisenia-fetida", "ecology"), galleryItem("eisenia-fetida", "interaction"), familiarLifeStageItem("eisenia-fetida", "cocoon")]),
 });
+// 2026-09-09: one plainly labelled, real life-stage image for each newly added local species.
+const familiarLocalLifeStageSpecs = Object.freeze({
+  "coccinella-septempunctata": Object.freeze({ larva: "Coccinella septempunctata larva with a dark segmented body, orange side patches and exactly six legs among intact aphids on a leaf" }),
+  "zizeeria-maha": Object.freeze({ pupa: "Zizeeria maha chrysalis fastened by silk to the underside of a low garden plant leaf" }),
+  "meimuna-mongolica": Object.freeze({ nymph: "Meimuna mongolica wing-budded six-legged cicada nymph climbing a Korean tree trunk from soil" }),
+  "episyrphus-balteatus": Object.freeze({ larva: "Episyrphus balteatus pale tapered legless larva among intact aphids on a garden leaf" }),
+  "oxya-japonica": Object.freeze({ nymph: "Oxya japonica small green six-legged nymph with short wing buds on Korean rice leaves" }),
+  "atractomorpha-lata": Object.freeze({ nymph: "Atractomorpha lata slender green six-legged nymph with short wing buds on a garden leaf" }),
+  "plutella-xylostella": Object.freeze({ pupa: "Plutella xylostella pupa inside a loose white silk mesh cocoon beneath a cabbage leaf" }),
+  "formica-japonica": Object.freeze({ pupa: "Formica japonica pale ant pupae in silk cocoons in a small soil-nest chamber beside one worker" }),
+});
+const familiarLocalLifeStageItem = (id, stage) => Object.freeze({
+  src: `assets/insects/approved/${id}-${stage}-imagegen-v1.png`, alt: "", role: lifeStageDetails[stage].label, body: lifeStageDetails[stage].body,
+  sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-09", generationPrompt: familiarLocalLifeStageSpecs[id][stage],
+  generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, visual life-stage and anatomy review, then unchanged copies into review and approved paths", reviewStatus: "published-pending-user-review",
+});
+const familiarLocalGallery = Object.freeze(Object.fromEntries(Object.entries(familiarLocalLifeStageSpecs).map(([id, stages]) => {
+  const stage = Object.keys(stages)[0];
+  return [id, Object.freeze([galleryItem(id, "individual"), galleryItem(id, "ecology"), galleryItem(id, "interaction"), familiarLocalLifeStageItem(id, stage)])];
+})));
 const withLifeStages = (id, gallery) => lifeStageSpecs[id] ? Object.freeze([...gallery, ...["egg", "larva", "pupa"].map((stage) => lifeStageItem(id, stage))]) : gallery;
 const supplementalKinds = Object.freeze({
   "lucanus-maculifemoratus": ["anatomy-test"], "trypoxylus-dichotomus": ["anatomy-test"], "tenodera-sinensis": ["anatomy-test"], "anax-parthenope": ["individual"], "sympetrum-depressiusculum": ["individual"],
@@ -297,7 +317,7 @@ const lifeSpanById = Object.freeze({
   "eisenia-fetida": Object.freeze({ label: "약 1~2년", note: "고치에서 어린 지렁이가 나오며 번데기는 거치지 않아요." }),
 });
 const record = (id, koreanName, scientificName, order, family, habitat, diet, cues, familiarityLevel = 2, options = {}) => {
-  const gallery = Object.freeze([...withLifeStages(id, options.gallery || familiarExpansionGallery[id] || galleryById[id] || []), ...galleryAdditions(id)]);
+  const gallery = Object.freeze([...withLifeStages(id, options.gallery || familiarLocalGallery[id] || familiarExpansionGallery[id] || galleryById[id] || []), ...galleryAdditions(id)]);
   return Object.freeze({
     id, koreanName, scientificName, taxonomy: { order, family }, appearancePeriod: { label: "현생 · 출현 시기 확인 중", kind: "modern" }, lifeStageLabel: options.lifeStageLabel || "성충기 기준",
     lifeCycle: options.lifeCycle || (incompleteMetamorphosisIds.includes(id) ? "알 → 약충 → 성충 (불완전변태)" : ""),
@@ -384,4 +404,12 @@ export const insects = Object.freeze([
   record("scolopendra-subspinipes-mutilans", "왕지네", "Scolopendra subspinipes mutilans", "왕지네목", "왕지네과", ["돌·통나무 아래", "습한 낙엽층", "숲 가장자리"], "다른 동물", ["납작하고 긴 마디 몸", "한 마디마다 한 쌍의 다리", "앞쪽 독발톱"], 3, { region: "국내 관찰 종 · 비곤충", lifeStageLabel: "성체 기준", lifeCycle: "알 → 새끼 → 탈피 → 성체", sources: [{ label: "국립생물자원관 · 국가생물종목록 (왕지네)", url: "https://www.nibr.go.kr/aiibook/catImage/32/InvertebratesVII.pdf" }] }),
   record("bradybaena-similaris", "삼방달팽이붙이", "Bradybaena similaris", "병안목", "달팽이과", ["화단", "밭 가장자리", "낙엽·돌 아래"], "식물", ["둥근 갈색 껍데기", "껍데기의 가는 띠무늬", "긴 눈자루"], 3, { region: "국내 관찰 종 · 비곤충", lifeStageLabel: "성체 기준", lifeCycle: "알 → 어린 달팽이 → 성체", sources: [{ label: "국립생물자원관 · 국가생물종목록 (Bradybaena similaris)", url: "https://www.nibr.go.kr/aiibook/catImage/33/Additional%202014.pdf" }] }),
   record("eisenia-fetida", "줄지렁이", "Eisenia fetida", "실지렁이목", "줄지렁이과", ["퇴비", "화단 흙", "낙엽·부식질"], "식물", ["붉갈색과 노란색의 줄무늬", "고리 모양 마디", "굵어진 환대"], 4, { region: "국내 생활권 관찰 종 · 비곤충", lifeStageLabel: "성체 기준", lifeCycle: "고치 → 어린 지렁이 → 성체", sources: [{ label: "국립생물자원관 · 국가생물종목록 (Eisenia fetida)", url: "https://www.nibr.go.kr/aiibook/access/ecatalogt.jsp?Dir=21&callmode=admin&catimage=&eclang=ko&start=390&um=s" }] }),
+  record("coccinella-septempunctata", "칠성무당벌레", "Coccinella septempunctata", "딱정벌레목", "무당벌레과", ["학교 화단", "공원 풀밭", "밭작물 주변"], "다른 동물", ["붉은 딱지날개", "검은 점 일곱 개", "둥근 반구형 몸"], 4, { region: "국내 생활권 관찰 종", lifeCycle: "알 → 유충 → 번데기 → 성충 (완전변태)", lifespan: { label: "성충 약 수개월", note: "성충으로 겨울을 나는 개체가 있으며 계절과 먹이에 따라 달라져요." }, sources: [{ label: "국립생물자원관 · 칠성무당벌레 국가생물종목록", url: "https://species.nibr.go.kr/endangeredspecies/rehome/redlist/redlist.jsp?1=1&link_gbn=ex_search&page_count=334&rlcls_sno=893" }, { label: "농촌진흥청 농사로 · 양배추가루진딧물의 천적 칠성무당벌레", url: "https://www.nongsaro.go.kr/portal/ps/psw/pswe/pswec/nnmySrchDtl.ps?menuId=PS03783&sSeqNo=504&totalSearchYn=Y" }] }),
+  record("zizeeria-maha", "남방부전나비", "Zizeeria maha", "나비목", "부전나비과", ["공원 잔디밭", "학교 화단", "낮은 풀밭"], "식물", ["작은 회청색 날개", "날개 아랫면의 작은 점무늬", "가느다란 꼬리 없는 뒷날개"], 4, { region: "국내 생활권 관찰 종", lifeCycle: "알 → 유충 → 번데기 → 성충 (완전변태)", lifespan: { label: "성충 약 1~2주", note: "따뜻한 때에 여러 세대가 이어질 수 있어요." }, sources: [{ label: "국립생물자원관 · 남방부전나비 국가생물종목록", url: "https://species.nibr.go.kr/home/mainHome.do" }, { label: "국립생태원 · 남방부전나비 관찰 자료", url: "https://www.nie.re.kr/nie/" }] }),
+  record("meimuna-mongolica", "참매미", "Meimuna mongolica", "노린재목", "매미과", ["도시 공원 나무", "학교 교정", "가로수"], "식물", ["투명한 날개", "검은색과 녹갈색 무늬", "넓은 겹눈"], 4, { region: "국내 생활권 관찰 종", lifeCycle: "알 → 약충 → 성충 (불완전변태)", lifespan: { label: "성충 약 수주", note: "땅속 약충 시기가 훨씬 길고 성충은 여름에 소리를 내요." }, sources: [{ label: "국립생물자원관 · 참매미 국가생물종목록", url: "https://species.nibr.go.kr/home/mainHome.do" }, { label: "국립생태원 · 매미류 생태 해설", url: "https://www.nie.re.kr/nie/" }] }),
+  record("episyrphus-balteatus", "호리꽃등에", "Episyrphus balteatus", "파리목", "꽃등에과", ["꽃밭", "텃밭", "공원 화단"], "여러 가지", ["노랑·검정 가로띠", "한 쌍의 투명한 날개", "공중에서 멈춰 나는 모습"], 4, { region: "국내 생활권 관찰 종", lifeCycle: "알 → 유충 → 번데기 → 성충 (완전변태)", lifespan: { label: "성충 약 수주", note: "유충은 진딧물을 먹고 성충은 꽃에서 당분을 얻어요." }, sources: [{ label: "국립생물자원관 · 호리꽃등에 국가생물종목록", url: "https://species.nibr.go.kr/home/mainHome.do" }, { label: "농촌진흥청 농사로 · 꽃등에류 천적 정보", url: "https://www.nongsaro.go.kr/portal/ps/pss/pssa/hlsctSearchDtl.ps?hlsctCode=H00000261&menuId=PS00202" }] }),
+  record("oxya-japonica", "벼메뚜기", "Oxya japonica", "메뚜기목", "메뚜기과", ["논 가장자리", "습한 풀밭", "하천 둑"], "식물", ["가느다란 초록 몸", "길고 튼튼한 뒷다리", "풀잎을 닮은 색"], 4, { region: "국내 생활권 관찰 종", lifeCycle: "알 → 약충 → 성충 (불완전변태)", lifespan: { label: "성충 약 수개월", note: "알로 겨울을 나고 봄부터 약충이 자라요." }, sources: [{ label: "국립생물자원관 · 벼메뚜기 국가생물종목록", url: "https://species.nibr.go.kr/home/mainHome.do" }, { label: "농촌진흥청 농사로 · 벼메뚜기 병해충 정보", url: "https://www.nongsaro.go.kr/portal/ps/pss/pssa/hlsctSearchDtl.ps?hlsctCode=H00000188&menuId=PS00202" }] }),
+  record("atractomorpha-lata", "섬서구메뚜기", "Atractomorpha lata", "메뚜기목", "섬서구메뚜기과", ["학교 화단", "밭 가장자리", "낮은 풀밭"], "식물", ["앞이 뾰족한 길쭉한 머리", "가느다란 초록 몸", "짧은 더듬이"], 3, { region: "국내 생활권 관찰 종", lifeCycle: "알 → 약충 → 성충 (불완전변태)", lifespan: { label: "성충 약 수개월", note: "알로 겨울을 나고 번데기 없이 약충에서 성충으로 자라요." }, sources: [{ label: "국립생물자원관 · 섬서구메뚜기 국가생물종목록", url: "https://species.nibr.go.kr/home/mainHome.do" }, { label: "국립생태원 · 섬서구메뚜기 관찰 자료", url: "https://www.nie.re.kr/nie/" }] }),
+  record("plutella-xylostella", "배추좀나방", "Plutella xylostella", "나비목", "좀나방과", ["배추밭", "학교 텃밭", "십자화과 식물"], "식물", ["접으면 마름모처럼 보이는 갈색 날개", "가느다란 몸", "잎 뒷면의 작은 유충"], 3, { region: "국내 생활권 관찰 종", lifeCycle: "알 → 유충 → 번데기 → 성충 (완전변태)", lifespan: { label: "성충 약 1~2주", note: "유충은 배추 잎을 먹고 얇은 그물 같은 고치에서 번데기가 돼요." }, sources: [{ label: "농촌진흥청 농사로 · 배추좀나방 상세", url: "https://www.nongsaro.go.kr/portal/ps/pss/pssa/insectSearchDtl.ps?menuId=PS00403&spcsCode=ZR1FJ0002" }, { label: "국립생물자원관 · 배추좀나방 국가생물종목록", url: "https://species.nibr.go.kr/home/mainHome.do" }] }),
+  record("formica-japonica", "일본불개미", "Formica japonica", "벌목", "개미과", ["공원 흙길", "화단 가장자리", "나무 밑"], "여러 가지", ["검갈색 몸", "잘록한 허리", "굽은 더듬이"], 3, { region: "국내 생활권 관찰 종", lifeCycle: "알 → 유충 → 번데기 → 성체 (완전변태)", lifespan: { label: "일개미 약 수개월", note: "여왕개미와 일개미의 사는 기간은 서로 달라요." }, sources: [{ label: "국립생물자원관 · 일본불개미 국가생물종목록", url: "https://species.nibr.go.kr/home/mainHome.do" }, { label: "국립생태원 · 개미류 생태 해설", url: "https://www.nie.re.kr/nie/" }] }),
 ]);

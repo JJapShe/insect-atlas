@@ -1,5 +1,5 @@
-import { insects } from "./data/insects.js?v=20260909-familiar-life";
-import { childContentFor } from "./data/child-content.js?v=20260909-child-content";
+import { insects } from "./data/insects.js?v=20260909-familiar-local";
+import { childContentFor } from "./data/child-content.js?v=20260909-familiar-local";
 
 const state = { view: "explore", query: "", diet: "all", level: "all", taxonomyOrder: "all", taxonomyFamily: "all", scope: "free", lightboxItems: [], lightboxIndex: 0, previousFocus: null, pinch: { distance: 0, scale: 1 } };
 const $ = (selector, scope = document) => scope.querySelector(selector);

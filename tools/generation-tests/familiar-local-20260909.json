@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-09-09",
+  "workflow": "Built-in image generation; visual anatomy and life-stage review; unchanged review and approved copies.",
+  "reviewFolder": "assets/insects/review/familiar-local-20260909",
+  "species": [
+    {"id":"coccinella-septempunctata","koreanName":"칠성무당벌레","roles":["individual","ecology","interaction","larva"],"supports":"국내 분류, 진딧물 포식, 완전변태","sources":["https://species.nibr.go.kr/endangeredspecies/rehome/redlist/redlist.jsp?1=1&link_gbn=ex_search&page_count=334&rlcls_sno=893","https://www.nongsaro.go.kr/portal/ps/pss/pssa/hlsctSearchDtl.ps?hlsctCode=H00000366&menuId=PS00202"]},
+    {"id":"zizeeria-maha","koreanName":"남방부전나비","roles":["individual","ecology","interaction","pupa"],"supports":"국내 분류, 풀밭 생활, 완전변태","sources":["https://species.nibr.go.kr/home/mainHome.do","https://www.nie.re.kr/nie/"]},
+    {"id":"meimuna-mongolica","koreanName":"참매미","roles":["individual","ecology","interaction","nymph"],"supports":"국내 분류, 수액 섭식, 불완전변태","sources":["https://species.nibr.go.kr/home/mainHome.do","https://www.nie.re.kr/nie/"]},
+    {"id":"episyrphus-balteatus","koreanName":"호리꽃등에","roles":["individual","ecology","interaction","larva"],"supports":"국내 분류, 꽃꿀과 진딧물, 완전변태","sources":["https://species.nibr.go.kr/home/mainHome.do","https://www.nongsaro.go.kr/portal/ps/pss/pssa/hlsctSearchDtl.ps?hlsctCode=H00000261&menuId=PS00202"]},
+    {"id":"oxya-japonica","koreanName":"벼메뚜기","roles":["individual","ecology","interaction","nymph"],"supports":"국내 분류, 논 생활, 불완전변태","sources":["https://species.nibr.go.kr/home/mainHome.do","https://www.nongsaro.go.kr/portal/ps/pss/pssa/hlsctSearchDtl.ps?hlsctCode=H00000188&menuId=PS00202"]},
+    {"id":"atractomorpha-lata","koreanName":"섬서구메뚜기","roles":["individual","ecology","interaction","nymph"],"supports":"국내 분류, 풀밭 생활, 불완전변태","sources":["https://species.nibr.go.kr/home/mainHome.do","https://www.nie.re.kr/nie/"]},
+    {"id":"plutella-xylostella","koreanName":"배추좀나방","roles":["individual","ecology","interaction","pupa"],"supports":"국내 분류, 배추 잎 섭식, 완전변태","sources":["https://www.nongsaro.go.kr/portal/ps/pss/pssa/hlsctSearchDtl.ps?hlsctCode=H00000277&menuId=PS00202","https://species.nibr.go.kr/home/mainHome.do"]},
+    {"id":"formica-japonica","koreanName":"일본불개미","roles":["individual","ecology","interaction","pupa"],"supports":"국내 분류, 군체 생활, 완전변태","sources":["https://species.nibr.go.kr/home/mainHome.do","https://www.nie.re.kr/nie/"]}
+  ]
+}
