@@ -65,6 +65,7 @@ const supersededPublicCandidates = new Set(["anax-parthenope-representative-imag
 if (publicGalleryItems.some((item) => supersededPublicCandidates.has(item.src.split("/").at(-1)))) throw new Error("Superseded identity-inconsistent candidates must not remain in public galleries.");
 await Promise.all(publicGalleryItems.map((item) => readFile(new URL(`../${item.src}`, import.meta.url))));
 const app = await readFile(new URL("../app.js", import.meta.url), "utf8");
+if (app.includes("gallery.slice(0, 3)")) throw new Error("Life-stage galleries must expose every registered image in the detail panel.");
 const body = app.replace(/^import .*?;\s*/m, "");
 new vm.Script(body.replace(/export\s+/g, ""));
 const review = await readFile(new URL("../review.js", import.meta.url), "utf8");
