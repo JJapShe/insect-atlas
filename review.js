@@ -16,6 +16,9 @@ const manifestUrls = [
   "tools/generation-tests/woodland-life-stages-20260905.json",
   "tools/generation-tests/seven-insects-20260905.json",
   "tools/generation-tests/life-stages-20260905.json",
+  "tools/generation-tests/familiar-local-20260909.json",
+  "tools/generation-tests/rare-famous-20260909.json",
+  "tools/generation-tests/familiar-next-20260909.json",
 ];
 const decisionManifestUrl = "tools/review-decisions/image-review-decisions-20260903.json";
 const koreanNames = new Map();
@@ -23,7 +26,7 @@ const decisionKey = "insect-atlas-review-decisions-v1";
 const localDecisions = JSON.parse(localStorage.getItem(decisionKey) || "{}");
 let publishedDecisions = {}; let assets = []; let roleFilter = "all";
 const $ = (selector) => document.querySelector(selector);
-const label = { morphology:"형태·정보", ecology:"생태", interaction:"상호작용", egg:"알", larva:"유충", nymph:"약충", pupa:"번데기", test:"생성 테스트" };
+const label = { individual:"형태·정보", morphology:"형태·정보", ecology:"생태", interaction:"상호작용", egg:"알", larva:"유충", nymph:"약충", pupa:"번데기", test:"생성 테스트" };
 
 function decisionOf(asset) { return localDecisions[asset.key] || publishedDecisions[asset.key] || "pending"; }
 function saveDecision(asset, decision) { localDecisions[asset.key] = decision; localStorage.setItem(decisionKey, JSON.stringify(localDecisions)); render(); }
@@ -42,7 +45,12 @@ function recordsForManifest(data) {
     asset: batch.assetTemplate.replace("{id}", id), generationPrompt: batch.generationPrompt,
     reviewStatus: batch.reviewStatus,
   })));
-  return [...directRecords, ...batchedRecords];
+  const speciesRecords = (data.species || []).flatMap((species) => (species.roles || []).map((role) => ({
+    id: species.id, koreanName: species.koreanName, role,
+    asset: `${data.reviewFolder}/${species.id}-${role}-imagegen-v1.png`, generationPrompt: data.workflow,
+    reviewStatus: "published-pending-user-review",
+  })));
+  return [...directRecords, ...batchedRecords, ...speciesRecords];
 }
 async function loadAssets() {
   const [documents, decisionManifest] = await Promise.all([Promise.all(manifestUrls.map(async (url) => [url, await (await fetch(url)).json()])), fetch(decisionManifestUrl).then((response) => response.json())]);

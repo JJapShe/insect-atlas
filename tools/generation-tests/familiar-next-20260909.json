@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-09-09",
+  "workflow": "Built-in image generation; visual anatomy and life-stage review; unchanged review and approved copies.",
+  "reviewFolder": "assets/insects/review/familiar-next-20260909",
+  "species": [
+    {
+      "id": "eurema-mandarina",
+      "koreanName": "남방노랑나비",
+      "roles": ["individual", "ecology", "interaction", "pupa"],
+      "supports": "국내 분류, 양지 풀밭 생활, 완전변태",
+      "sources": ["https://species.nibr.go.kr/nibr/assets/K-BON_GUIDE.pdf"]
+    },
+    {
+      "id": "myrmeleon-formicarius",
+      "koreanName": "명주잠자리",
+      "roles": ["individual", "ecology", "interaction", "larva"],
+      "supports": "국내 분류, 모래 구덩이 유충, 완전변태",
+      "sources": ["https://species.nibr.go.kr/", "https://species.nibr.go.kr/kiiks/"]
+    },
+    {
+      "id": "diestrammena-asynamora",
+      "koreanName": "꼽등이",
+      "roles": ["individual", "ecology", "interaction", "nymph"],
+      "supports": "국내 분류, 날개 없는 굽은 등, 불완전변태",
+      "sources": ["https://species.nibr.go.kr/kiiks/grasshopper/main.do"]
+    },
+    {
+      "id": "diplonychus-japonicus",
+      "koreanName": "물자라",
+      "roles": ["individual", "ecology", "interaction", "nymph"],
+      "supports": "국내 담수 서식, 포획 앞다리, 불완전변태",
+      "sources": ["https://species.nibr.go.kr/", "https://fbp.nnibr.re.kr/"]
+    }
+  ]
+}

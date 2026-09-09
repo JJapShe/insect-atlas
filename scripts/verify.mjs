@@ -16,8 +16,10 @@ const familiarLocalIds = new Set(["coccinella-septempunctata", "zizeeria-maha", 
 const familiarLocalStages = new Map([["coccinella-septempunctata", "larva"], ["zizeeria-maha", "pupa"], ["meimuna-mongolica", "nymph"], ["episyrphus-balteatus", "larva"], ["oxya-japonica", "nymph"], ["atractomorpha-lata", "nymph"], ["plutella-xylostella", "pupa"], ["formica-japonica", "pupa"]]);
 const rareFamousIds = new Set(["gromphadorhina-portentosa", "atta-cephalotes", "phyllium-giganteum", "archispirostreptus-gigas", "euchroma-giganteum", "trachelophorus-giraffa"]);
 const rareFamousStages = new Map([["gromphadorhina-portentosa", "nymph"], ["atta-cephalotes", "pupa"], ["phyllium-giganteum", "nymph"], ["archispirostreptus-gigas", "egg"], ["euchroma-giganteum", "larva"], ["trachelophorus-giraffa", "pupa"]]);
+const familiarNextIds = new Set(["eurema-mandarina", "myrmeleon-formicarius", "diestrammena-asynamora", "diplonychus-japonicus"]);
+const familiarNextStages = new Map([["eurema-mandarina", "pupa"], ["myrmeleon-formicarius", "larva"], ["diestrammena-asynamora", "nymph"], ["diplonychus-japonicus", "nymph"]]);
 const familiarLifeStages = new Map([["aquarius-paludum", ["egg", "nymph"]], ["chrysopa-intima", ["egg", "larva", "pupa"]], ["lycorma-delicatula", ["egg", "nymph"]], ["anechura-japonica", ["egg"]], ["aphis-gossypii", ["nymph"]], ["blattella-germanica", ["nymph"]], ["scolopendra-subspinipes-mutilans", ["egg"]], ["bradybaena-similaris", ["egg"]], ["eisenia-fetida", ["cocoon"]]]);
-if (!Array.isArray(insects) || insects.length !== 91 || new Set(insects.map((insect) => insect.id)).size !== 91 || [...familiarLocalIds, ...rareFamousIds].some((id) => !insects.some((insect) => insect.id === id))) throw new Error("Production data must contain 91 unique records, including familiar local and new-friend species.");
+if (!Array.isArray(insects) || insects.length !== 95 || new Set(insects.map((insect) => insect.id)).size !== 95 || [...familiarLocalIds, ...rareFamousIds, ...familiarNextIds].some((id) => !insects.some((insect) => insect.id === id))) throw new Error("Production data must contain 95 unique records, including familiar local and new-friend species.");
 if (childContentIds.length !== insects.length || new Set(childContentIds).size !== insects.length || childContentIds.some((id) => !insects.some((insect) => insect.id === id))) throw new Error("Child content must map 1:1 to public species records.");
 for (const insect of insects) {
   const content = childContentFor(insect);
@@ -33,7 +35,7 @@ const completeMetamorphosisIds = new Set([
 const lifeStages = ["egg", "larva", "pupa"];
 const lifeStageSpecies = insects.filter((insect) => completeMetamorphosisIds.has(insect.id));
 if (completeMetamorphosisIds.size !== 42 || lifeStageSpecies.length !== completeMetamorphosisIds.size || lifeStageSpecies.some((insect) => insect.gallery.length !== 7)) throw new Error("Every complete-metamorphosis species must retain seven gallery images.");
-if (incompleteMetamorphosisIds.length !== 22 || new Set(incompleteMetamorphosisIds).size !== 22 || insects.filter((insect) => insect.reviewStatus !== "draft" && !completeMetamorphosisIds.has(insect.id) && !illustratedNonInsectIds.has(insect.id) && !illustratedFamiliarInsectIds.has(insect.id) && !illustratedExpansionIds.has(insect.id) && !familiarLocalIds.has(insect.id) && !rareFamousIds.has(insect.id)).some((insect) => !incompleteMetamorphosisIds.includes(insect.id))) throw new Error("The incomplete-metamorphosis goal must cover all illustrated insect records.");
+if (incompleteMetamorphosisIds.length !== 22 || new Set(incompleteMetamorphosisIds).size !== 22 || insects.filter((insect) => insect.reviewStatus !== "draft" && !completeMetamorphosisIds.has(insect.id) && !illustratedNonInsectIds.has(insect.id) && !illustratedFamiliarInsectIds.has(insect.id) && !illustratedExpansionIds.has(insect.id) && !familiarLocalIds.has(insect.id) && !rareFamousIds.has(insect.id) && !familiarNextIds.has(insect.id)).some((insect) => !incompleteMetamorphosisIds.includes(insect.id))) throw new Error("The incomplete-metamorphosis goal must cover all illustrated insect records.");
 if (draftInformationIds.size) throw new Error("Draft records remain after the familiar-life gallery publication.");
 for (const [id, stages] of familiarLifeStages) {
   const insect = insects.find((item) => item.id === id);
@@ -77,11 +79,23 @@ for (const [id, stage] of rareFamousStages) {
     if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
   }
 }
+for (const [id, stage] of familiarNextStages) {
+  const insect = insects.find((item) => item.id === id);
+  if (!insect || insect.gallery.length !== 4 || insect.familiarityLevel !== 1 || !insect.region.includes("새로운 친구") || !insect.gallery.some((item) => item.src.endsWith(`${id}-${stage}-imagegen-v1.png`)) || !insect.sources?.length) throw new Error(`Familiar new-friend record is incomplete: ${id}`);
+  for (const image of insect.gallery) {
+    const fileName = image.src.split("/").at(-1);
+    const reviewCopy = await readFile(new URL(`../assets/insects/review/familiar-next-20260909/${fileName}`, import.meta.url));
+    const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
+    if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
+  }
+}
 const familiarLocalManifest = JSON.parse(await readFile(new URL("../tools/generation-tests/familiar-local-20260909.json", import.meta.url), "utf8"));
 if (familiarLocalManifest.species?.length !== familiarLocalIds.size || familiarLocalManifest.species.some((entry) => !familiarLocalIds.has(entry.id) || entry.roles?.length !== 4 || !entry.sources?.length || !entry.supports)) throw new Error("Familiar local image provenance manifest is incomplete.");
 const rareFamousManifest = JSON.parse(await readFile(new URL("../tools/generation-tests/rare-famous-20260909.json", import.meta.url), "utf8"));
 if (rareFamousManifest.species?.length !== rareFamousIds.size || rareFamousManifest.species.some((entry) => !rareFamousIds.has(entry.id) || entry.roles?.length !== 4 || !entry.sources?.length || !entry.supports)) throw new Error("Rare and famous image provenance manifest is incomplete.");
-const familiarLifeGalleryCount = [...illustratedNonInsectIds, ...illustratedFamiliarInsectIds, ...illustratedExpansionIds, ...familiarLocalIds, ...rareFamousIds].reduce((total, id) => total + insects.find((insect) => insect.id === id).gallery.length, 0);
+const familiarNextManifest = JSON.parse(await readFile(new URL("../tools/generation-tests/familiar-next-20260909.json", import.meta.url), "utf8"));
+if (familiarNextManifest.species?.length !== familiarNextIds.size || familiarNextManifest.species.some((entry) => !familiarNextIds.has(entry.id) || entry.roles?.length !== 4 || !entry.sources?.length || !entry.supports)) throw new Error("Familiar new-friend image provenance manifest is incomplete.");
+const familiarLifeGalleryCount = [...illustratedNonInsectIds, ...illustratedFamiliarInsectIds, ...illustratedExpansionIds, ...familiarLocalIds, ...rareFamousIds, ...familiarNextIds].reduce((total, id) => total + insects.find((insect) => insect.id === id).gallery.length, 0);
 if (publicGalleryItems.length !== 378 + generatedImages.length + familiarLifeGalleryCount) throw new Error("Registered gallery count must match the baseline plus individually reviewed additions.");
 if (new Set(generatedImages.map((image) => image.src)).size !== generatedImages.length) throw new Error("New images must not be registered twice.");
 for (const image of generatedImages) {
@@ -117,5 +131,6 @@ const body = app.replace(/^import .*?;\s*/gm, "");
 new vm.Script(body.replace(/export\s+/g, ""));
 const review = await readFile(new URL("../review.js", import.meta.url), "utf8");
 new vm.Script(review.replace(/^import .*?;\s*/gm, "").replace(/export\s+/g, ""));
+if (!review.includes("familiar-local-20260909.json") || !review.includes("rare-famous-20260909.json") || !review.includes("familiar-next-20260909.json") || !review.includes("data.species")) throw new Error("Review screen must load every species-based provenance manifest.");
 if (/assets\/insects\/review/.test(app)) throw new Error("Review-only assets must not be referenced by the public app runtime.");
 console.log(`PASS: files readable, ${insects.length} public information records include ${publicGalleryItems.length} registered gallery assets, review assets are excluded from app runtime, scripts are valid`);
