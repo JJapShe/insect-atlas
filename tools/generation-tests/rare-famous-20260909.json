@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-09-09",
+  "workflow": "Built-in image generation; visual anatomy and life-stage review; unchanged review and approved copies.",
+  "reviewFolder": "assets/insects/review/rare-famous-20260909",
+  "species": [
+    {"id":"gromphadorhina-portentosa","koreanName":"마다가스카르휘파람바퀴","roles":["individual","ecology","interaction","nymph"],"supports":"마다가스카르 숲 바닥 생활, 휘파람 소리, 불완전변태","sources":["https://entomology.mgcafe.uky.edu/ef014"]},
+    {"id":"atta-cephalotes","koreanName":"잎꾼개미","roles":["individual","ecology","interaction","pupa"],"supports":"잎으로 버섯을 기르는 군체, 완전변태","sources":["https://askabiologist.asu.edu/leafcutter-ant-colony","https://arboretum.ufm.edu/animales/atta-cephalotes/"]},
+    {"id":"phyllium-giganteum","koreanName":"거대말레이잎벌레","roles":["individual","ecology","interaction","nymph"],"supports":"말레이시아 원산, 잎 위장, 불완전변태","sources":["https://ucanr.edu/blog/bug-squad/article/these-leaves-are-made-walking","https://www.si.edu/object/giant-malaysian-leaf-insect%3Anmnheducation_11016380"]},
+    {"id":"archispirostreptus-gigas","koreanName":"자이언트아프리카노래기","roles":["individual","ecology","interaction","egg"],"supports":"아프리카 숲 바닥의 비곤충 분해자, 알과 탈피 성장","sources":["https://www.centralfloridazoo.org/animals/giant-african-millipede/","https://www.uticazoo.org/giantafricanmillipede/"]},
+    {"id":"euchroma-giganteum","koreanName":"자이언트금속비단벌레","roles":["individual","ecology","interaction","larva"],"supports":"중남미 세이바나무와 금속광택, 완전변태","sources":["https://www.biokids.umich.edu/critters/Euchroma_giganteum/"]},
+    {"id":"trachelophorus-giraffa","koreanName":"기린바구미","roles":["individual","ecology","interaction","pupa"],"supports":"마다가스카르 숲, 잎 말기 산란, 완전변태","sources":["https://www.britannica.com/animal/giraffe-weevil","https://www.gbif.org/species/4990020"]}
+  ]
+}
