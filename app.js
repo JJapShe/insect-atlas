@@ -1,11 +1,11 @@
-import { insects } from "./data/insects.js?v=20260909-familiar-local";
-import { childContentFor } from "./data/child-content.js?v=20260909-familiar-local";
+import { insects } from "./data/insects.js?v=20260909-rare-famous";
+import { childContentFor } from "./data/child-content.js?v=20260909-rare-famous";
 
 const state = { view: "explore", query: "", diet: "all", level: "all", taxonomyOrder: "all", taxonomyFamily: "all", scope: "free", lightboxItems: [], lightboxIndex: 0, previousFocus: null, pinch: { distance: 0, scale: 1 } };
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 const familiarity = Object.freeze({ 1: "새로운 친구", 2: "알아가요", 3: "친숙", 4: "매우 친숙" });
-const orderHues = Object.freeze({ "딱정벌레목": 38, "나비목": 286, "잠자리목": 197, "메뚜기목": 104, "사마귀목": 78, "매미목": 338, "노린재목": 12, "벌목": 28, "대벌레목": 153, "풀잠자리목": 176, "집게벌레목": 8, "바퀴목": 342, "거미목": 322, "등각목": 216, "왕지네목": 348, "병안목": 96, "실지렁이목": 16, "전갈목": 18 });
+const orderHues = Object.freeze({ "딱정벌레목": 38, "나비목": 286, "잠자리목": 197, "메뚜기목": 104, "사마귀목": 78, "매미목": 338, "노린재목": 12, "벌목": 28, "대벌레목": 153, "풀잠자리목": 176, "집게벌레목": 8, "바퀴목": 342, "거미목": 322, "등각목": 216, "왕지네목": 348, "왕노래기목": 266, "병안목": 96, "실지렁이목": 16, "전갈목": 18 });
 const escapeHTML = (value) => String(value).replace(/[&<>'\"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[character]);
 
 function taxonomyTree() {
