@@ -91,7 +91,7 @@ function renderExplore() {
   if (!visible.length) { grid.append($("#emptyCatalogTemplate").content.cloneNode(true)); return; }
   visible.forEach((insect) => {
     const card = document.createElement("button"); card.className = "map-species"; card.type = "button"; card.style.cssText = taxonomyStyle(insect);
-    const imageLabel = insect.gallery?.length ? `검수 통과 이미지 ${insect.gallery.length}장 · 정보 보기` : "이미지 검수 대기 · 정보 보기";
+    const imageLabel = !insect.gallery?.length ? "이미지 검수 대기 · 정보 보기" : insect.gallery.every((image) => image.reviewStatus === "approved") ? `검수 통과 이미지 ${insect.gallery.length}장 · 정보 보기` : `사용자 검수 대기 이미지 ${insect.gallery.length}장 · 정보 보기`;
     card.innerHTML = `<span class="taxonomy-order-label">${insect.taxonomy.order}</span><span class="taxonomy-family-label">${insect.taxonomy.family}</span><strong>${insect.koreanName}</strong><em>${insect.scientificName}</em><small><b>친숙도 ${familiarity[insect.familiarityLevel] || "미정"}</b>${imageLabel}</small>`;
     card.addEventListener("click", () => selectInsect(insect)); grid.append(card);
   });

@@ -127,6 +127,7 @@ if (publicGalleryItems.some((item) => supersededPublicCandidates.has(item.src.sp
 await Promise.all(publicGalleryItems.map((item) => readFile(new URL(`../${item.src}`, import.meta.url))));
 const app = await readFile(new URL("../app.js", import.meta.url), "utf8");
 if (app.includes("gallery.slice(0, 3)")) throw new Error("Life-stage galleries must expose every registered image in the detail panel.");
+if (!app.includes('image.reviewStatus === "approved"') || !app.includes("사용자 검수 대기 이미지")) throw new Error("Public cards must distinguish pending-user-review galleries from approved galleries.");
 const body = app.replace(/^import .*?;\s*/gm, "");
 new vm.Script(body.replace(/export\s+/g, ""));
 const review = await readFile(new URL("../review.js", import.meta.url), "utf8");
