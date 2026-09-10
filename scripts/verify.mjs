@@ -8,7 +8,7 @@ const files = ["index.html", "styles.css", "app.js", "review.html", "review.js",
 for (const file of files) await readFile(new URL(`../${file}`, import.meta.url), "utf8");
 const decisions = JSON.parse(await readFile(new URL("../tools/review-decisions/image-review-decisions-20260903.json", import.meta.url), "utf8"));
 if ((decisions.records || []).filter((record) => record.decision === "pass").length !== 3 || (decisions.records || []).filter((record) => record.decision === "reject").length !== 18) throw new Error("Published review decision counts are incomplete.");
-const draftInformationIds = new Set();
+const draftInformationIds = new Set(["cerura-felina", "chrysiridia-rhipheus", "theraphosa-blondi", "mymaridae", "dipentium-japonicum", "pulex-irritans", "monomorium-chinense", "brephidium-exilis", "eriophyes-tiliae", "lissachatina-fulica", "limax-flavus", "maratus-volans", "greta-oto", "sphaerocoris-annulus", "catoxantha-purpurea", "polymita-picta", "bombyx-mori", "tenebrio-molitor"]);
 const illustratedNonInsectIds = new Set(["trichonephila-clavata", "armadillidium-vulgare", "acusta-despecta", "pandinus-imperator"]);
 const illustratedFamiliarInsectIds = new Set(["aquarius-paludum", "chrysopa-intima", "lycorma-delicatula"]);
 const illustratedExpansionIds = new Set(["anechura-japonica", "aphis-gossypii", "blattella-germanica", "scolopendra-subspinipes-mutilans", "bradybaena-similaris", "eisenia-fetida"]);
@@ -19,7 +19,7 @@ const rareFamousStages = new Map([["gromphadorhina-portentosa", "nymph"], ["atta
 const familiarNextIds = new Set(["eurema-mandarina", "myrmeleon-formicarius", "diestrammena-asynamora", "diplonychus-japonicus"]);
 const familiarNextStages = new Map([["eurema-mandarina", "pupa"], ["myrmeleon-formicarius", "larva"], ["diestrammena-asynamora", "nymph"], ["diplonychus-japonicus", "nymph"]]);
 const familiarLifeStages = new Map([["aquarius-paludum", ["egg", "nymph"]], ["chrysopa-intima", ["egg", "larva", "pupa"]], ["lycorma-delicatula", ["egg", "nymph"]], ["anechura-japonica", ["egg"]], ["aphis-gossypii", ["nymph"]], ["blattella-germanica", ["nymph"]], ["scolopendra-subspinipes-mutilans", ["egg"]], ["bradybaena-similaris", ["egg"]], ["eisenia-fetida", ["cocoon"]]]);
-if (!Array.isArray(insects) || insects.length !== 95 || new Set(insects.map((insect) => insect.id)).size !== 95 || [...familiarLocalIds, ...rareFamousIds, ...familiarNextIds].some((id) => !insects.some((insect) => insect.id === id))) throw new Error("Production data must contain 95 unique records, including familiar local and new-friend species.");
+if (!Array.isArray(insects) || insects.length !== 113 || new Set(insects.map((insect) => insect.id)).size !== 113 || [...familiarLocalIds, ...rareFamousIds, ...familiarNextIds, ...draftInformationIds].some((id) => !insects.some((insect) => insect.id === id))) throw new Error("Production data must contain 113 unique records, including image-pending new-friend species.");
 if (childContentIds.length !== insects.length || new Set(childContentIds).size !== insects.length || childContentIds.some((id) => !insects.some((insect) => insect.id === id))) throw new Error("Child content must map 1:1 to public species records.");
 for (const insect of insects) {
   const content = childContentFor(insect);
@@ -36,7 +36,10 @@ const lifeStages = ["egg", "larva", "pupa"];
 const lifeStageSpecies = insects.filter((insect) => completeMetamorphosisIds.has(insect.id));
 if (completeMetamorphosisIds.size !== 42 || lifeStageSpecies.length !== completeMetamorphosisIds.size || lifeStageSpecies.some((insect) => insect.gallery.length !== 7)) throw new Error("Every complete-metamorphosis species must retain seven gallery images.");
 if (incompleteMetamorphosisIds.length !== 22 || new Set(incompleteMetamorphosisIds).size !== 22 || insects.filter((insect) => insect.reviewStatus !== "draft" && !completeMetamorphosisIds.has(insect.id) && !illustratedNonInsectIds.has(insect.id) && !illustratedFamiliarInsectIds.has(insect.id) && !illustratedExpansionIds.has(insect.id) && !familiarLocalIds.has(insect.id) && !rareFamousIds.has(insect.id) && !familiarNextIds.has(insect.id)).some((insect) => !incompleteMetamorphosisIds.includes(insect.id))) throw new Error("The incomplete-metamorphosis goal must cover all illustrated insect records.");
-if (draftInformationIds.size) throw new Error("Draft records remain after the familiar-life gallery publication.");
+if ([...draftInformationIds].some((id) => {
+  const insect = insects.find((item) => item.id === id);
+  return !insect || insect.gallery.length || insect.reviewStatus !== "draft" || insect.familiarityLevel !== 1 || !insect.region.includes("새로운 친구");
+})) throw new Error("Image-pending new-friend records must remain information-first drafts.");
 for (const [id, stages] of familiarLifeStages) {
   const insect = insects.find((item) => item.id === id);
   const baseImageCount = illustratedExpansionIds.has(id) ? 3 : 4;
@@ -128,6 +131,7 @@ await Promise.all(publicGalleryItems.map((item) => readFile(new URL(`../${item.s
 const app = await readFile(new URL("../app.js", import.meta.url), "utf8");
 if (app.includes("gallery.slice(0, 3)")) throw new Error("Life-stage galleries must expose every registered image in the detail panel.");
 if (!app.includes('image.reviewStatus === "approved"') || !app.includes("사용자 검수 대기 이미지")) throw new Error("Public cards must distinguish pending-user-review galleries from approved galleries.");
+if (!app.includes("...(insect.aliases || [])")) throw new Error("Search must include registered common-name aliases.");
 const body = app.replace(/^import .*?;\s*/gm, "");
 new vm.Script(body.replace(/export\s+/g, ""));
 const review = await readFile(new URL("../review.js", import.meta.url), "utf8");

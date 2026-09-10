@@ -26,7 +26,7 @@ function taxonomyStyle(insect) {
 function filteredInsects() {
   const query = state.query.trim().toLowerCase();
   return insects.filter((insect) => {
-    const terms = [insect.koreanName, insect.scientificName, insect.taxonomy?.order, insect.taxonomy?.family, ...(insect.habitat || [])].join(" ").toLowerCase();
+    const terms = [insect.koreanName, insect.scientificName, insect.taxonomy?.order, insect.taxonomy?.family, ...(insect.aliases || []), ...(insect.habitat || [])].join(" ").toLowerCase();
     const taxonomyMatches = (state.taxonomyOrder === "all" || insect.taxonomy?.order === state.taxonomyOrder) && (state.taxonomyFamily === "all" || insect.taxonomy?.family === state.taxonomyFamily);
     return (!query || terms.includes(query)) && (state.diet === "all" || insect.diet === state.diet) && (state.level === "all" || String(insect.familiarityLevel) === state.level) && taxonomyMatches;
   });
