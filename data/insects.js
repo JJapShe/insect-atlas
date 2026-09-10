@@ -305,6 +305,10 @@ const newFriendExpansionSpecs = Object.freeze({
   "tenebrio-molitor": Object.freeze({ kind: "pupa", prompt: "one pale cream Tenebrio molitor pupa with developing dark eyes, folded wing cases and exactly six developing legs in oat bran; no adult, larva, text, watermark, extra legs or malformed pupa" }),
 });
 const newFriendExtraExpansionSpecs = Object.freeze({
+  "cerura-felina": Object.freeze([{ kind: "pupa", prompt: "one Cerura felina pupa inside a loose brown silk cocoon among dry willow leaves; no adult moth, caterpillar, text, watermark, hands, plastic, unrelated insects or malformed cocoon" }]),
+  "chrysiridia-rhipheus": Object.freeze([{ kind: "pupa", prompt: "one pale silken Chrysiridia rhipheus cocoon attached beneath a rainforest leaf in Madagascar; no adult moth, caterpillar, text, watermark, artificial container, hands or malformed cocoon" }]),
+  "theraphosa-blondi": Object.freeze([{ kind: "egg", prompt: "one large silk egg sac guarded beside a humid South American rainforest burrow entrance by one complete Theraphosa blondi with exactly eight legs; no prey, fighting, blood, text, watermark, extra legs or malformed anatomy" }]),
+  "mymaridae": Object.freeze([{ kind: "interaction", prompt: "one tiny complete female Mymaridae with feathery wings, threadlike antennae and exactly six legs touching one leafhopper egg with an ovipositor on a green leaf underside; non-graphic, no text, watermark, extra limbs or malformed anatomy" }]),
   "bombyx-mori": Object.freeze([{ kind: "cocoon", prompt: "one oval cream-white Bombyx mori silk cocoon fixed among mulberry leaves; no adult moth, visible caterpillar, text, watermark, hands, plastic tray or unrelated insects" }]),
   "tenebrio-molitor": Object.freeze([{ kind: "ecology", prompt: "one adult Tenebrio molitor darkling beetle walking on dry oat bran beside a grain husk, complete glossy dark-brown body and exactly six legs; no larva, pupa, text, watermark, extra limbs or cropped body" }]),
 });

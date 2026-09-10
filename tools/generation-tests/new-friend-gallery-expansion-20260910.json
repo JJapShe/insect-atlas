@@ -27,5 +27,9 @@
     ,{"id":"bombyx-mori","koreanName":"누에나방","kind":"cocoon","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/bombyx-mori-cocoon-imagegen-v1.png","supports":"뽕잎 사이의 크림색 고치를 보여 주는 생활사 컷"}
     ,{"id":"tenebrio-molitor","koreanName":"밀웜","kind":"pupa","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/tenebrio-molitor-pupa-imagegen-v1.png","supports":"다리와 날개집이 자라는 번데기를 보여 주는 생활사 컷"}
     ,{"id":"tenebrio-molitor","koreanName":"밀웜","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/tenebrio-molitor-ecology-imagegen-v1.png","supports":"귀리겨 위를 걷는 성충을 보여 주는 생태 컷"}
+    ,{"id":"cerura-felina","koreanName":"나무결재주나방","kind":"pupa","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/cerura-felina-pupa-imagegen-v1.png","supports":"버드나무 낙엽 사이의 고치 단계를 보여 주는 생활사 컷"}
+    ,{"id":"chrysiridia-rhipheus","koreanName":"마다가스카르 비단제비나방","kind":"pupa","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/chrysiridia-rhipheus-pupa-imagegen-v1.png","supports":"열대림 잎 아래의 고치 단계를 보여 주는 생활사 컷"}
+    ,{"id":"theraphosa-blondi","koreanName":"골리앗 버드이팅거미","kind":"egg","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/theraphosa-blondi-egg-imagegen-v1.png","supports":"굴 입구에서 알주머니를 지키는 성체를 보여 주는 생활사 컷"}
+    ,{"id":"mymaridae","koreanName":"요정파리","kind":"interaction","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/mymaridae-interaction-imagegen-v1.png","supports":"다른 곤충의 알에 산란하는 미세 상호작용 컷"}
   ]
 }
