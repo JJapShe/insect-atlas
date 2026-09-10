@@ -119,6 +119,15 @@ for (const entry of newFriendExpansionManifest.species) {
   const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
   if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
 }
+for (const id of newFriendRepresentativeIds) {
+  const insect = insects.find((item) => item.id === id);
+  for (const image of insect.gallery.slice(1)) {
+    const fileName = image.src.split("/").at(-1);
+    const reviewCopy = await readFile(new URL(`../assets/insects/review/new-friend-gallery-expansion-20260910/${fileName}`, import.meta.url));
+    const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
+    if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
+  }
+}
 if (new Set(generatedImages.map((image) => image.src)).size !== generatedImages.length) throw new Error("New images must not be registered twice.");
 for (const image of generatedImages) {
   if (!incompleteMetamorphosisIds.includes(image.id) || !["egg", "nymph", "ecology", "morphology", "interaction", "interaction-2"].includes(image.role) || !image.sources?.length || !image.reviewNotes || !image.body.includes("AI 생성")) throw new Error(`Missing life-stage provenance or invalid role: ${image.id}/${image.role}`);
