@@ -9,6 +9,7 @@ for (const file of files) await readFile(new URL(`../${file}`, import.meta.url),
 const decisions = JSON.parse(await readFile(new URL("../tools/review-decisions/image-review-decisions-20260903.json", import.meta.url), "utf8"));
 if ((decisions.records || []).filter((record) => record.decision === "pass").length !== 3 || (decisions.records || []).filter((record) => record.decision === "reject").length !== 18) throw new Error("Published review decision counts are incomplete.");
 const newFriendRepresentativeIds = new Set(["cerura-felina", "chrysiridia-rhipheus", "theraphosa-blondi", "mymaridae", "dipentium-japonicum", "pulex-irritans", "monomorium-chinense", "brephidium-exilis", "eriophyes-tiliae", "lissachatina-fulica", "limax-flavus", "maratus-volans", "greta-oto", "sphaerocoris-annulus", "catoxantha-purpurea", "polymita-picta", "bombyx-mori", "tenebrio-molitor"]);
+const newFriendExpansionIds = new Set(["cerura-felina", "chrysiridia-rhipheus", "theraphosa-blondi", "mymaridae"]);
 const illustratedNonInsectIds = new Set(["trichonephila-clavata", "armadillidium-vulgare", "acusta-despecta", "pandinus-imperator"]);
 const illustratedFamiliarInsectIds = new Set(["aquarius-paludum", "chrysopa-intima", "lycorma-delicatula"]);
 const illustratedExpansionIds = new Set(["anechura-japonica", "aphis-gossypii", "blattella-germanica", "scolopendra-subspinipes-mutilans", "bradybaena-similaris", "eisenia-fetida"]);
@@ -28,7 +29,7 @@ for (const insect of insects) {
 const invalidRecord = insects.find((insect) => !insect.id || !insect.koreanName || !insect.scientificName || !insect.taxonomy?.order || !insect.taxonomy?.family || !insect.lifespan?.label || !Array.isArray(insect.gallery) || (insect.gallery.length === 0 && insect.reviewStatus !== "draft") || (insect.gallery.length > 0 && insect.reviewStatus !== "gallery-published-pending-user-review"));
 if (invalidRecord) throw new Error(`Invalid public information record: ${invalidRecord?.id || "unknown"}`);
 const publicGalleryItems = insects.flatMap((insect) => insect.gallery || []);
-if (insects.some((insect) => insect.gallery.length && ![4, 5, 6, 7].includes(insect.gallery.length) && !(newFriendRepresentativeIds.has(insect.id) && insect.gallery.length === 1))) throw new Error("Illustrated species must retain four standard images, except the explicitly staged new-friend representative cut.");
+if (insects.some((insect) => insect.gallery.length && ![4, 5, 6, 7].includes(insect.gallery.length) && !(newFriendRepresentativeIds.has(insect.id) && [1, 2].includes(insect.gallery.length)))) throw new Error("Illustrated species must retain four standard images, except staged new-friend galleries.");
 const completeMetamorphosisIds = new Set([
   "lucanus-maculifemoratus", "trypoxylus-dichotomus", "harmonia-axyridis", "protaetia-brevitarsis", "anoplophora-malasiaca", "papilio-xuthus", "pieris-rapae", "sasakia-charonda", "sericinus-montela", "attacus-atlas", "callambulyx-tatarinovii", "actias-artemis", "langia-zenzeroides-nawai", "camponotus-japonicus", "apis-cerana", "dorcus-titanus-castanicolor", "dorcus-hopei-binodulosus", "pyrocoelia-rufa", "luciola-lateralis", "bombus-ignitus", "culex-pipiens-pallens", "musca-domestica", "cybister-japonicus", "dynastes-hercules", "scarabaeus-sacer", "goliathus-goliatus", "chalcosoma-chiron", "eupatorus-gracilicornis", "prosopocoilus-inclinatus", "cicindela-chinensis-flammifera", "carabus-smaragdinus", "callipogon-relictus", "platerodrilus-ngi", "morpho-menelaus", "chrysochroa-fulgidissima", "paraponera-clavata", "euproctis-subflava", "meloe-proscarabaeus", "vespa-mandarinia", "pheropsophus-jessoensis", "thysania-agrippina", "ascotis-selenaria-larva",
 ]);
@@ -38,7 +39,7 @@ if (completeMetamorphosisIds.size !== 42 || lifeStageSpecies.length !== complete
 if (incompleteMetamorphosisIds.length !== 22 || new Set(incompleteMetamorphosisIds).size !== 22 || insects.filter((insect) => insect.reviewStatus !== "draft" && !completeMetamorphosisIds.has(insect.id) && !illustratedNonInsectIds.has(insect.id) && !illustratedFamiliarInsectIds.has(insect.id) && !illustratedExpansionIds.has(insect.id) && !familiarLocalIds.has(insect.id) && !rareFamousIds.has(insect.id) && !familiarNextIds.has(insect.id) && !newFriendRepresentativeIds.has(insect.id)).some((insect) => !incompleteMetamorphosisIds.includes(insect.id))) throw new Error("The incomplete-metamorphosis goal must cover all illustrated insect records.");
 if ([...newFriendRepresentativeIds].some((id) => {
   const insect = insects.find((item) => item.id === id);
-  return !insect || insect.gallery.length !== 1 || insect.reviewStatus !== "gallery-published-pending-user-review" || insect.gallery[0].role !== "생태 대표 관찰" || insect.familiarityLevel !== 1 || !insect.region.includes("새로운 친구");
+  return !insect || insect.gallery.length !== (newFriendExpansionIds.has(id) ? 2 : 1) || insect.reviewStatus !== "gallery-published-pending-user-review" || insect.gallery[0].role !== "생태 대표 관찰" || insect.familiarityLevel !== 1 || !insect.region.includes("새로운 친구");
 })) throw new Error("New-friend records must expose their single reviewed representative cut.");
 for (const [id, stages] of familiarLifeStages) {
   const insect = insects.find((item) => item.id === id);
@@ -103,6 +104,14 @@ if (publicGalleryItems.length !== 378 + generatedImages.length + familiarLifeGal
 const newFriendManifest = JSON.parse(await readFile(new URL("../tools/generation-tests/new-friend-representatives-20260910.json", import.meta.url), "utf8"));
 if (newFriendManifest.species?.length !== newFriendRepresentativeIds.size || newFriendManifest.species.some((entry) => !newFriendRepresentativeIds.has(entry.id) || entry.roles?.join(",") !== "individual" || !entry.asset || !entry.supports)) throw new Error("New-friend representative provenance manifest is incomplete.");
 for (const entry of newFriendManifest.species) {
+  const fileName = entry.asset.split("/").at(-1);
+  const reviewCopy = await readFile(new URL(`../${entry.asset}`, import.meta.url));
+  const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
+  if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
+}
+const newFriendExpansionManifest = JSON.parse(await readFile(new URL("../tools/generation-tests/new-friend-gallery-expansion-20260910.json", import.meta.url), "utf8"));
+if (newFriendExpansionManifest.species?.length !== newFriendExpansionIds.size || newFriendExpansionManifest.species.some((entry) => !newFriendExpansionIds.has(entry.id) || !entry.kind || !entry.asset || !entry.supports)) throw new Error("New-friend gallery expansion provenance manifest is incomplete.");
+for (const entry of newFriendExpansionManifest.species) {
   const fileName = entry.asset.split("/").at(-1);
   const reviewCopy = await readFile(new URL(`../${entry.asset}`, import.meta.url));
   const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));

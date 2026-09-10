@@ -1,0 +1,15 @@
+{
+  "createdAt": "2026-09-10",
+  "scope": "First varied follow-up images for the newest Insect Atlas records.",
+  "source": "OpenAI built-in image generation; no external artwork was supplied as input",
+  "license": "Generated project assets; published to the Insect Atlas gallery at the user's direction",
+  "seed": "service-assigned; not exposed",
+  "workflow": "Built-in generation, visual anatomy screening, unchanged copies into review and approved paths",
+  "reviewStatus": "published-pending-user-review",
+  "species": [
+    {"id":"cerura-felina","koreanName":"나무결재주나방","kind":"larva","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/cerura-felina-larva-imagegen-v1.png","supports":"버드나무 잎 위의 유충과 갈라진 꼬리 실을 보여 주는 생활사 컷"},
+    {"id":"chrysiridia-rhipheus","koreanName":"마다가스카르 비단제비나방","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/chrysiridia-rhipheus-ecology-imagegen-v1.png","supports":"열대림 꽃에서 먹이활동하는 성충의 여러 색 날개 무늬를 보여 주는 생태 컷"},
+    {"id":"theraphosa-blondi","koreanName":"골리앗 버드이팅거미","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/theraphosa-blondi-ecology-imagegen-v1.png","supports":"열대우림 굴 입구를 지나는 여덟 다리 성체를 보여 주는 생태 컷"},
+    {"id":"mymaridae","koreanName":"요정파리","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/mymaridae-ecology-imagegen-v1.png","supports":"작은 곤충 알 가까이에서 관찰하는 깃털날개 성체의 확대 생태 컷"}
+  ]
+}

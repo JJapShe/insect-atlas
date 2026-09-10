@@ -283,7 +283,23 @@ const newFriendRepresentativeItem = (id) => Object.freeze({
   sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-10", generationPrompt: newFriendRepresentativeSpecs[id],
   generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, visual anatomy screening, then unchanged copies into review and approved paths", reviewStatus: "published-pending-user-review",
 });
-const newFriendRepresentativeGallery = Object.freeze(Object.fromEntries(Object.keys(newFriendRepresentativeSpecs).map((id) => [id, Object.freeze([newFriendRepresentativeItem(id)])])));
+// Add each screened follow-up to its existing representative, without making a second generic gallery system.
+const newFriendExpansionSpecs = Object.freeze({
+  "cerura-felina": Object.freeze({ kind: "larva", prompt: "one mature Cerura felina caterpillar with green body, dark saddle markings and two long forked tail filaments on a fresh willow leaf in a Korean riverside woodland; full caterpillar, no adult moth, egg, pupa, text, watermark, malformed anatomy or cropped subject" }),
+  "chrysiridia-rhipheus": Object.freeze({ kind: "ecology", prompt: "one adult Chrysiridia rhipheus drinking nectar in a Madagascar rainforest clearing, partly closed wings showing black, green, orange-red and tailed wing pattern; full body, six legs, no egg, larva, pupa, text, watermark or malformed wings" }),
+  "theraphosa-blondi": Object.freeze({ kind: "ecology", prompt: "one adult Theraphosa blondi with dense reddish-brown hairs and exactly eight legs moving beside a shallow burrow on a humid South American rainforest floor; complete animal, no prey, fighting, egg sac, text, watermark, extra legs or cropped limbs" }),
+  "mymaridae": Object.freeze({ kind: "ecology", prompt: "one tiny female Mymaridae with threadlike antennae, feathery narrow wings and exactly six legs examining a small leafhopper egg cluster on the underside of a green leaf; macro natural-history scene, no text, watermark, extra limbs or malformed anatomy" }),
+});
+const newFriendExpansionItem = (id) => {
+  const { kind, prompt } = newFriendExpansionSpecs[id];
+  const details = lifeStageDetails[kind] || roleDetails[kind];
+  return Object.freeze({
+    src: `assets/insects/approved/${id}-${kind}-imagegen-v1.png`, alt: "", role: details.label, body: details.body,
+    sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-10", generationPrompt: prompt,
+    generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, visual anatomy screening, then unchanged copies into review and approved paths", reviewStatus: "published-pending-user-review",
+  });
+};
+const newFriendRepresentativeGallery = Object.freeze(Object.fromEntries(Object.keys(newFriendRepresentativeSpecs).map((id) => [id, Object.freeze([newFriendRepresentativeItem(id), ...(newFriendExpansionSpecs[id] ? [newFriendExpansionItem(id)] : [])])] )));
 const withLifeStages = (id, gallery) => lifeStageSpecs[id] ? Object.freeze([...gallery, ...["egg", "larva", "pupa"].map((stage) => lifeStageItem(id, stage))]) : gallery;
 const supplementalKinds = Object.freeze({
   "lucanus-maculifemoratus": ["anatomy-test"], "trypoxylus-dichotomus": ["anatomy-test"], "tenodera-sinensis": ["anatomy-test"], "anax-parthenope": ["individual"], "sympetrum-depressiusculum": ["individual"],
