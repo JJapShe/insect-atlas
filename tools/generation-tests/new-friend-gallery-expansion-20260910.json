@@ -39,5 +39,9 @@
     ,{"id":"lissachatina-fulica","koreanName":"아프리카 대왕달팽이","kind":"interaction","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/lissachatina-fulica-interaction-imagegen-v1.png","supports":"비 온 뒤 낙엽을 먹는 대왕달팽이 생태 컷"}
     ,{"id":"limax-flavus","koreanName":"민달팽이","kind":"interaction","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/limax-flavus-interaction-imagegen-v1.png","supports":"젖은 돌 아래에서 점액길을 따라 이동하는 야간 행동 컷"}
     ,{"id":"maratus-volans","koreanName":"공작거미","kind":"interaction-2","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/maratus-volans-interaction-2-imagegen-v1.png","supports":"다른 옆모습으로 배무늬를 들어 올린 구애 행동 컷"}
+    ,{"id":"greta-oto","koreanName":"유리날개 나비","kind":"pupa","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/greta-oto-pupa-imagegen-v1.png","supports":"열대림 잎 아래에서 매달린 금빛 번데기 관찰 컷"}
+    ,{"id":"sphaerocoris-annulus","koreanName":"피카소벌레","kind":"nymph","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/sphaerocoris-annulus-nymph-imagegen-v1.png","supports":"초록과 주황 점무늬가 막 나타나는 약충 관찰 컷"}
+    ,{"id":"catoxantha-purpurea","koreanName":"보라색 비단벌레","kind":"interaction","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/catoxantha-purpurea-interaction-imagegen-v1.png","supports":"나무 수액을 먹는 보랏빛 비단벌레 행동 컷"}
+    ,{"id":"polymita-picta","koreanName":"쿠바 달팽이","kind":"egg","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/polymita-picta-egg-imagegen-v1.png","supports":"관목 아래의 작은 알 무리를 보여 주는 생활사 컷"}
   ]
 }
