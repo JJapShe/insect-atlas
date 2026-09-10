@@ -19,5 +19,9 @@
     ,{"id":"lissachatina-fulica","koreanName":"아프리카 대왕달팽이","kind":"egg","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/lissachatina-fulica-egg-imagegen-v1.png","supports":"습한 흙 속의 둥근 알 무리를 보여 주는 생활사 컷"}
     ,{"id":"limax-flavus","koreanName":"민달팽이","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/limax-flavus-ecology-imagegen-v1.png","supports":"밤의 젖은 정원에서 낙엽을 먹는 껍데기 없는 생태 컷"}
     ,{"id":"maratus-volans","koreanName":"공작거미","kind":"interaction","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/maratus-volans-interaction-imagegen-v1.png","supports":"수컷이 배무늬를 들어 올려 구애하는 상호작용 컷"}
+    ,{"id":"greta-oto","koreanName":"유리날개 나비","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/greta-oto-ecology-imagegen-v1.png","supports":"투명 날개로 꽃꿀을 먹는 열대림 생태 컷"}
+    ,{"id":"sphaerocoris-annulus","koreanName":"피카소벌레","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/sphaerocoris-annulus-ecology-imagegen-v1.png","supports":"초록 등판의 주황 원형 점무늬가 읽히는 생태 컷"}
+    ,{"id":"catoxantha-purpurea","koreanName":"보라색 비단벌레","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/catoxantha-purpurea-ecology-imagegen-v1.png","supports":"보랏빛 금속광택과 노란 띠가 읽히는 나무껍질 생태 컷"}
+    ,{"id":"polymita-picta","koreanName":"쿠바 달팽이","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/polymita-picta-ecology-imagegen-v1.png","supports":"여러 색 나선 띠무늬 껍데기가 읽히는 관목 생태 컷"}
   ]
 }
