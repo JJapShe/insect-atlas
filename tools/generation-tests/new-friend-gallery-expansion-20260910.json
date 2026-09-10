@@ -31,5 +31,9 @@
     ,{"id":"chrysiridia-rhipheus","koreanName":"마다가스카르 비단제비나방","kind":"pupa","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/chrysiridia-rhipheus-pupa-imagegen-v1.png","supports":"열대림 잎 아래의 고치 단계를 보여 주는 생활사 컷"}
     ,{"id":"theraphosa-blondi","koreanName":"골리앗 버드이팅거미","kind":"egg","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/theraphosa-blondi-egg-imagegen-v1.png","supports":"굴 입구에서 알주머니를 지키는 성체를 보여 주는 생활사 컷"}
     ,{"id":"mymaridae","koreanName":"요정파리","kind":"interaction","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/mymaridae-interaction-imagegen-v1.png","supports":"다른 곤충의 알에 산란하는 미세 상호작용 컷"}
+    ,{"id":"dipentium-japonicum","koreanName":"깃털날개딱정벌레","kind":"interaction","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/dipentium-japonicum-interaction-imagegen-v1.png","supports":"젖은 낙엽층 위로 비행하는 깃털날개 관찰 컷"}
+    ,{"id":"pulex-irritans","koreanName":"벼룩","kind":"interaction","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/pulex-irritans-interaction-imagegen-v1.png","supports":"피나 물림 없이 둥지 섬유 위를 점프하는 행동 컷"}
+    ,{"id":"monomorium-chinense","koreanName":"애집개미","kind":"interaction","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/monomorium-chinense-interaction-imagegen-v1.png","supports":"흙속 둥지에서 어린 개체를 돌보는 사회 행동 컷"}
+    ,{"id":"brephidium-exilis","koreanName":"웨스턴 피그미 블루 나비","kind":"pupa","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/brephidium-exilis-pupa-imagegen-v1.png","supports":"소금나물 잎 아래의 작은 번데기 단계를 보여 주는 생활사 컷"}
   ]
 }
