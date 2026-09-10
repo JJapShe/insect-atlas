@@ -10,6 +10,10 @@
     {"id":"cerura-felina","koreanName":"나무결재주나방","kind":"larva","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/cerura-felina-larva-imagegen-v1.png","supports":"버드나무 잎 위의 유충과 갈라진 꼬리 실을 보여 주는 생활사 컷"},
     {"id":"chrysiridia-rhipheus","koreanName":"마다가스카르 비단제비나방","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/chrysiridia-rhipheus-ecology-imagegen-v1.png","supports":"열대림 꽃에서 먹이활동하는 성충의 여러 색 날개 무늬를 보여 주는 생태 컷"},
     {"id":"theraphosa-blondi","koreanName":"골리앗 버드이팅거미","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/theraphosa-blondi-ecology-imagegen-v1.png","supports":"열대우림 굴 입구를 지나는 여덟 다리 성체를 보여 주는 생태 컷"},
-    {"id":"mymaridae","koreanName":"요정파리","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/mymaridae-ecology-imagegen-v1.png","supports":"작은 곤충 알 가까이에서 관찰하는 깃털날개 성체의 확대 생태 컷"}
+    {"id":"mymaridae","koreanName":"요정파리","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/mymaridae-ecology-imagegen-v1.png","supports":"작은 곤충 알 가까이에서 관찰하는 깃털날개 성체의 확대 생태 컷"},
+    {"id":"dipentium-japonicum","koreanName":"깃털날개딱정벌레","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/dipentium-japonicum-ecology-imagegen-v1.png","supports":"젖은 낙엽층에서 깃털 같은 뒷날개를 펼친 초소형 딱정벌레 생태 컷"},
+    {"id":"pulex-irritans","koreanName":"벼룩","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/pulex-irritans-ecology-imagegen-v1.png","supports":"피나 물림 없이 둥지 섬유에서 관찰한 납작한 몸과 점프 다리 컷"},
+    {"id":"monomorium-chinense","koreanName":"애집개미","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/monomorium-chinense-ecology-imagegen-v1.png","supports":"정원 땅속 둥지 앞에서 먹이를 옮기는 일개미의 사회 행동 컷"},
+    {"id":"brephidium-exilis","koreanName":"웨스턴 피그미 블루 나비","kind":"larva","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/brephidium-exilis-larva-imagegen-v1.png","supports":"소금나물 잎에서 자라는 작은 유충을 보여 주는 생활사 컷"}
   ]
 }
