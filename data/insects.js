@@ -257,6 +257,33 @@ const familiarNextGallery = Object.freeze(Object.fromEntries(Object.entries(fami
   const stage = Object.keys(stages)[0];
   return [id, Object.freeze([galleryItem(id, "individual"), galleryItem(id, "ecology"), galleryItem(id, "interaction"), familiarNextLifeStageItem(id, stage)])];
 })));
+// 2026-09-10: one reviewed representative ecology image keeps each new record explorable while its fuller gallery is prepared.
+const newFriendRepresentativeSpecs = Object.freeze({
+  "cerura-felina": "Cerura felina adult with white wings, crisp black zigzag markings and six legs resting on willow bark in a natural woodland setting",
+  "chrysiridia-rhipheus": "Chrysiridia rhipheus adult with black, green, orange and red patterned wings in Madagascar rainforest foliage",
+  "theraphosa-blondi": "Theraphosa blondi adult tarantula, large brown hairy body and exactly eight legs, on a humid South American rainforest floor",
+  "mymaridae": "one tiny fairyfly (Mymaridae) with a delicate wasp body, feathery narrow wings and exactly six legs near an insect egg on a leaf",
+  "dipentium-japonicum": "one tiny Dipentium japonicum featherwing beetle with fringed hindwing, six legs and complete body on damp leaf litter",
+  "pulex-irritans": "one Pulex irritans flea, laterally compressed brown body, wingless and exactly six legs on a pale hair shaft; no blood or bite",
+  "monomorium-chinense": "one brown Monomorium chinense worker ant with elbowed antennae, narrow waist and exactly six legs beside garden sand",
+  "brephidium-exilis": "one Western pygmy-blue butterfly, copper brown wings and fine black underside spots, perched on a saltbush leaf",
+  "eriophyes-tiliae": "one tiny Eriophyes tiliae lime nail gall mite with elongated body and two pairs of front legs beside a lime leaf gall",
+  "lissachatina-fulica": "one African giant snail with a tall brown-striped conical shell and four tentacles on a rain-damp tropical leaf",
+  "limax-flavus": "one yellow cellar slug with subtle pale mottling and four tentacles in wet garden leaf litter",
+  "maratus-volans": "one male Maratus volans peacock spider with bright blue-red raised abdomen and exactly eight legs on Australian grass",
+  "greta-oto": "one Greta oto glasswing butterfly with transparent wing panels and dark reddish-brown borders on a tropical flower",
+  "sphaerocoris-annulus": "one Sphaerocoris annulus Picasso bug with green shield back and neat orange spots ringed in black, exactly six legs",
+  "catoxantha-purpurea": "one Catoxantha purpurea jewel beetle with metallic purple wing cases, black ridges, a yellow band and exactly six legs on tree bark",
+  "polymita-picta": "one Polymita picta Cuban painted snail with a glossy yellow, pink and olive spiral-banded shell on a leafy shrub",
+  "bombyx-mori": "one Bombyx mori silkworm moth with cream furry body, pale wings, feathery antennae and six legs beside mulberry leaves",
+  "tenebrio-molitor": "one Tenebrio molitor mealworm larva with a golden-brown segmented body, dark head capsule and exactly three leg pairs in oat bran",
+});
+const newFriendRepresentativeItem = (id) => Object.freeze({
+  src: `assets/insects/approved/${id}-individual-imagegen-v1.png`, alt: "", role: "생태 대표 관찰", body: "서식 환경 속 전신 형태를 먼저 살펴보는 AI 생성 대표 이미지입니다. 사용자 검수 뒤에 갤러리를 더 채웁니다.",
+  sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-10", generationPrompt: newFriendRepresentativeSpecs[id],
+  generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, visual anatomy screening, then unchanged copies into review and approved paths", reviewStatus: "published-pending-user-review",
+});
+const newFriendRepresentativeGallery = Object.freeze(Object.fromEntries(Object.keys(newFriendRepresentativeSpecs).map((id) => [id, Object.freeze([newFriendRepresentativeItem(id)])])));
 const withLifeStages = (id, gallery) => lifeStageSpecs[id] ? Object.freeze([...gallery, ...["egg", "larva", "pupa"].map((stage) => lifeStageItem(id, stage))]) : gallery;
 const supplementalKinds = Object.freeze({
   "lucanus-maculifemoratus": ["anatomy-test"], "trypoxylus-dichotomus": ["anatomy-test"], "tenodera-sinensis": ["anatomy-test"], "anax-parthenope": ["individual"], "sympetrum-depressiusculum": ["individual"],
@@ -381,7 +408,7 @@ const lifeSpanById = Object.freeze({
   "eisenia-fetida": Object.freeze({ label: "약 1~2년", note: "고치에서 어린 지렁이가 나오며 번데기는 거치지 않아요." }),
 });
 const record = (id, koreanName, scientificName, order, family, habitat, diet, cues, familiarityLevel = 2, options = {}) => {
-  const gallery = Object.freeze([...withLifeStages(id, options.gallery || familiarNextGallery[id] || rareFamousGallery[id] || familiarLocalGallery[id] || familiarExpansionGallery[id] || galleryById[id] || []), ...galleryAdditions(id)]);
+  const gallery = Object.freeze([...withLifeStages(id, options.gallery || newFriendRepresentativeGallery[id] || familiarNextGallery[id] || rareFamousGallery[id] || familiarLocalGallery[id] || familiarExpansionGallery[id] || galleryById[id] || []), ...galleryAdditions(id)]);
   return Object.freeze({
     id, koreanName, scientificName, taxonomy: { order, family }, aliases: Object.freeze(options.aliases || []), appearancePeriod: { label: "현생 · 출현 시기 확인 중", kind: "modern" }, lifeStageLabel: options.lifeStageLabel || "성충기 기준",
     lifeCycle: options.lifeCycle || (incompleteMetamorphosisIds.includes(id) ? "알 → 약충 → 성충 (불완전변태)" : ""),

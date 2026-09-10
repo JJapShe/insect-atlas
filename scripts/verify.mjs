@@ -8,7 +8,7 @@ const files = ["index.html", "styles.css", "app.js", "review.html", "review.js",
 for (const file of files) await readFile(new URL(`../${file}`, import.meta.url), "utf8");
 const decisions = JSON.parse(await readFile(new URL("../tools/review-decisions/image-review-decisions-20260903.json", import.meta.url), "utf8"));
 if ((decisions.records || []).filter((record) => record.decision === "pass").length !== 3 || (decisions.records || []).filter((record) => record.decision === "reject").length !== 18) throw new Error("Published review decision counts are incomplete.");
-const draftInformationIds = new Set(["cerura-felina", "chrysiridia-rhipheus", "theraphosa-blondi", "mymaridae", "dipentium-japonicum", "pulex-irritans", "monomorium-chinense", "brephidium-exilis", "eriophyes-tiliae", "lissachatina-fulica", "limax-flavus", "maratus-volans", "greta-oto", "sphaerocoris-annulus", "catoxantha-purpurea", "polymita-picta", "bombyx-mori", "tenebrio-molitor"]);
+const newFriendRepresentativeIds = new Set(["cerura-felina", "chrysiridia-rhipheus", "theraphosa-blondi", "mymaridae", "dipentium-japonicum", "pulex-irritans", "monomorium-chinense", "brephidium-exilis", "eriophyes-tiliae", "lissachatina-fulica", "limax-flavus", "maratus-volans", "greta-oto", "sphaerocoris-annulus", "catoxantha-purpurea", "polymita-picta", "bombyx-mori", "tenebrio-molitor"]);
 const illustratedNonInsectIds = new Set(["trichonephila-clavata", "armadillidium-vulgare", "acusta-despecta", "pandinus-imperator"]);
 const illustratedFamiliarInsectIds = new Set(["aquarius-paludum", "chrysopa-intima", "lycorma-delicatula"]);
 const illustratedExpansionIds = new Set(["anechura-japonica", "aphis-gossypii", "blattella-germanica", "scolopendra-subspinipes-mutilans", "bradybaena-similaris", "eisenia-fetida"]);
@@ -19,7 +19,7 @@ const rareFamousStages = new Map([["gromphadorhina-portentosa", "nymph"], ["atta
 const familiarNextIds = new Set(["eurema-mandarina", "myrmeleon-formicarius", "diestrammena-asynamora", "diplonychus-japonicus"]);
 const familiarNextStages = new Map([["eurema-mandarina", "pupa"], ["myrmeleon-formicarius", "larva"], ["diestrammena-asynamora", "nymph"], ["diplonychus-japonicus", "nymph"]]);
 const familiarLifeStages = new Map([["aquarius-paludum", ["egg", "nymph"]], ["chrysopa-intima", ["egg", "larva", "pupa"]], ["lycorma-delicatula", ["egg", "nymph"]], ["anechura-japonica", ["egg"]], ["aphis-gossypii", ["nymph"]], ["blattella-germanica", ["nymph"]], ["scolopendra-subspinipes-mutilans", ["egg"]], ["bradybaena-similaris", ["egg"]], ["eisenia-fetida", ["cocoon"]]]);
-if (!Array.isArray(insects) || insects.length !== 113 || new Set(insects.map((insect) => insect.id)).size !== 113 || [...familiarLocalIds, ...rareFamousIds, ...familiarNextIds, ...draftInformationIds].some((id) => !insects.some((insect) => insect.id === id))) throw new Error("Production data must contain 113 unique records, including image-pending new-friend species.");
+if (!Array.isArray(insects) || insects.length !== 113 || new Set(insects.map((insect) => insect.id)).size !== 113 || [...familiarLocalIds, ...rareFamousIds, ...familiarNextIds, ...newFriendRepresentativeIds].some((id) => !insects.some((insect) => insect.id === id))) throw new Error("Production data must contain 113 unique records, including new-friend representative images.");
 if (childContentIds.length !== insects.length || new Set(childContentIds).size !== insects.length || childContentIds.some((id) => !insects.some((insect) => insect.id === id))) throw new Error("Child content must map 1:1 to public species records.");
 for (const insect of insects) {
   const content = childContentFor(insect);
@@ -28,18 +28,18 @@ for (const insect of insects) {
 const invalidRecord = insects.find((insect) => !insect.id || !insect.koreanName || !insect.scientificName || !insect.taxonomy?.order || !insect.taxonomy?.family || !insect.lifespan?.label || !Array.isArray(insect.gallery) || (insect.gallery.length === 0 && insect.reviewStatus !== "draft") || (insect.gallery.length > 0 && insect.reviewStatus !== "gallery-published-pending-user-review"));
 if (invalidRecord) throw new Error(`Invalid public information record: ${invalidRecord?.id || "unknown"}`);
 const publicGalleryItems = insects.flatMap((insect) => insect.gallery || []);
-if (insects.some((insect) => insect.gallery.length && ![4, 5, 6, 7].includes(insect.gallery.length))) throw new Error("Illustrated species must retain four standard images plus their registered life stages.");
+if (insects.some((insect) => insect.gallery.length && ![4, 5, 6, 7].includes(insect.gallery.length) && !(newFriendRepresentativeIds.has(insect.id) && insect.gallery.length === 1))) throw new Error("Illustrated species must retain four standard images, except the explicitly staged new-friend representative cut.");
 const completeMetamorphosisIds = new Set([
   "lucanus-maculifemoratus", "trypoxylus-dichotomus", "harmonia-axyridis", "protaetia-brevitarsis", "anoplophora-malasiaca", "papilio-xuthus", "pieris-rapae", "sasakia-charonda", "sericinus-montela", "attacus-atlas", "callambulyx-tatarinovii", "actias-artemis", "langia-zenzeroides-nawai", "camponotus-japonicus", "apis-cerana", "dorcus-titanus-castanicolor", "dorcus-hopei-binodulosus", "pyrocoelia-rufa", "luciola-lateralis", "bombus-ignitus", "culex-pipiens-pallens", "musca-domestica", "cybister-japonicus", "dynastes-hercules", "scarabaeus-sacer", "goliathus-goliatus", "chalcosoma-chiron", "eupatorus-gracilicornis", "prosopocoilus-inclinatus", "cicindela-chinensis-flammifera", "carabus-smaragdinus", "callipogon-relictus", "platerodrilus-ngi", "morpho-menelaus", "chrysochroa-fulgidissima", "paraponera-clavata", "euproctis-subflava", "meloe-proscarabaeus", "vespa-mandarinia", "pheropsophus-jessoensis", "thysania-agrippina", "ascotis-selenaria-larva",
 ]);
 const lifeStages = ["egg", "larva", "pupa"];
 const lifeStageSpecies = insects.filter((insect) => completeMetamorphosisIds.has(insect.id));
 if (completeMetamorphosisIds.size !== 42 || lifeStageSpecies.length !== completeMetamorphosisIds.size || lifeStageSpecies.some((insect) => insect.gallery.length !== 7)) throw new Error("Every complete-metamorphosis species must retain seven gallery images.");
-if (incompleteMetamorphosisIds.length !== 22 || new Set(incompleteMetamorphosisIds).size !== 22 || insects.filter((insect) => insect.reviewStatus !== "draft" && !completeMetamorphosisIds.has(insect.id) && !illustratedNonInsectIds.has(insect.id) && !illustratedFamiliarInsectIds.has(insect.id) && !illustratedExpansionIds.has(insect.id) && !familiarLocalIds.has(insect.id) && !rareFamousIds.has(insect.id) && !familiarNextIds.has(insect.id)).some((insect) => !incompleteMetamorphosisIds.includes(insect.id))) throw new Error("The incomplete-metamorphosis goal must cover all illustrated insect records.");
-if ([...draftInformationIds].some((id) => {
+if (incompleteMetamorphosisIds.length !== 22 || new Set(incompleteMetamorphosisIds).size !== 22 || insects.filter((insect) => insect.reviewStatus !== "draft" && !completeMetamorphosisIds.has(insect.id) && !illustratedNonInsectIds.has(insect.id) && !illustratedFamiliarInsectIds.has(insect.id) && !illustratedExpansionIds.has(insect.id) && !familiarLocalIds.has(insect.id) && !rareFamousIds.has(insect.id) && !familiarNextIds.has(insect.id) && !newFriendRepresentativeIds.has(insect.id)).some((insect) => !incompleteMetamorphosisIds.includes(insect.id))) throw new Error("The incomplete-metamorphosis goal must cover all illustrated insect records.");
+if ([...newFriendRepresentativeIds].some((id) => {
   const insect = insects.find((item) => item.id === id);
-  return !insect || insect.gallery.length || insect.reviewStatus !== "draft" || insect.familiarityLevel !== 1 || !insect.region.includes("새로운 친구");
-})) throw new Error("Image-pending new-friend records must remain information-first drafts.");
+  return !insect || insect.gallery.length !== 1 || insect.reviewStatus !== "gallery-published-pending-user-review" || insect.gallery[0].role !== "생태 대표 관찰" || insect.familiarityLevel !== 1 || !insect.region.includes("새로운 친구");
+})) throw new Error("New-friend records must expose their single reviewed representative cut.");
 for (const [id, stages] of familiarLifeStages) {
   const insect = insects.find((item) => item.id === id);
   const baseImageCount = illustratedExpansionIds.has(id) ? 3 : 4;
@@ -98,8 +98,16 @@ const rareFamousManifest = JSON.parse(await readFile(new URL("../tools/generatio
 if (rareFamousManifest.species?.length !== rareFamousIds.size || rareFamousManifest.species.some((entry) => !rareFamousIds.has(entry.id) || entry.roles?.length !== 4 || !entry.sources?.length || !entry.supports)) throw new Error("Rare and famous image provenance manifest is incomplete.");
 const familiarNextManifest = JSON.parse(await readFile(new URL("../tools/generation-tests/familiar-next-20260909.json", import.meta.url), "utf8"));
 if (familiarNextManifest.species?.length !== familiarNextIds.size || familiarNextManifest.species.some((entry) => !familiarNextIds.has(entry.id) || entry.roles?.length !== 4 || !entry.sources?.length || !entry.supports)) throw new Error("Familiar new-friend image provenance manifest is incomplete.");
-const familiarLifeGalleryCount = [...illustratedNonInsectIds, ...illustratedFamiliarInsectIds, ...illustratedExpansionIds, ...familiarLocalIds, ...rareFamousIds, ...familiarNextIds].reduce((total, id) => total + insects.find((insect) => insect.id === id).gallery.length, 0);
+const familiarLifeGalleryCount = [...illustratedNonInsectIds, ...illustratedFamiliarInsectIds, ...illustratedExpansionIds, ...familiarLocalIds, ...rareFamousIds, ...familiarNextIds, ...newFriendRepresentativeIds].reduce((total, id) => total + insects.find((insect) => insect.id === id).gallery.length, 0);
 if (publicGalleryItems.length !== 378 + generatedImages.length + familiarLifeGalleryCount) throw new Error("Registered gallery count must match the baseline plus individually reviewed additions.");
+const newFriendManifest = JSON.parse(await readFile(new URL("../tools/generation-tests/new-friend-representatives-20260910.json", import.meta.url), "utf8"));
+if (newFriendManifest.species?.length !== newFriendRepresentativeIds.size || newFriendManifest.species.some((entry) => !newFriendRepresentativeIds.has(entry.id) || entry.roles?.join(",") !== "individual" || !entry.asset || !entry.supports)) throw new Error("New-friend representative provenance manifest is incomplete.");
+for (const entry of newFriendManifest.species) {
+  const fileName = entry.asset.split("/").at(-1);
+  const reviewCopy = await readFile(new URL(`../${entry.asset}`, import.meta.url));
+  const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
+  if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
+}
 if (new Set(generatedImages.map((image) => image.src)).size !== generatedImages.length) throw new Error("New images must not be registered twice.");
 for (const image of generatedImages) {
   if (!incompleteMetamorphosisIds.includes(image.id) || !["egg", "nymph", "ecology", "morphology", "interaction", "interaction-2"].includes(image.role) || !image.sources?.length || !image.reviewNotes || !image.body.includes("AI 생성")) throw new Error(`Missing life-stage provenance or invalid role: ${image.id}/${image.role}`);
@@ -136,6 +144,6 @@ const body = app.replace(/^import .*?;\s*/gm, "");
 new vm.Script(body.replace(/export\s+/g, ""));
 const review = await readFile(new URL("../review.js", import.meta.url), "utf8");
 new vm.Script(review.replace(/^import .*?;\s*/gm, "").replace(/export\s+/g, ""));
-if (!review.includes("familiar-local-20260909.json") || !review.includes("rare-famous-20260909.json") || !review.includes("familiar-next-20260909.json") || !review.includes("data.species")) throw new Error("Review screen must load every species-based provenance manifest.");
+if (!review.includes("familiar-local-20260909.json") || !review.includes("rare-famous-20260909.json") || !review.includes("familiar-next-20260909.json") || !review.includes("new-friend-representatives-20260910.json") || !review.includes("data.species")) throw new Error("Review screen must load every species-based provenance manifest.");
 if (/assets\/insects\/review/.test(app)) throw new Error("Review-only assets must not be referenced by the public app runtime.");
 console.log(`PASS: files readable, ${insects.length} public information records include ${publicGalleryItems.length} registered gallery assets, review assets are excluded from app runtime, scripts are valid`);

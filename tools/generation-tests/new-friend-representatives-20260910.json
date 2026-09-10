@@ -1,0 +1,29 @@
+{
+  "createdAt": "2026-09-10",
+  "scope": "Representative ecology images for the 18 new-friend records introduced as information-first drafts.",
+  "source": "OpenAI built-in image generation; no external artwork was supplied as input",
+  "license": "Generated project assets; published to the Insect Atlas gallery at the user's direction",
+  "seed": "service-assigned; not exposed",
+  "workflow": "Built-in generation, visual anatomy screening, unchanged copies into review and approved paths",
+  "reviewStatus": "published-pending-user-review",
+  "species": [
+    {"id":"cerura-felina","koreanName":"나무결재주나방","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/cerura-felina-individual-imagegen-v1.png","supports":"흰 날개와 검은 지그재그 무늬가 읽히는 대표 생태 컷"},
+    {"id":"chrysiridia-rhipheus","koreanName":"마다가스카르 비단제비나방","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/chrysiridia-rhipheus-individual-imagegen-v1.png","supports":"검정·초록·주황 날개 무늬가 읽히는 대표 생태 컷"},
+    {"id":"theraphosa-blondi","koreanName":"골리앗 버드이팅거미","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/theraphosa-blondi-individual-imagegen-v1.png","supports":"큰 갈색 털몸과 여덟 다리가 읽히는 대표 생태 컷"},
+    {"id":"mymaridae","koreanName":"요정파리","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/mymaridae-individual-imagegen-v1.png","supports":"아주 작은 몸과 깃털 같은 날개를 보여 주는 대표 생태 컷"},
+    {"id":"dipentium-japonicum","koreanName":"깃털날개딱정벌레","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/dipentium-japonicum-individual-imagegen-v1.png","supports":"미세한 몸과 술 모양 날개를 보여 주는 대표 생태 컷"},
+    {"id":"pulex-irritans","koreanName":"벼룩","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/pulex-irritans-individual-imagegen-v1.png","supports":"날개 없는 납작한 몸과 점프 다리를 보여 주는 비그래픽 관찰 컷"},
+    {"id":"monomorium-chinense","koreanName":"애집개미","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/monomorium-chinense-individual-imagegen-v1.png","supports":"작은 갈색 몸과 잘록한 허리가 읽히는 대표 생태 컷"},
+    {"id":"brephidium-exilis","koreanName":"웨스턴 피그미 블루 나비","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/brephidium-exilis-individual-imagegen-v1.png","supports":"아주 작은 나비의 구리갈색 날개를 보여 주는 대표 생태 컷"},
+    {"id":"eriophyes-tiliae","koreanName":"라임진드기","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/eriophyes-tiliae-individual-imagegen-v1.png","supports":"라임나무 잎혹과 혹응애의 생활 환경을 보여 주는 확대 관찰 컷"},
+    {"id":"lissachatina-fulica","koreanName":"아프리카 대왕달팽이","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/lissachatina-fulica-individual-imagegen-v1.png","supports":"길쭉한 갈색 줄무늬 껍데기가 읽히는 대표 생태 컷"},
+    {"id":"limax-flavus","koreanName":"민달팽이","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/limax-flavus-individual-imagegen-v1.png","supports":"껍데기 없는 노란 몸과 촉수가 읽히는 대표 생태 컷"},
+    {"id":"maratus-volans","koreanName":"공작거미","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/maratus-volans-individual-imagegen-v1.png","supports":"수컷의 파랑·빨강 배무늬와 여덟 다리가 읽히는 대표 생태 컷"},
+    {"id":"greta-oto","koreanName":"유리날개 나비","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/greta-oto-individual-imagegen-v1.png","supports":"투명 날개 패널과 테두리가 읽히는 대표 생태 컷"},
+    {"id":"sphaerocoris-annulus","koreanName":"피카소벌레","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/sphaerocoris-annulus-individual-imagegen-v1.png","supports":"초록 등판과 주황 원형 점무늬가 읽히는 대표 생태 컷"},
+    {"id":"catoxantha-purpurea","koreanName":"보라색 비단벌레","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/catoxantha-purpurea-individual-imagegen-v1.png","supports":"보랏빛 금속광택과 노란 띠가 읽히는 대표 생태 컷"},
+    {"id":"polymita-picta","koreanName":"쿠바 달팽이","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/polymita-picta-individual-imagegen-v1.png","supports":"여러 색의 나선 띠무늬가 읽히는 대표 생태 컷"},
+    {"id":"bombyx-mori","koreanName":"누에나방","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/bombyx-mori-individual-imagegen-v1.png","supports":"크림빛 털몸과 깃털 더듬이가 읽히는 대표 생태 컷"},
+    {"id":"tenebrio-molitor","koreanName":"밀웜","roles":["individual"],"asset":"assets/insects/review/new-friend-representatives-20260910/tenebrio-molitor-individual-imagegen-v1.png","supports":"유충의 마디와 세 쌍의 다리가 읽히는 대표 생태 컷"}
+  ]
+}

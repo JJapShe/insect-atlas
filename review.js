@@ -19,6 +19,7 @@ const manifestUrls = [
   "tools/generation-tests/familiar-local-20260909.json",
   "tools/generation-tests/rare-famous-20260909.json",
   "tools/generation-tests/familiar-next-20260909.json",
+  "tools/generation-tests/new-friend-representatives-20260910.json",
 ];
 const decisionManifestUrl = "tools/review-decisions/image-review-decisions-20260903.json";
 const koreanNames = new Map();
@@ -47,7 +48,7 @@ function recordsForManifest(data) {
   })));
   const speciesRecords = (data.species || []).flatMap((species) => (species.roles || []).map((role) => ({
     id: species.id, koreanName: species.koreanName, role,
-    asset: `${data.reviewFolder}/${species.id}-${role}-imagegen-v1.png`, generationPrompt: data.workflow,
+    asset: species.asset || `${data.reviewFolder}/${species.id}-${role}-imagegen-v1.png`, generationPrompt: data.workflow,
     reviewStatus: "published-pending-user-review",
   })));
   return [...directRecords, ...batchedRecords, ...speciesRecords];

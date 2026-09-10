@@ -83,6 +83,7 @@ function setView(nextView) {
   closeSidebar();
   if (nextView === "catalog") renderCatalog();
   if (nextView === "explore") renderExplore();
+  if (nextView === "admin") renderAdmin();
 }
 
 function renderExplore() {
@@ -104,11 +105,24 @@ function renderCatalog() {
   visible.forEach((insect) => {
     const card = document.createElement("button"); card.className = "species-card"; card.type = "button"; card.style.cssText = taxonomyStyle(insect);
     card.innerHTML = `<span class="card-art" aria-hidden="true">⌬</span><span class="taxonomy-order-label">${insect.taxonomy.order}</span><span class="taxonomy-family-label">${insect.taxonomy.family}</span><strong>${insect.koreanName}</strong><em>${insect.scientificName}</em><span class="familiarity-chip">친숙도 · ${familiarity[insect.familiarityLevel] || "미정"}</span>`;
-    card.addEventListener("click", () => selectInsect(insect)); grid.append(card);
+    card.addEventListener("click", () => selectInsect(insect, { reveal: true })); grid.append(card);
   });
 }
 
-function selectInsect(insect) {
+function renderAdmin() {
+  const list = $("#adminRecordList");
+  const missingImages = insects.filter((item) => !(item.gallery || []).length).length;
+  $("#adminRecordSummary").textContent = `${insects.length}종 · 대표 이미지 없음 ${missingImages}종`;
+  list.replaceChildren();
+  insects.forEach((insect) => {
+    const item = document.createElement("button"); item.type = "button"; item.className = "admin-record"; item.style.cssText = taxonomyStyle(insect);
+    const imageStatus = insect.gallery?.length ? `이미지 ${insect.gallery.length}장 · ${insect.reviewStatus === "gallery-published-pending-user-review" ? "사용자 검수 대기" : "검수 통과"}` : "대표 이미지 생성 대기";
+    item.innerHTML = `<span class="taxonomy-order-label">${escapeHTML(insect.taxonomy.order)}</span><strong>${escapeHTML(insect.koreanName)}</strong><em>${escapeHTML(insect.scientificName)}</em><small>${escapeHTML(insect.taxonomy.family)} · ${imageStatus}</small>`;
+    item.addEventListener("click", () => selectInsect(insect, { reveal: true })); list.append(item);
+  });
+}
+
+function selectInsect(insect, { reveal = false } = {}) {
   const gallery = (insect.gallery || []).map((item) => ({ ...item, alt: item.alt || `${insect.koreanName} ${item.role || "갤러리 이미지"}`, title: item.title || `${insect.koreanName} · ${item.role || "갤러리 이미지"}` }));
   const preview = gallery.map((item, index) => `<button class="gallery-preview-card" data-gallery-preview="${index}" type="button" aria-label="${item.title} 크게 보기"><img src="${item.src}" alt="${item.alt}" loading="eager"><span>${item.role}</span></button>`).join("");
   const lifeStageLabel = insect.lifeStageLabel || "성충기 기준";
@@ -121,6 +135,11 @@ function selectInsect(insect) {
   const sourceItems = child.sources.map((source) => `<li><a href="${escapeHTML(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(source.label)}</a><span>${escapeHTML(source.supports)} · 확인일 ${escapeHTML(source.checkedOn)}</span></li>`).join("");
   $("#detailPanel").innerHTML = `<p class="eyebrow">선택한 생물</p><h3>${escapeHTML(insect.koreanName)}</h3><p class="scientific-name">${escapeHTML(insect.scientificName)}</p><div class="detail-tags"><span>${escapeHTML(insect.taxonomy?.order || "목 미정")}</span><span>${escapeHTML(insect.taxonomy?.family || "과 미정")}</span>${insect.region ? `<span>${escapeHTML(insect.region)}</span>` : ""}<span>친숙도 · ${escapeHTML(familiarity[insect.familiarityLevel] || "미정")}</span></div>${galleryBlock}<section class="child-content" aria-label="${escapeHTML(insect.koreanName)} 어린이 생활 정보"><p class="child-intro">${escapeHTML(child.intro)}</p>${childSections}<details class="source-details"><summary>보호자와 보는 자료 출처</summary><p>본문의 이름·분류·분포와 관찰 단서를 확인한 자료예요.</p><ul>${sourceItems}</ul></details></section><section class="insect-facts" aria-label="${escapeHTML(insect.koreanName)} 기존 정보"><div class="facts-heading"><p class="eyebrow">한눈에 보는 정보</p><span>${escapeHTML(lifeStageLabel)}</span></div><dl>${facts}</dl></section>`;
   $$("[data-gallery-preview]", $("#detailPanel")).forEach((button) => button.addEventListener("click", () => openLightbox(gallery, Number(button.dataset.galleryPreview))));
+  if (reveal) {
+    setView("explore");
+    const detail = $("#detailPanel"); detail.scrollTop = 0;
+    window.requestAnimationFrame(() => detail.scrollIntoView({ block: "start", behavior: "smooth" }));
+  }
 }
 
 function showDialog(dialog) { state.previousFocus = document.activeElement; dialog.hidden = false; dialog.setAttribute("aria-hidden", "false"); document.body.classList.add("modal-open"); $("[role=dialog]", dialog)?.focus(); }
@@ -151,4 +170,4 @@ function bindEvents() {
   document.addEventListener("keydown", (event) => { if (event.key === "Escape") { [$("#imageLightbox"), $("#subscriptionDialog")].filter((dialog) => !dialog.hidden).forEach(closeDialog); } if (!$("#imageLightbox").hidden && event.key === "ArrowRight") moveLightbox(1); if (!$("#imageLightbox").hidden && event.key === "ArrowLeft") moveLightbox(-1); });
 }
 
-bindEvents(); updateMetrics(); renderTaxonomyFilter(); renderExplore(); renderCatalog();
+bindEvents(); updateMetrics(); renderTaxonomyFilter(); renderExplore(); renderCatalog(); renderAdmin();
