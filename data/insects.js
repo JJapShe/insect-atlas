@@ -301,9 +301,15 @@ const newFriendExpansionSpecs = Object.freeze({
   "sphaerocoris-annulus": Object.freeze({ kind: "ecology", prompt: "one Sphaerocoris annulus Picasso bug on a broad green African shrub leaf, green shield back with neat orange circular spots ringed dark and exactly six legs; no text, watermark, red shield bug, extra limbs or malformed anatomy" }),
   "catoxantha-purpurea": Object.freeze({ kind: "ecology", prompt: "one Catoxantha purpurea walking along sunlit tropical tree bark, metallic purple wing cases, black ridges, yellow band and exactly six legs; no text, watermark, green jewel beetle, extra limbs or malformed anatomy" }),
   "polymita-picta": Object.freeze({ kind: "ecology", prompt: "one Polymita picta Cuban painted snail climbing a rain-fresh leafy shrub, glossy shell with distinct yellow, pink and olive spiral bands; no text, watermark, plain brown shell, malformed tentacles or cropped shell" }),
+  "bombyx-mori": Object.freeze({ kind: "egg", prompt: "a neat small cluster of pale yellow oval Bombyx mori eggs on a fresh mulberry leaf; no adult, caterpillar, text, watermark, container, faces or unrelated insects" }),
+  "tenebrio-molitor": Object.freeze({ kind: "pupa", prompt: "one pale cream Tenebrio molitor pupa with developing dark eyes, folded wing cases and exactly six developing legs in oat bran; no adult, larva, text, watermark, extra legs or malformed pupa" }),
 });
-const newFriendExpansionItem = (id) => {
-  const { kind, prompt } = newFriendExpansionSpecs[id];
+const newFriendExtraExpansionSpecs = Object.freeze({
+  "bombyx-mori": Object.freeze([{ kind: "cocoon", prompt: "one oval cream-white Bombyx mori silk cocoon fixed among mulberry leaves; no adult moth, visible caterpillar, text, watermark, hands, plastic tray or unrelated insects" }]),
+  "tenebrio-molitor": Object.freeze([{ kind: "ecology", prompt: "one adult Tenebrio molitor darkling beetle walking on dry oat bran beside a grain husk, complete glossy dark-brown body and exactly six legs; no larva, pupa, text, watermark, extra limbs or cropped body" }]),
+});
+const newFriendExpansionItem = (id, spec = newFriendExpansionSpecs[id]) => {
+  const { kind, prompt } = spec;
   const details = lifeStageDetails[kind] || roleDetails[kind];
   return Object.freeze({
     src: `assets/insects/approved/${id}-${kind}-imagegen-v1.png`, alt: "", role: details.label, body: details.body,
@@ -311,7 +317,7 @@ const newFriendExpansionItem = (id) => {
     generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, visual anatomy screening, then unchanged copies into review and approved paths", reviewStatus: "published-pending-user-review",
   });
 };
-const newFriendRepresentativeGallery = Object.freeze(Object.fromEntries(Object.keys(newFriendRepresentativeSpecs).map((id) => [id, Object.freeze([newFriendRepresentativeItem(id), ...(newFriendExpansionSpecs[id] ? [newFriendExpansionItem(id)] : [])])] )));
+const newFriendRepresentativeGallery = Object.freeze(Object.fromEntries(Object.keys(newFriendRepresentativeSpecs).map((id) => [id, Object.freeze([newFriendRepresentativeItem(id), ...(newFriendExpansionSpecs[id] ? [newFriendExpansionItem(id)] : []), ...((newFriendExtraExpansionSpecs[id] || []).map((spec) => newFriendExpansionItem(id, spec)))] )])));
 const withLifeStages = (id, gallery) => lifeStageSpecs[id] ? Object.freeze([...gallery, ...["egg", "larva", "pupa"].map((stage) => lifeStageItem(id, stage))]) : gallery;
 const supplementalKinds = Object.freeze({
   "lucanus-maculifemoratus": ["anatomy-test"], "trypoxylus-dichotomus": ["anatomy-test"], "tenodera-sinensis": ["anatomy-test"], "anax-parthenope": ["individual"], "sympetrum-depressiusculum": ["individual"],
