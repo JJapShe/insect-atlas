@@ -4,8 +4,11 @@ import { insects } from "../data/insects.js";
 import { generatedImages, incompleteMetamorphosisIds } from "../data/incomplete-metamorphosis.js";
 import { childContentFor, childContentIds } from "../data/child-content.js";
 
-const files = ["index.html", "styles.css", "app.js", "review.html", "review.js", "data/insects.js", "data/insect-schema.js", "data/child-content.js"];
+const files = ["index.html", "styles.css", "app.js", "review.html", "review.js", "data/insects.js", "data/insect-schema.js", "data/child-content.js", "app.webmanifest"];
 for (const file of files) await readFile(new URL(`../${file}`, import.meta.url), "utf8");
+const webManifest = JSON.parse(await readFile(new URL("../app.webmanifest", import.meta.url), "utf8"));
+if (webManifest.display !== "standalone" || webManifest.start_url !== "./" || webManifest.scope !== "./" || !["192x192", "512x512"].every((size) => webManifest.icons?.some((icon) => icon.sizes === size && icon.type === "image/png"))) throw new Error("Mobile standalone web-app manifest is incomplete.");
+for (const icon of webManifest.icons) await readFile(new URL(`../${icon.src}`, import.meta.url));
 const decisions = JSON.parse(await readFile(new URL("../tools/review-decisions/image-review-decisions-20260903.json", import.meta.url), "utf8"));
 if ((decisions.records || []).filter((record) => record.decision === "pass").length !== 3 || (decisions.records || []).filter((record) => record.decision === "reject").length !== 18) throw new Error("Published review decision counts are incomplete.");
 const newFriendRepresentativeIds = new Set(["cerura-felina", "chrysiridia-rhipheus", "theraphosa-blondi", "mymaridae", "dipentium-japonicum", "pulex-irritans", "monomorium-chinense", "brephidium-exilis", "eriophyes-tiliae", "lissachatina-fulica", "limax-flavus", "maratus-volans", "greta-oto", "sphaerocoris-annulus", "catoxantha-purpurea", "polymita-picta", "bombyx-mori", "tenebrio-molitor"]);
