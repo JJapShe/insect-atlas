@@ -43,5 +43,9 @@
     ,{"id":"sphaerocoris-annulus","koreanName":"피카소벌레","kind":"nymph","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/sphaerocoris-annulus-nymph-imagegen-v1.png","supports":"초록과 주황 점무늬가 막 나타나는 약충 관찰 컷"}
     ,{"id":"catoxantha-purpurea","koreanName":"보라색 비단벌레","kind":"interaction","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/catoxantha-purpurea-interaction-imagegen-v1.png","supports":"나무 수액을 먹는 보랏빛 비단벌레 행동 컷"}
     ,{"id":"polymita-picta","koreanName":"쿠바 달팽이","kind":"egg","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/polymita-picta-egg-imagegen-v1.png","supports":"관목 아래의 작은 알 무리를 보여 주는 생활사 컷"}
+    ,{"id":"cerura-felina","koreanName":"나무결재주나방","kind":"ecology-2","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/cerura-felina-ecology-2-imagegen-v1.png","supports":"해질녘 나무껍질에 앉은 성충의 날개 무늬 관찰 컷"}
+    ,{"id":"chrysiridia-rhipheus","koreanName":"마다가스카르 비단제비나방","kind":"ecology-2","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/chrysiridia-rhipheus-ecology-2-imagegen-v1.png","supports":"열대림 빈터를 나는 성충의 날개색 관찰 컷"}
+    ,{"id":"theraphosa-blondi","koreanName":"골리앗 버드이팅거미","kind":"ecology-2","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/theraphosa-blondi-ecology-2-imagegen-v1.png","supports":"빗물 고인 낙엽층에서 물을 마시는 생태 컷"}
+    ,{"id":"mymaridae","koreanName":"요정파리","kind":"ecology-2","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/mymaridae-ecology-2-imagegen-v1.png","supports":"잎 배경 앞에서 날개를 펴고 비행하는 확대 관찰 컷"}
   ]
 }
