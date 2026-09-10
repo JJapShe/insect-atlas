@@ -15,5 +15,9 @@
     {"id":"pulex-irritans","koreanName":"벼룩","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/pulex-irritans-ecology-imagegen-v1.png","supports":"피나 물림 없이 둥지 섬유에서 관찰한 납작한 몸과 점프 다리 컷"},
     {"id":"monomorium-chinense","koreanName":"애집개미","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/monomorium-chinense-ecology-imagegen-v1.png","supports":"정원 땅속 둥지 앞에서 먹이를 옮기는 일개미의 사회 행동 컷"},
     {"id":"brephidium-exilis","koreanName":"웨스턴 피그미 블루 나비","kind":"larva","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/brephidium-exilis-larva-imagegen-v1.png","supports":"소금나물 잎에서 자라는 작은 유충을 보여 주는 생활사 컷"}
+    ,{"id":"eriophyes-tiliae","koreanName":"라임진드기","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/eriophyes-tiliae-ecology-imagegen-v1.png","supports":"라임나무 잎혹과 두 쌍의 다리를 가진 혹응애의 확대 생태 컷"}
+    ,{"id":"lissachatina-fulica","koreanName":"아프리카 대왕달팽이","kind":"egg","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/lissachatina-fulica-egg-imagegen-v1.png","supports":"습한 흙 속의 둥근 알 무리를 보여 주는 생활사 컷"}
+    ,{"id":"limax-flavus","koreanName":"민달팽이","kind":"ecology","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/limax-flavus-ecology-imagegen-v1.png","supports":"밤의 젖은 정원에서 낙엽을 먹는 껍데기 없는 생태 컷"}
+    ,{"id":"maratus-volans","koreanName":"공작거미","kind":"interaction","asset":"assets/insects/review/new-friend-gallery-expansion-20260910/maratus-volans-interaction-imagegen-v1.png","supports":"수컷이 배무늬를 들어 올려 구애하는 상호작용 컷"}
   ]
 }
