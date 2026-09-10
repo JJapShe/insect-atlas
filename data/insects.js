@@ -322,7 +322,7 @@ const newFriendExtraExpansionSpecs = Object.freeze({
 });
 const newFriendExpansionItem = (id, spec = newFriendExpansionSpecs[id]) => {
   const { kind, prompt } = spec;
-  const details = lifeStageDetails[kind] || roleDetails[kind];
+  const details = lifeStageDetails[kind] || roleDetails[kind] || roleDetails[kind.replace(/-\d+$/, "")];
   return Object.freeze({
     src: `assets/insects/approved/${id}-${kind}-imagegen-v1.png`, alt: "", role: details.label, body: details.body,
     sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-10", generationPrompt: prompt,
