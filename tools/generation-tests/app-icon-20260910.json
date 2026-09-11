@@ -2,9 +2,9 @@
   "assetType": "mobile web-app icon",
   "source": "OpenAI built-in image generation",
   "license": "AI-generated project asset; published for Insect Atlas",
-  "generationPrompt": "Premium square app icon with one friendly, anatomically recognizable jewel beetle viewed from above, on a deep midnight teal-black background; refined natural-history illustration, turquoise emerald and restrained amber, centered with generous safe margins; no text, no watermark.",
+  "generationPrompt": "Deformed chibi stag beetle emblem with bold rounded head, short symmetrical mandibles, compact oval body, thick outline, and a deep forest-teal background; no text or fine details, optimized for 48px recognition.",
   "generationSeed": "not provided by the built-in image generator",
-  "generationWorkflow": "Built-in image generation, then high-quality square resize to 192px and 512px PNG.",
+  "generationWorkflow": "Built-in image generation, targeted background edit, then high-quality square resize to 192px and 512px PNG.",
   "reviewStatus": "published",
   "assets": [
     "assets/icons/insect-atlas-192.png",
