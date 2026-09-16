@@ -10,6 +10,10 @@
     {"id":"meloimorpha-japonica","koreanName":"방울벌레","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/meloimorpha-japonica-individual-imagegen-v1.png","supports":"갈색 몸과 긴 더듬이가 읽히는 대표 생태 컷"},
     {"id":"gryllus-bimaculatus","koreanName":"쌍별귀뚜라미","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/gryllus-bimaculatus-individual-imagegen-v1.png","supports":"검은 몸과 앞날개의 두 밝은 점이 읽히는 대표 생태 컷"},
     {"id":"oecanthus-longicauda","koreanName":"긴꼬리","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/oecanthus-longicauda-individual-imagegen-v1.png","supports":"가느다란 연둣빛 몸과 긴 더듬이가 읽히는 대표 생태 컷"},
-    {"id":"polistes-chinensis-antennalis","koreanName":"두눈박이쌍살벌","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/polistes-chinensis-antennalis-individual-imagegen-v1.png","supports":"잘록허리와 긴 다리, 열린 종이벌집이 읽히는 대표 생태 컷"}
+    {"id":"polistes-chinensis-antennalis","koreanName":"두눈박이쌍살벌","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/polistes-chinensis-antennalis-individual-imagegen-v1.png","supports":"잘록허리와 긴 다리, 열린 종이벌집이 읽히는 대표 생태 컷"},
+    {"id":"hydropsyche-orientalis","koreanName":"동양날도래","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/hydropsyche-orientalis-individual-imagegen-v1.png","supports":"계류 돌 위에 접은 갈색 날개와 긴 더듬이가 읽히는 대표 생태 컷"},
+    {"id":"papilio-maackii","koreanName":"산제비나비","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/papilio-maackii-individual-imagegen-v1.png","supports":"검은 날개에 비치는 푸른빛과 뒷날개 꼬리가 읽히는 대표 생태 컷"},
+    {"id":"titanus-giganteus","koreanName":"타이탄하늘소","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/titanus-giganteus-individual-imagegen-v1.png","supports":"거대한 갈색 몸과 매우 긴 더듬이가 읽히는 대표 생태 컷"},
+    {"id":"phalacrognathus-muelleri","koreanName":"무지개사슴벌레","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/phalacrognathus-muelleri-individual-imagegen-v1.png","supports":"무지갯빛 딱지날개와 수컷 큰턱이 읽히는 대표 생태 컷"}
   ]
 }
