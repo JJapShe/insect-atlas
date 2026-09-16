@@ -18,6 +18,10 @@
     {"id":"actias-luna","koreanName":"루나나방","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/actias-luna-individual-imagegen-v1.png","supports":"연둣빛 날개와 눈무늬, 긴 뒷날개 꼬리가 읽히는 대표 생태 컷"},
     {"id":"megasoma-elephas","koreanName":"코끼리장수풍뎅이","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/megasoma-elephas-individual-imagegen-v1.png","supports":"털 난 갈색 몸과 수컷의 긴 갈림뿔이 읽히는 대표 생태 컷"},
     {"id":"myrmecocystus-mexicanus","koreanName":"꿀단지개미","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/myrmecocystus-mexicanus-individual-imagegen-v1.png","supports":"저장통 일개미의 투명하게 부푼 배와 동료 개미가 읽히는 대표 생태 컷"},
-    {"id":"pepsis-grossa","koreanName":"타란툴라매","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/pepsis-grossa-individual-imagegen-v1.png","supports":"푸른 검은 몸과 주황 날개가 읽히는 대표 생태 컷"}
+    {"id":"pepsis-grossa","koreanName":"타란툴라매","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/pepsis-grossa-individual-imagegen-v1.png","supports":"푸른 검은 몸과 주황 날개가 읽히는 대표 생태 컷"},
+    {"id":"reticulitermes-speratus","koreanName":"일본흰개미","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/reticulitermes-speratus-individual-imagegen-v1.png","supports":"연한 몸의 일개미와 큰 머리 병정개미가 읽히는 대표 생태 컷"},
+    {"id":"limulus-polyphemus","koreanName":"대서양투구게","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/limulus-polyphemus-individual-imagegen-v1.png","supports":"말발굽 모양 등딱지와 긴 꼬리검이 읽히는 대표 생태 컷"},
+    {"id":"phidippus-audax","koreanName":"대담한깡충거미","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/phidippus-audax-individual-imagegen-v1.png","supports":"검은 털몸, 밝은 점무늬와 큰 앞눈이 읽히는 대표 생태 컷"},
+    {"id":"misumena-vatia","koreanName":"꽃게거미","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/misumena-vatia-individual-imagegen-v1.png","supports":"흰색 몸과 옆으로 벌어진 앞다리가 읽히는 대표 생태 컷"}
   ]
 }
