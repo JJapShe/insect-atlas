@@ -20,18 +20,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Verify source data and review assets
+        run: node scripts/verify.mjs
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Assemble public site
-        run: |
-          mkdir -p _site/assets/insects
-          cp index.html app.js styles.css _site/
-          cp app.webmanifest _site/
-          cp -R data _site/data
-          cp -R assets/icons _site/assets/icons
-          cp -R assets/insects/approved _site/assets/insects/approved
-          touch _site/.nojekyll
-          test ! -e _site/assets/insects/review
+        run: node scripts/build.mjs
+      - name: Verify publication guards
+        run: node scripts/verify-build.mjs
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:

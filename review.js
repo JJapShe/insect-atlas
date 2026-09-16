@@ -1,33 +1,13 @@
 import { generatedImages } from "./data/incomplete-metamorphosis.js?v=20260907";
-const manifestUrls = [
-  "tools/generation-tests/famous-insects-20260902.json",
-  "tools/generation-tests/domestic-representative-insects-20260902.json",
-  "tools/generation-tests/morphology-white-background-20260903.json",
-  "tools/generation-tests/representative-ecology-interaction-20260902.json",
-  "tools/generation-tests/deferred-representatives-ecology-interaction-20260903.json",
-  "tools/generation-tests/detail-ecology-interaction-20260903.json",
-  "tools/generation-tests/world-favorites-20260903.json",
-  "tools/generation-tests/gallery-expansion-20260903.json",
-  "tools/generation-tests/identity-consistency-20260903.json",
-  "tools/generation-tests/pose-diversity-20260903.json",
-  "tools/generation-tests/tomtomi-insects-20260904.json",
-  "tools/generation-tests/international-beetles-20260904.json",
-  "tools/generation-tests/aquatic-familiar-insects-20260905.json",
-  "tools/generation-tests/woodland-life-stages-20260905.json",
-  "tools/generation-tests/seven-insects-20260905.json",
-  "tools/generation-tests/life-stages-20260905.json",
-  "tools/generation-tests/familiar-local-20260909.json",
-  "tools/generation-tests/rare-famous-20260909.json",
-  "tools/generation-tests/familiar-next-20260909.json",
-  "tools/generation-tests/new-friend-representatives-20260910.json",
-];
+import { insects } from "./data/insects.js?v=20260910-new-friends";
+import { manifestUrls, recordsForManifest, recordsForPublicGallery, uniqueAssets } from "./review-data.mjs";
 const decisionManifestUrl = "tools/review-decisions/image-review-decisions-20260903.json";
 const koreanNames = new Map();
 const decisionKey = "insect-atlas-review-decisions-v1";
 const localDecisions = JSON.parse(localStorage.getItem(decisionKey) || "{}");
 let publishedDecisions = {}; let assets = []; let roleFilter = "all";
 const $ = (selector) => document.querySelector(selector);
-const label = { individual:"형태·정보", morphology:"형태·정보", ecology:"생태", interaction:"상호작용", egg:"알", larva:"유충", nymph:"약충", pupa:"번데기", test:"생성 테스트" };
+const label = { individual:"형태·정보", morphology:"형태·정보", ecology:"생태", interaction:"상호작용", egg:"알", larva:"유충", nymph:"약충", pupa:"번데기", cocoon:"고치", test:"생성 테스트" };
 
 function decisionOf(asset) { return localDecisions[asset.key] || publishedDecisions[asset.key] || "pending"; }
 function saveDecision(asset, decision) { localDecisions[asset.key] = decision; localStorage.setItem(decisionKey, JSON.stringify(localDecisions)); render(); }
@@ -39,25 +19,11 @@ function normalise(record, manifest) {
   const role = rawRole in label ? rawRole : rawRole.includes("ecology") || rawRole === "habitat-ecology" ? "ecology" : rawRole.includes("interaction") || rawRole.includes("context") || rawRole.includes("resource") ? "interaction" : rawRole === "morphology" || manifest.includes("morphology") ? "morphology" : rawRole === "test" || manifest.includes("famous") ? "test" : "morphology";
   return { key:asset, asset, id:sourceId, name:record.koreanName || koreanNames.get(sourceId) || record.testSubject || sourceId, role, prompt:record.prompt || record.generationPrompt || manifest, status:record.reviewStatus || "review hold" };
 }
-function recordsForManifest(data) {
-  const directRecords = data.records || [];
-  const batchedRecords = (data.batches || []).flatMap((batch) => (batch.ids || []).map((id) => ({
-    id, koreanName: batch.koreanNames?.[id], role: batch.role,
-    asset: batch.assetTemplate.replace("{id}", id), generationPrompt: batch.generationPrompt,
-    reviewStatus: batch.reviewStatus,
-  })));
-  const speciesRecords = (data.species || []).flatMap((species) => (species.roles || []).map((role) => ({
-    id: species.id, koreanName: species.koreanName, role,
-    asset: species.asset || `${data.reviewFolder}/${species.id}-${role}-imagegen-v1.png`, generationPrompt: data.workflow,
-    reviewStatus: "published-pending-user-review",
-  })));
-  return [...directRecords, ...batchedRecords, ...speciesRecords];
-}
 async function loadAssets() {
   const [documents, decisionManifest] = await Promise.all([Promise.all(manifestUrls.map(async (url) => [url, await (await fetch(url)).json()])), fetch(decisionManifestUrl).then((response) => response.json())]);
   publishedDecisions = Object.fromEntries((decisionManifest.records || []).map((record) => [record.asset, record.decision]));
   documents.forEach(([url, data]) => recordsForManifest(data).forEach((record) => { if (record.id && record.koreanName) koreanNames.set(record.id, record.koreanName); }));
-  assets = [...documents.flatMap(([url, data]) => recordsForManifest(data).map((record) => normalise(record, url)).filter(Boolean)), ...generatedImages.map((record) => normalise(record, "불완전변태 생활사 20260907"))];
+  assets = uniqueAssets([...documents.flatMap(([url, data]) => recordsForManifest(data).map((record) => normalise(record, url)).filter(Boolean)), ...generatedImages.map((record) => normalise(record, "불완전변태 생활사 20260907")), ...recordsForPublicGallery(insects).map((record) => normalise(record, "public gallery review copy"))]);
   render();
 }
 function render() {

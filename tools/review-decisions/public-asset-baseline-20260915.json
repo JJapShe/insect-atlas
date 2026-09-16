@@ -1,0 +1,94 @@
+{
+  "checkedOn": "2026-09-15",
+  "baselineCommit": "79c4972d00e875cad3705334c8797b66679fef9b",
+  "method": "동일 파일명 원본이 일치하지 않는 경우에만 SHA-256이 같은 프로젝트 검수 사본을 연결. 원본 미확인 기존 공개본은 변경 감지만 하며 승인 상태를 바꾸지 않음.",
+  "reviewCopies": {
+    "lucanus-maculifemoratus-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/lucanus-maculifemoratus-oak-sap-ecology-imagegen-v1.png",
+    "lucanus-maculifemoratus-interaction-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/interaction/lucanus-maculifemoratus-oak-sap-interaction-imagegen-v1.png",
+    "lucanus-maculifemoratus-anatomy-test-imagegen-v1.png": "assets/insects/review/generation-test/stag-beetle-anatomy-test-imagegen-v1.png",
+    "trypoxylus-dichotomus-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/trypoxylus-dichotomus-tree-trunk-ecology-imagegen-v1.png",
+    "trypoxylus-dichotomus-interaction-imagegen-v1.png": "assets/insects/review/replaced-combat-20260905/trypoxylus-dichotomus-interaction-2-imagegen-v1.png",
+    "trypoxylus-dichotomus-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/trypoxylus-dichotomus-morphology-white-bg-imagegen-v1.png",
+    "trypoxylus-dichotomus-anatomy-test-imagegen-v1.png": "assets/insects/review/generation-test/rhinoceros-beetle-horn-test-imagegen-v1.png",
+    "harmonia-axyridis-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/harmonia-axyridis-leaf-ecology-imagegen-v1.png",
+    "harmonia-axyridis-interaction-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/interaction/harmonia-axyridis-aphid-context-interaction-imagegen-v1.png",
+    "harmonia-axyridis-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/harmonia-axyridis-morphology-white-bg-imagegen-v1.png",
+    "protaetia-brevitarsis-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/protaetia-brevitarsis-blossom-ecology-imagegen-v1.png",
+    "protaetia-brevitarsis-interaction-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/interaction/protaetia-brevitarsis-pollen-interaction-imagegen-v1.png",
+    "protaetia-brevitarsis-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/protaetia-brevitarsis-morphology-white-bg-imagegen-v1.png",
+    "anoplophora-malasiaca-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/anoplophora-malasiaca-bark-ecology-imagegen-v1.png",
+    "anoplophora-malasiaca-interaction-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/interaction/anoplophora-malasiaca-bark-context-interaction-imagegen-v1.png",
+    "anoplophora-malasiaca-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/anoplophora-malasiaca-morphology-white-bg-imagegen-v1.png",
+    "papilio-xuthus-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/papilio-xuthus-meadow-ecology-imagegen-v1.png",
+    "papilio-xuthus-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/papilio-xuthus-morphology-white-bg-imagegen-v1.png",
+    "pieris-rapae-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/pieris-rapae-brassica-ecology-imagegen-v1.png",
+    "pieris-rapae-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/pieris-rapae-morphology-white-bg-imagegen-v1.png",
+    "sasakia-charonda-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/sasakia-charonda-woodland-leaf-ecology-imagegen-v1.png",
+    "sasakia-charonda-interaction-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/interaction/sasakia-charonda-puddle-interaction-imagegen-v1.png",
+    "sasakia-charonda-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/sasakia-charonda-morphology-white-bg-imagegen-v1.png",
+    "sericinus-montela-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/sericinus-montela-riverbank-ecology-imagegen-v1.png",
+    "sericinus-montela-interaction-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/interaction/sericinus-montela-wildflower-interaction-imagegen-v1.png",
+    "sericinus-montela-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/sericinus-montela-morphology-white-bg-imagegen-v1.png",
+    "anax-parthenope-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/anax-parthenope-pond-ecology-imagegen-v1.png",
+    "anax-parthenope-interaction-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/interaction/anax-parthenope-water-edge-context-imagegen-v1.png",
+    "anax-parthenope-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/anax-parthenope-morphology-white-bg-imagegen-v1.png",
+    "sympetrum-depressiusculum-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/sympetrum-depressiusculum-wet-meadow-ecology-imagegen-v1.png",
+    "sympetrum-depressiusculum-interaction-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/interaction/sympetrum-depressiusculum-water-edge-context-imagegen-v1.png",
+    "sympetrum-depressiusculum-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/sympetrum-depressiusculum-morphology-white-bg-imagegen-v1.png",
+    "acrida-cinerea-interaction-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/interaction/acrida-cinerea-grass-blade-interaction-imagegen-v1.png",
+    "acrida-cinerea-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/acrida-cinerea-morphology-white-bg-imagegen-v1.png",
+    "gampsocleis-sedakovii-interaction-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/interaction/gampsocleis-sedakovii-leaf-context-imagegen-v1.png",
+    "gampsocleis-sedakovii-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/gampsocleis-sedakovii-morphology-white-bg-imagegen-v1.png",
+    "teleogryllus-emma-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/teleogryllus-emma-field-edge-ecology-imagegen-v1.png",
+    "teleogryllus-emma-interaction-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/interaction/teleogryllus-emma-soil-crevice-context-imagegen-v1.png",
+    "teleogryllus-emma-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/teleogryllus-emma-morphology-white-bg-imagegen-v1.png",
+    "tenodera-sinensis-interaction-imagegen-v1.png": "assets/insects/review/replaced-combat-20260905/tenodera-sinensis-interaction-2-imagegen-v1.png",
+    "tenodera-sinensis-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/tenodera-sinensis-morphology-white-bg-imagegen-v1.png",
+    "tenodera-sinensis-anatomy-test-imagegen-v1.png": "assets/insects/review/generation-test/praying-mantis-foreleg-test-imagegen-v1.png",
+    "hierodula-patellifera-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/hierodula-patellifera-shrub-ecology-imagegen-v1.png",
+    "hierodula-patellifera-interaction-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/interaction/hierodula-patellifera-stem-context-imagegen-v1.png",
+    "hierodula-patellifera-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/hierodula-patellifera-morphology-white-bg-imagegen-v1.png",
+    "cryptotympana-atrata-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/cryptotympana-atrata-treebark-ecology-imagegen-v1.png",
+    "cryptotympana-atrata-interaction-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/interaction/cryptotympana-atrata-bark-context-interaction-imagegen-v1.png",
+    "cryptotympana-atrata-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/cryptotympana-atrata-morphology-white-bg-imagegen-v1.png",
+    "halyomorpha-halys-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/halyomorpha-halys-leaf-ecology-imagegen-v1.png",
+    "halyomorpha-halys-interaction-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/interaction/halyomorpha-halys-leaf-context-interaction-imagegen-v1.png",
+    "halyomorpha-halys-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/halyomorpha-halys-morphology-white-bg-imagegen-v1.png",
+    "camponotus-japonicus-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/camponotus-japonicus-forestfloor-ecology-imagegen-v1.png",
+    "camponotus-japonicus-interaction-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/interaction/camponotus-japonicus-seed-interaction-imagegen-v1.png",
+    "camponotus-japonicus-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/camponotus-japonicus-morphology-white-bg-imagegen-v1.png",
+    "apis-cerana-ecology-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/ecology/apis-cerana-wildflower-ecology-imagegen-v1.png",
+    "apis-cerana-interaction-imagegen-v1.png": "assets/insects/review/representative-seed-20260902/interaction/apis-cerana-pollen-interaction-imagegen-v1.png",
+    "apis-cerana-morphology-imagegen-v1.png": "assets/insects/review/morphology-white-background-20260903/apis-cerana-morphology-white-bg-imagegen-v1.png"
+  },
+  "unresolved": {
+    "dorcus-titanus-castanicolor-interaction-2-imagegen-v1.png": {
+      "sha256": "a968fbee8b5faecb15f8f93450da17e0ed510d7f2068145c9075ea9c03844365",
+      "reason": "기존 공개본과 바이트가 같은 검수 원본을 현재 프로젝트에서 찾지 못함. 원본 검수나 사용자 승인을 뜻하지 않음."
+    },
+    "lethocerus-deyrolli-interaction-2-imagegen-v1.png": {
+      "sha256": "939369d781a815fc7c91b85f3180414b7576919b07f3a7d85bc3464d56a0e00d",
+      "reason": "기존 공개본과 바이트가 같은 검수 원본을 현재 프로젝트에서 찾지 못함. 원본 검수나 사용자 승인을 뜻하지 않음."
+    },
+    "cicindela-chinensis-flammifera-interaction-2-imagegen-v1.png": {
+      "sha256": "2973109383394f7c8247a504dbf4ee2621e1c9d0f36e8346f6f259ee0e97f09e",
+      "reason": "기존 공개본과 바이트가 같은 검수 원본을 현재 프로젝트에서 찾지 못함. 원본 검수나 사용자 승인을 뜻하지 않음."
+    },
+    "platerodrilus-ngi-ecology-imagegen-v1.png": {
+      "sha256": "295244f173e16b4e58c48bfb65aaabfea21ac1acb83dc23d762f0411ddfc0572",
+      "reason": "기존 공개본과 바이트가 같은 검수 원본을 현재 프로젝트에서 찾지 못함. 원본 검수나 사용자 승인을 뜻하지 않음."
+    },
+    "platerodrilus-ngi-morphology-imagegen-v1.png": {
+      "sha256": "b8f348f9b297ad8e10fdd05399fb0a25661350e16f5084dfa64bea1a0a9f5261",
+      "reason": "기존 공개본과 바이트가 같은 검수 원본을 현재 프로젝트에서 찾지 못함. 원본 검수나 사용자 승인을 뜻하지 않음."
+    },
+    "platerodrilus-ngi-interaction-imagegen-v1.png": {
+      "sha256": "1c92e84ef52991d383d9e6f080decdcb4d8e392262598ce6bc72c6be52728a33",
+      "reason": "기존 공개본과 바이트가 같은 검수 원본을 현재 프로젝트에서 찾지 못함. 원본 검수나 사용자 승인을 뜻하지 않음."
+    },
+    "platerodrilus-ngi-interaction-2-imagegen-v1.png": {
+      "sha256": "bc3dacaa00f5a97d8d54e0095b2ef331e15257e175c5c44eb85a51832270e014",
+      "reason": "기존 공개본과 바이트가 같은 검수 원본을 현재 프로젝트에서 찾지 못함. 원본 검수나 사용자 승인을 뜻하지 않음."
+    }
+  }
+}

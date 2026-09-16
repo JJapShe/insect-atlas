@@ -160,7 +160,7 @@ for (const stage of lifeStages) {
 if (publicGalleryItems.length < 144 || publicGalleryItems.length !== insects.reduce((total, insect) => total + insect.gallery.length, 0) || publicGalleryItems.some((item) => !item.src?.startsWith("assets/insects/approved/") || !item.license || !item.generationPrompt || !item.generationSeed || !item.generationWorkflow || !["approved", "published-pending-user-review"].includes(item.reviewStatus))) throw new Error("Public galleries must contain only fully recorded registered assets.");
 const supersededPublicCandidates = new Set(["anax-parthenope-representative-imagegen-v1.png", "anotogaster-sieboldi-ecology-imagegen-v1.png", "anotogaster-sieboldi-interaction-imagegen-v1.png", "hymenopus-coronatus-morphology-imagegen-v1.png", "harmonia-axyridis-interaction-2-imagegen-v1.png", "papilio-xuthus-interaction-imagegen-v1.png", "pieris-rapae-interaction-imagegen-v1.png", "acrida-cinerea-ecology-imagegen-v1.png", "tenodera-sinensis-ecology-imagegen-v1.png", "gampsocleis-sedakovii-ecology-imagegen-v1.png", "teleogryllus-emma-interaction-2-imagegen-v1.png", "anoplophora-malasiaca-interaction-2-imagegen-v1.png", "apis-cerana-interaction-2-imagegen-v1.png", "orthetrum-albistylum-interaction-2-imagegen-v1.png", "calopteryx-atrata-interaction-2-imagegen-v1.png"]);
 if (publicGalleryItems.some((item) => supersededPublicCandidates.has(item.src.split("/").at(-1)))) throw new Error("Superseded identity-inconsistent candidates must not remain in public galleries.");
-await Promise.all(publicGalleryItems.map((item) => readFile(new URL(`../${item.src}`, import.meta.url))));
+await import("./verify-assets.mjs");
 const app = await readFile(new URL("../app.js", import.meta.url), "utf8");
 if (app.includes("gallery.slice(0, 3)")) throw new Error("Life-stage galleries must expose every registered image in the detail panel.");
 if (!app.includes('image.reviewStatus === "approved"') || !app.includes("사용자 검수 대기 이미지")) throw new Error("Public cards must distinguish pending-user-review galleries from approved galleries.");
@@ -169,6 +169,6 @@ const body = app.replace(/^import .*?;\s*/gm, "");
 new vm.Script(body.replace(/export\s+/g, ""));
 const review = await readFile(new URL("../review.js", import.meta.url), "utf8");
 new vm.Script(review.replace(/^import .*?;\s*/gm, "").replace(/export\s+/g, ""));
-if (!review.includes("familiar-local-20260909.json") || !review.includes("rare-famous-20260909.json") || !review.includes("familiar-next-20260909.json") || !review.includes("new-friend-representatives-20260910.json") || !review.includes("data.species")) throw new Error("Review screen must load every species-based provenance manifest.");
+await import("./verify-review.mjs");
 if (/assets\/insects\/review/.test(app)) throw new Error("Review-only assets must not be referenced by the public app runtime.");
 console.log(`PASS: files readable, ${insects.length} public information records include ${publicGalleryItems.length} registered gallery assets, review assets are excluded from app runtime, scripts are valid`);
