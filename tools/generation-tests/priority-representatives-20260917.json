@@ -1,0 +1,15 @@
+{
+  "createdAt": "2026-09-17",
+  "scope": "Immediate representative ecology images for the first priority batch, published at the user's direction for separate later review.",
+  "source": "OpenAI built-in image generation; no external artwork was supplied as input",
+  "license": "Generated project assets; published to the Insect Atlas gallery at the user's direction",
+  "seed": "service-assigned; not exposed",
+  "workflow": "Built-in image generation, unchanged copies into review and approved paths, public status pending user review",
+  "reviewStatus": "published-pending-user-review",
+  "species": [
+    {"id":"meloimorpha-japonica","koreanName":"방울벌레","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/meloimorpha-japonica-individual-imagegen-v1.png","supports":"갈색 몸과 긴 더듬이가 읽히는 대표 생태 컷"},
+    {"id":"gryllus-bimaculatus","koreanName":"쌍별귀뚜라미","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/gryllus-bimaculatus-individual-imagegen-v1.png","supports":"검은 몸과 앞날개의 두 밝은 점이 읽히는 대표 생태 컷"},
+    {"id":"oecanthus-longicauda","koreanName":"긴꼬리","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/oecanthus-longicauda-individual-imagegen-v1.png","supports":"가느다란 연둣빛 몸과 긴 더듬이가 읽히는 대표 생태 컷"},
+    {"id":"polistes-chinensis-antennalis","koreanName":"두눈박이쌍살벌","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/polistes-chinensis-antennalis-individual-imagegen-v1.png","supports":"잘록허리와 긴 다리, 열린 종이벌집이 읽히는 대표 생태 컷"}
+  ]
+}

@@ -20,6 +20,7 @@ export const manifestUrls = Object.freeze([
   "tools/generation-tests/familiar-next-20260909.json",
   "tools/generation-tests/new-friend-representatives-20260910.json",
   "tools/generation-tests/new-friend-gallery-expansion-20260910.json",
+  "tools/generation-tests/priority-representatives-20260917.json",
 ]);
 
 const publicReviewFolders = Object.freeze([
