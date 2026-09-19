@@ -34,6 +34,12 @@
     {"id":"hydropsyche-orientalis","koreanName":"동양날도래","roles":["ecology"],"asset":"assets/insects/review/priority-representatives-20260919/hydropsyche-orientalis-ecology-imagegen-v1.png","supports":"계류의 이끼 낀 돌과 접힌 갈색 날개가 읽히는 생태 컷"},
     {"id":"papilio-maackii","koreanName":"산제비나비","roles":["ecology"],"asset":"assets/insects/review/priority-representatives-20260919/papilio-maackii-ecology-imagegen-v1.png","supports":"검은 날개에 비치는 청록빛과 뒷날개 꼬리가 읽히는 생태 컷"},
     {"id":"titanus-giganteus","koreanName":"타이탄하늘소","roles":["ecology"],"asset":"assets/insects/review/priority-representatives-20260919/titanus-giganteus-ecology-imagegen-v1.png","supports":"열대우림 쓰러진 나무 위의 거대한 몸과 긴 더듬이가 읽히는 생태 컷"},
-    {"id":"phalacrognathus-muelleri","koreanName":"무지개사슴벌레","roles":["ecology"],"asset":"assets/insects/review/priority-representatives-20260919/phalacrognathus-muelleri-ecology-imagegen-v1.png","supports":"수액 자리의 무지갯빛 딱지날개와 갈라진 큰턱이 읽히는 생태 컷"}
+    {"id":"phalacrognathus-muelleri","koreanName":"무지개사슴벌레","roles":["ecology"],"asset":"assets/insects/review/priority-representatives-20260919/phalacrognathus-muelleri-ecology-imagegen-v1.png","supports":"수액 자리의 무지갯빛 딱지날개와 갈라진 큰턱이 읽히는 생태 컷"},
+    {"id":"actias-luna","koreanName":"루나나방","roles":["larva"],"asset":"assets/insects/review/priority-representatives-20260919/actias-luna-larva-imagegen-v1.png","supports":"연둣빛 몸, 줄무늬와 잎 위 유충 생활사가 읽히는 관찰 컷"},
+    {"id":"actias-luna","koreanName":"루나나방","roles":["pupa"],"asset":"assets/insects/review/priority-representatives-20260919/actias-luna-pupa-imagegen-v1.png","supports":"낙엽 속 잎을 감싼 고치와 번데기 단계를 보여 주는 관찰 컷"},
+    {"id":"megasoma-elephas","koreanName":"코끼리장수풍뎅이","roles":["larva"],"asset":"assets/insects/review/priority-representatives-20260919/megasoma-elephas-larva-imagegen-v1.png","supports":"부식질 속 C자형 유충과 세 쌍의 다리가 읽히는 관찰 컷"},
+    {"id":"megasoma-elephas","koreanName":"코끼리장수풍뎅이","roles":["pupa"],"asset":"assets/insects/review/priority-representatives-20260919/megasoma-elephas-pupa-imagegen-v1.png","supports":"번데기방 안의 접힌 날개와 자라는 갈림뿔이 읽히는 관찰 컷"},
+    {"id":"reticulitermes-speratus","koreanName":"일본흰개미","roles":["nymph"],"asset":"assets/insects/review/priority-representatives-20260919/reticulitermes-speratus-nymph-imagegen-v1.png","supports":"날개 없는 연한 약충이 나무 속에서 자라는 단계를 보여 주는 관찰 컷"},
+    {"id":"phidippus-audax","koreanName":"대담한깡충거미","roles":["egg"],"asset":"assets/insects/review/priority-representatives-20260919/phidippus-audax-egg-sack-imagegen-v1.png","supports":"잎 은신처의 하얀 알주머니와 이를 지키는 어미가 읽히는 관찰 컷"}
   ]
 }

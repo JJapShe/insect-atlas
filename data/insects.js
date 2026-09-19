@@ -311,21 +311,46 @@ const priorityGalleryExpansionSpecs = Object.freeze({
   "titanus-giganteus": Object.freeze({ kind: "ecology", prompt: "adult Titan beetle Titanus giganteus climbing a large fallen Amazon rainforest log at night; enormous elongated brown longhorn beetle, broad wing cases, extremely long complete antennae and exactly six legs; complete body, no text, watermark, hands, extra limbs or cropped antennae", body: "밤의 열대우림 쓰러진 나무 위에서 거대한 몸과 긴 더듬이를 관찰하는 타이탄하늘소의 생태 이미지입니다." }),
   "phalacrognathus-muelleri": Object.freeze({ kind: "ecology", prompt: "adult male rainbow stag beetle Phalacrognathus muelleri drinking tree sap on a wet Queensland rainforest trunk at dawn; iridescent green-blue-orange wing cases, branched antler-like mandibles, black legs and exactly six legs; complete body, no text, watermark, fighting, extra limbs or malformed jaws", body: "젖은 나무의 수액 자리에서 무지갯빛 딱지날개와 큰턱을 관찰하는 무지개사슴벌레의 생태 이미지입니다." }),
 });
+const priorityGalleryLifeStageSpecs = Object.freeze({
+  "actias-luna": Object.freeze([
+    Object.freeze({ kind: "larva", role: "유충 관찰", prompt: "Scientific-educational wildlife atlas photograph, vertical 3:2. A single mature Luna moth caterpillar (Actias luna) on the upper surface of one sweetgum leaf in a North American deciduous woodland. The caterpillar is lime green and plump with fine pale yellow side stripes, tiny evenly spaced red-orange dots, a small brown head capsule, normal caterpillar prolegs and a complete unbroken body. Gentle natural daylight, realistic leaf veins and soft forest bokeh, anatomy-led accurate macro field photography. No adult moth, no pupa, no eggs, no text, watermark, extra limbs, duplicate caterpillars, cropped subject, injury, or stylized illustration.", body: "활엽수 잎 위에서 연둣빛 몸과 줄무늬를 키우는 루나나방 유충을 관찰하는 생활사 이미지입니다." }),
+    Object.freeze({ kind: "pupa", role: "고치 속 번데기 관찰", prompt: "Scientific-educational wildlife atlas photograph, vertical 3:2. A single Luna moth (Actias luna) pupa safely enclosed in its thin pale papery silk cocoon, naturally tucked within a curled brown leaf in dry leaf litter of a North American deciduous woodland. The cocoon is complete and intact, slightly translucent enough to suggest the quiet pupa inside without exposing damaged anatomy. Soft dappled daylight, moss, twig and leaf texture, realistic macro field photography. No adult moth, no caterpillar, no eggs, no text, watermark, duplicate cocoons, injury, opened cocoon, extra limbs, or stylized illustration.", body: "낙엽 속 잎을 감싼 고치 안에서 다음 모습을 준비하는 루나나방 번데기 단계입니다." }),
+  ]),
+  "megasoma-elephas": Object.freeze([
+    Object.freeze({ kind: "larva", role: "유충 관찰", prompt: "Scientific-educational wildlife atlas photograph, vertical 3:2. One complete elephant beetle larva (Megasoma elephas) curled in a gentle C-shape in rich dark decaying wood and leaf mold of a Central American tropical forest. It has a thick creamy white segmented grub body, a small chestnut-brown head capsule, exactly three pairs of small thoracic legs, clean normal anatomy and no damage. Humid natural forest-floor macro photography, bark fibres and soft green bokeh. No adult beetle, no pupa, no eggs, no text, watermark, extra limbs, duplicate larvae, exposed innards, injury, or stylized illustration.", body: "썩은 나무와 부식질 속에서 C자 모양으로 자라는 코끼리장수풍뎅이 유충입니다." }),
+    Object.freeze({ kind: "pupa", role: "번데기 관찰", prompt: "Scientific-educational wildlife atlas photograph, vertical 3:2. One male elephant beetle (Megasoma elephas) pupa resting whole and undisturbed inside a smooth earthen pupal cell within decaying wood of a Central American tropical forest. The pupa is pale warm tan, with neatly folded developing wing cases, six developing legs, and the unmistakable developing long forked male horn visible as a smooth attached feature. Complete normal pupa anatomy, gentle humid soil texture, soft natural forest light, realistic macro field photography. No adult beetle, no larva, no eggs, no text, watermark, opened body, damage, extra limbs, duplicate pupae, or stylized illustration.", body: "단단한 번데기방 안에서 날개와 수컷의 갈림뿔이 자리 잡는 코끼리장수풍뎅이 단계입니다." }),
+  ]),
+  "reticulitermes-speratus": Object.freeze([
+    Object.freeze({ kind: "nymph", role: "약충 관찰", prompt: "Scientific-educational wildlife atlas macro photograph, vertical 3:2. Close observation of four wingless juvenile Japanese termites (Reticulitermes speratus), the nymph stage, inside a moist decaying hardwood tunnel in an East Asian forest. They are pale cream-colored, soft-bodied and small, each with complete beadlike antennae and exactly six legs; their backs are rounded and entirely wingless, with no transparent wings and no wing buds. One juvenile is the sharp focus; the others are softly behind it. Natural wood fibres and humid tunnel texture. Absolutely no adult termites, no wings, no soldiers, no ants, no eggs, no text, watermark, extra limbs, injury, or stylized illustration.", body: "번데기를 거치지 않고 탈피하며 자라는 일본흰개미의 연한 약충을 나무 속에서 관찰하는 이미지입니다." }),
+  ]),
+  "phidippus-audax": Object.freeze([
+    Object.freeze({ kind: "egg-sack", role: "알주머니 관찰", prompt: "Scientific-educational wildlife atlas photograph, vertical 3:2. One adult bold jumping spider (Phidippus audax) calmly guarding a small round white silk egg sac inside a curled green leaf shelter on a North American garden shrub. The spider is black and fuzzy with distinct white spots and small orange markings, forward-facing large eyes, and exactly eight complete legs. The egg sac is intact and separate beside her, not opened. Soft natural daylight, botanical leaf texture, realistic macro field photography. No prey, no fighting, no hatched spiderlings, no text, watermark, extra legs, injury, oversized eyes, or stylized illustration.", body: "잎으로 만든 작은 은신처에서 하얀 알주머니를 지키는 대담한깡충거미의 생활사 이미지입니다." }),
+  ]),
+});
 const priorityAddedTodayIds = new Set(["danaus-plexippus", "kallima-inachus", "ranatra-chinensis", "mantispa-japonica"]);
 const newFriendRepresentativeItem = (id) => Object.freeze({
   src: `assets/insects/approved/${id}-individual-imagegen-v1.png`, alt: "", role: "생태 대표 관찰", body: "서식 환경 속 전신 형태를 먼저 살펴보는 AI 생성 대표 이미지입니다. 사용자 검수 뒤에 갤러리를 더 채웁니다.",
   sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-10", generationPrompt: newFriendRepresentativeSpecs[id],
   generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, visual anatomy screening, then unchanged copies into review and approved paths", reviewStatus: "published-pending-user-review",
 });
-const priorityRepresentativeGallery = Object.freeze(Object.fromEntries(Object.entries(priorityRepresentativeSpecs).map(([id, spec]) => [id, Object.freeze([Object.freeze({
-  src: `assets/insects/approved/${id}-individual-imagegen-v1.png`, alt: "", role: "생태 대표 관찰", body: spec.body,
-  sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: `Generated project asset; published to the Insect Atlas gallery at the user's direction on ${priorityAddedTodayIds.has(id) ? "2026-09-19" : "2026-09-17"}`, generationPrompt: spec.prompt,
-  generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, then unchanged copies into review and public-gallery paths", reviewStatus: "published-pending-user-review",
-}), ...(priorityGalleryExpansionSpecs[id] ? [Object.freeze({
-  src: `assets/insects/approved/${id}-${priorityGalleryExpansionSpecs[id].kind}-imagegen-v1.png`, alt: "", role: "생태·행동 관찰", body: priorityGalleryExpansionSpecs[id].body,
-  sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-19", generationPrompt: priorityGalleryExpansionSpecs[id].prompt,
-  generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, then unchanged copies into review and public-gallery paths", reviewStatus: "published-pending-user-review",
-})] : [])])] )));
+const priorityRepresentativeGallery = Object.freeze(Object.fromEntries(Object.entries(priorityRepresentativeSpecs).map(([id, spec]) => {
+  const items = [Object.freeze({
+    src: `assets/insects/approved/${id}-individual-imagegen-v1.png`, alt: "", role: "생태 대표 관찰", body: spec.body,
+    sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: `Generated project asset; published to the Insect Atlas gallery at the user's direction on ${priorityAddedTodayIds.has(id) ? "2026-09-19" : "2026-09-17"}`, generationPrompt: spec.prompt,
+    generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, then unchanged copies into review and public-gallery paths", reviewStatus: "published-pending-user-review",
+  })];
+  if (priorityGalleryExpansionSpecs[id]) items.push(Object.freeze({
+    src: `assets/insects/approved/${id}-${priorityGalleryExpansionSpecs[id].kind}-imagegen-v1.png`, alt: "", role: "생태·행동 관찰", body: priorityGalleryExpansionSpecs[id].body,
+    sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-19", generationPrompt: priorityGalleryExpansionSpecs[id].prompt,
+    generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, then unchanged copies into review and public-gallery paths", reviewStatus: "published-pending-user-review",
+  }));
+  for (const stage of priorityGalleryLifeStageSpecs[id] || []) items.push(Object.freeze({
+    src: `assets/insects/approved/${id}-${stage.kind}-imagegen-v1.png`, alt: "", role: stage.role, body: stage.body,
+    sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-19", generationPrompt: stage.prompt,
+    generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, then unchanged copies into review and public-gallery paths", reviewStatus: "published-pending-user-review",
+  }));
+  return [id, Object.freeze(items)];
+})));
 // Add each screened follow-up to its existing representative, without making a second generic gallery system.
 const newFriendExpansionSpecs = Object.freeze({
   "cerura-felina": Object.freeze({ kind: "larva", prompt: "one mature Cerura felina caterpillar with green body, dark saddle markings and two long forked tail filaments on a fresh willow leaf in a Korean riverside woodland; full caterpillar, no adult moth, egg, pupa, text, watermark, malformed anatomy or cropped subject" }),
