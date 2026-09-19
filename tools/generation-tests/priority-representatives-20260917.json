@@ -28,6 +28,8 @@
     {"id":"danaus-plexippus","koreanName":"제왕나비","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260919/danaus-plexippus-individual-imagegen-v1.png","supports":"주황 날개, 검은 날개맥과 흰 점 테두리가 읽히는 대표 생태 컷"},
     {"id":"kallima-inachus","koreanName":"죽은잎나비","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260919/kallima-inachus-individual-imagegen-v1.png","supports":"마른 잎을 닮은 닫힌 날개와 뾰족한 날개끝이 읽히는 대표 생태 컷"},
     {"id":"ranatra-chinensis","koreanName":"게아재비","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260919/ranatra-chinensis-individual-imagegen-v1.png","supports":"가느다란 수서 몸, 포획 앞다리와 뒤쪽 숨관이 읽히는 대표 생태 컷"},
-    {"id":"mantispa-japonica","koreanName":"사마귀붙이","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260919/mantispa-japonica-individual-imagegen-v1.png","supports":"그물맥 날개와 사마귀처럼 접힌 앞다리가 읽히는 대표 생태 컷"}
+    {"id":"mantispa-japonica","koreanName":"사마귀붙이","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260919/mantispa-japonica-individual-imagegen-v1.png","supports":"그물맥 날개와 사마귀처럼 접힌 앞다리가 읽히는 대표 생태 컷"},
+    {"id":"oecanthus-longicauda","koreanName":"긴꼬리","roles":["ecology"],"asset":"assets/insects/review/priority-representatives-20260919/oecanthus-longicauda-ecology-imagegen-v1.png","supports":"밤의 잎 뒷면과 긴 더듬이가 읽히는 생태 컷"},
+    {"id":"polistes-chinensis-antennalis","koreanName":"두눈박이쌍살벌","roles":["ecology"],"asset":"assets/insects/review/priority-representatives-20260919/polistes-chinensis-antennalis-ecology-imagegen-v1.png","supports":"열린 종이벌집과 긴 다리, 잘록허리가 읽히는 생태 컷"}
   ]
 }
