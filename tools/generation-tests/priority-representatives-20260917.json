@@ -1,6 +1,6 @@
 {
-  "createdAt": "2026-09-17",
-  "scope": "Immediate representative ecology images for the first priority batch, published at the user's direction for separate later review.",
+  "createdAt": "2026-09-19",
+  "scope": "Immediate representative ecology images and early gallery enrichment, published at the user's direction for separate later review.",
   "source": "OpenAI built-in image generation; no external artwork was supplied as input",
   "license": "Generated project assets; published to the Insect Atlas gallery at the user's direction",
   "seed": "service-assigned; not exposed",
@@ -22,6 +22,12 @@
     {"id":"reticulitermes-speratus","koreanName":"일본흰개미","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/reticulitermes-speratus-individual-imagegen-v1.png","supports":"연한 몸의 일개미와 큰 머리 병정개미가 읽히는 대표 생태 컷"},
     {"id":"limulus-polyphemus","koreanName":"대서양투구게","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/limulus-polyphemus-individual-imagegen-v1.png","supports":"말발굽 모양 등딱지와 긴 꼬리검이 읽히는 대표 생태 컷"},
     {"id":"phidippus-audax","koreanName":"대담한깡충거미","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/phidippus-audax-individual-imagegen-v1.png","supports":"검은 털몸, 밝은 점무늬와 큰 앞눈이 읽히는 대표 생태 컷"},
-    {"id":"misumena-vatia","koreanName":"꽃게거미","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/misumena-vatia-individual-imagegen-v1.png","supports":"흰색 몸과 옆으로 벌어진 앞다리가 읽히는 대표 생태 컷"}
+    {"id":"misumena-vatia","koreanName":"꽃게거미","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260917/misumena-vatia-individual-imagegen-v1.png","supports":"흰색 몸과 옆으로 벌어진 앞다리가 읽히는 대표 생태 컷"},
+    {"id":"meloimorpha-japonica","koreanName":"방울벌레","roles":["ecology"],"asset":"assets/insects/review/priority-representatives-20260919/meloimorpha-japonica-ecology-imagegen-v1.png","supports":"해 질 무렵 앞날개를 비비는 행동과 긴 더듬이가 읽히는 생태 컷"},
+    {"id":"gryllus-bimaculatus","koreanName":"쌍별귀뚜라미","roles":["ecology"],"asset":"assets/insects/review/priority-representatives-20260919/gryllus-bimaculatus-ecology-imagegen-v1.png","supports":"흙굴 곁의 검은 몸과 앞날개 두 밝은 점이 읽히는 생태 컷"},
+    {"id":"danaus-plexippus","koreanName":"제왕나비","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260919/danaus-plexippus-individual-imagegen-v1.png","supports":"주황 날개, 검은 날개맥과 흰 점 테두리가 읽히는 대표 생태 컷"},
+    {"id":"kallima-inachus","koreanName":"죽은잎나비","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260919/kallima-inachus-individual-imagegen-v1.png","supports":"마른 잎을 닮은 닫힌 날개와 뾰족한 날개끝이 읽히는 대표 생태 컷"},
+    {"id":"ranatra-chinensis","koreanName":"게아재비","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260919/ranatra-chinensis-individual-imagegen-v1.png","supports":"가느다란 수서 몸, 포획 앞다리와 뒤쪽 숨관이 읽히는 대표 생태 컷"},
+    {"id":"mantispa-japonica","koreanName":"사마귀붙이","roles":["individual"],"asset":"assets/insects/review/priority-representatives-20260919/mantispa-japonica-individual-imagegen-v1.png","supports":"그물맥 날개와 사마귀처럼 접힌 앞다리가 읽히는 대표 생태 컷"}
   ]
 }
