@@ -77,6 +77,14 @@ for (const stage of ["egg", "juvenile"]) {
   const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
   if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
 }
+const armadillidiumLifeStages = insects.find((item) => item.id === "armadillidium-vulgare");
+if (!armadillidiumLifeStages || armadillidiumLifeStages.gallery.length !== 6 || !["brood", "juvenile"].every((stage) => armadillidiumLifeStages.gallery.some((item) => item.src.endsWith(`armadillidium-vulgare-${stage}-imagegen-v1.png`)))) throw new Error("Armadillidium vulgare life-stage gallery is incomplete.");
+for (const stage of ["brood", "juvenile"]) {
+  const fileName = `armadillidium-vulgare-${stage}-imagegen-v1.png`;
+  const reviewCopy = await readFile(new URL(`../assets/insects/review/priority-life-cycle-20260922-g/${fileName}`, import.meta.url));
+  const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
+  if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
+}
 for (const id of illustratedExpansionIds) {
   const insect = insects.find((item) => item.id === id);
   if (!insect || insect.gallery.length !== 4) throw new Error(`Familiar-life expansion needs four varied images: ${id}`);
