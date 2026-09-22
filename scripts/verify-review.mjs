@@ -32,6 +32,7 @@ const expected = new Map([
   ["tools/generation-tests/priority-life-cycle-20260922-e.json", 2],
   ["tools/generation-tests/priority-life-cycle-20260922-f.json", 2],
   ["tools/generation-tests/priority-life-cycle-20260922-g.json", 2],
+  ["tools/generation-tests/priority-life-cycle-20260922-h.json", 2],
 ]);
 for (const [url, count] of expected) {
   const records = recordsByManifest.get(url);
@@ -43,7 +44,7 @@ const records = [...recordsByManifest.values()].flat();
 assert.equal(uniqueAssets(records).length, new Set(records.map((record) => record.asset)).size, "review assets must render once per path");
 assert.equal(uniqueAssets([{ asset: "same.png", id: "first" }, { asset: "same.png", id: "second" }]).length, 1, "duplicate paths collapse");
 const publicGalleryRecords = recordsForPublicGallery(insects);
-assert.equal(publicGalleryRecords.length, 88, "public gallery review sources and unresolved public fallbacks must stay registered");
+assert.equal(publicGalleryRecords.length, 90, "public gallery review sources and unresolved public fallbacks must stay registered");
 await Promise.all(publicGalleryRecords.map((record) => readFile(new URL(`../${record.asset}`, import.meta.url))));
 const sourceRecords = [...records, ...generatedImages, ...publicGalleryRecords.filter((record) => record.reviewStatus !== "공개본 · 검수원본 미확인")];
 const hash = async (asset) => createHash("sha256").update(await readFile(new URL(`../${asset}`, import.meta.url))).digest("hex");
