@@ -1,0 +1,16 @@
+{
+  "createdAt": "2026-09-22",
+  "scope": "Anatomy-screened enrichment of low-count priority galleries and one previously listed world beetle addition, published at the user's direction for later review.",
+  "source": "OpenAI built-in image generation; no external artwork was supplied as input",
+  "license": "Generated project assets; published to the Insect Atlas gallery at the user's direction",
+  "seed": "service-assigned; not exposed",
+  "workflow": "Built-in image generation, unchanged copies into review and approved paths, public status pending user review",
+  "reviewStatus": "published-pending-user-review",
+  "species": [
+    {"id":"danaus-plexippus","koreanName":"제왕나비","roles":["larva"],"asset":"assets/insects/review/priority-gallery-20260922/danaus-plexippus-larva-imagegen-v1.png","supports":"밀크위드 잎 위의 검정·흰색·노랑 줄무늬 유충 생활사 컷"},
+    {"id":"kallima-inachus","koreanName":"죽은잎나비","roles":["ecology"],"asset":"assets/insects/review/priority-gallery-20260922/kallima-inachus-ecology-imagegen-v1.png","supports":"닫힌 갈색 잎무늬 대표컷과 대비되는 주황·남색 날개 윗면 컷"},
+    {"id":"ranatra-chinensis","koreanName":"게아재비","roles":["nymph"],"asset":"assets/insects/review/priority-gallery-20260922/ranatra-chinensis-nymph-imagegen-v1.png","supports":"수초에 붙은 날개 없는 약충과 긴 숨관 생활사 컷"},
+    {"id":"mantispa-japonica","koreanName":"사마귀붙이","roles":["ecology"],"asset":"assets/insects/review/priority-gallery-20260922/mantispa-japonica-ecology-imagegen-v1.png","supports":"고사리 잎 아래의 다른 자세와 그물맥 날개가 읽히는 생태 컷"},
+    {"id":"chalcosoma-atlas","koreanName":"아틀라스장수풍뎅이","roles":["individual"],"asset":"assets/insects/review/priority-gallery-20260922/chalcosoma-atlas-individual-imagegen-v1.png","supports":"수컷의 긴 머리뿔·두 가슴뿔과 짙은 날개딱지가 읽히는 대표 생태 컷"}
+  ]
+}

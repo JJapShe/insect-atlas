@@ -13,6 +13,7 @@ const expected = new Map([
   ["tools/generation-tests/new-friend-representatives-20260910.json", 18],
   ["tools/generation-tests/new-friend-gallery-expansion-20260910.json", 40],
   ["tools/generation-tests/priority-representatives-20260917.json", 34],
+  ["tools/generation-tests/priority-gallery-20260922.json", 5],
 ]);
 for (const [url, count] of expected) {
   const records = recordsByManifest.get(url);
