@@ -69,6 +69,14 @@ for (const stage of ["egg-sack", "juvenile"]) {
   const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
   if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
 }
+const acustaLifeStages = insects.find((item) => item.id === "acusta-despecta");
+if (!acustaLifeStages || acustaLifeStages.gallery.length !== 6 || !["egg", "juvenile"].every((stage) => acustaLifeStages.gallery.some((item) => item.src.endsWith(`acusta-despecta-${stage}-imagegen-v1.png`)))) throw new Error("Acusta despecta life-stage gallery is incomplete.");
+for (const stage of ["egg", "juvenile"]) {
+  const fileName = `acusta-despecta-${stage}-imagegen-v1.png`;
+  const reviewCopy = await readFile(new URL(`../assets/insects/review/priority-life-cycle-20260922-f/${fileName}`, import.meta.url));
+  const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
+  if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
+}
 for (const id of illustratedExpansionIds) {
   const insect = insects.find((item) => item.id === id);
   if (!insect || insect.gallery.length !== 4) throw new Error(`Familiar-life expansion needs four varied images: ${id}`);
