@@ -61,6 +61,14 @@ for (const [id, stages] of familiarLifeStages) {
     if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
   }
 }
+const trichonephilaLifeStages = insects.find((item) => item.id === "trichonephila-clavata");
+if (!trichonephilaLifeStages || trichonephilaLifeStages.gallery.length !== 6 || !["egg-sack", "juvenile"].every((stage) => trichonephilaLifeStages.gallery.some((item) => item.src.endsWith(`trichonephila-clavata-${stage}-imagegen-v1.png`)))) throw new Error("Trichonephila clavata life-stage gallery is incomplete.");
+for (const stage of ["egg-sack", "juvenile"]) {
+  const fileName = `trichonephila-clavata-${stage}-imagegen-v1.png`;
+  const reviewCopy = await readFile(new URL(`../assets/insects/review/priority-life-cycle-20260922-e/${fileName}`, import.meta.url));
+  const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
+  if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
+}
 for (const id of illustratedExpansionIds) {
   const insect = insects.find((item) => item.id === id);
   if (!insect || insect.gallery.length !== 4) throw new Error(`Familiar-life expansion needs four varied images: ${id}`);
