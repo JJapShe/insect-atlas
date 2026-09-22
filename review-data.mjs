@@ -22,6 +22,7 @@ export const manifestUrls = Object.freeze([
   "tools/generation-tests/new-friend-gallery-expansion-20260910.json",
   "tools/generation-tests/priority-representatives-20260917.json",
   "tools/generation-tests/priority-gallery-20260922.json",
+  "tools/generation-tests/priority-gallery-20260922-b.json",
 ]);
 
 const publicReviewFolders = Object.freeze([

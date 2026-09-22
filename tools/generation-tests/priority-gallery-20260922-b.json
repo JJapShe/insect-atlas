@@ -1,0 +1,16 @@
+{
+  "createdAt": "2026-09-22",
+  "scope": "Anatomy-screened ecology and life-stage enrichment for five priority galleries with a single representative image.",
+  "source": "OpenAI built-in image generation; no external artwork was supplied as input",
+  "license": "Generated project assets; published to the Insect Atlas gallery at the user's direction",
+  "seed": "service-assigned; not exposed",
+  "workflow": "Built-in image generation, visual anatomy screening, unchanged copies into review and approved paths, public status pending user review",
+  "reviewStatus": "published-pending-user-review",
+  "species": [
+    {"id":"myrmecocystus-mexicanus","koreanName":"꿀단지개미","roles":["ecology"],"asset":"assets/insects/review/priority-gallery-20260922-b/myrmecocystus-mexicanus-ecology-imagegen-v1.png","supports":"부푼 배의 저장통 일개미와 작은 일반 일개미의 크기·역할 대비"},
+    {"id":"pepsis-grossa","koreanName":"타란툴라매","roles":["ecology"],"asset":"assets/insects/review/priority-gallery-20260922-b/pepsis-grossa-ecology-imagegen-v1.png","supports":"푸른 검은 몸과 주황 날개로 꽃꿀을 마시는 성충 생태"},
+    {"id":"limulus-polyphemus","koreanName":"대서양투구게","roles":["ecology"],"asset":"assets/insects/review/priority-gallery-20260922-b/limulus-polyphemus-ecology-imagegen-v1.png","supports":"말발굽형 등딱지와 한 개의 긴 꼬리검이 보이는 얕은 바다 장면"},
+    {"id":"misumena-vatia","koreanName":"꽃게거미","roles":["ecology"],"asset":"assets/insects/review/priority-gallery-20260922-b/misumena-vatia-ecology-imagegen-v1.png","supports":"꽃 위에서 옆으로 긴 앞다리를 편 8다리 매복 자세"},
+    {"id":"chalcosoma-atlas","koreanName":"아틀라스장수풍뎅이","roles":["larva"],"asset":"assets/insects/review/priority-gallery-20260922-b/chalcosoma-atlas-larva-imagegen-v1.png","supports":"세 쌍의 짧은 가슴다리와 C자 자세가 읽히는 딱정벌레 유충 생활사"}
+  ]
+}
