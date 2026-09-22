@@ -329,9 +329,17 @@ const priorityGalleryLifeStageSpecs = Object.freeze({
   ]),
   "ranatra-chinensis": Object.freeze([
     Object.freeze({ kind: "nymph", role: "약충 관찰", prompt: "one juvenile Chinese water scorpion, Ranatra chinensis, clinging quietly to a submerged reed in a clear East Asian pond; smaller wingless brown true-bug nymph with a slender stick-like body, grasping forelegs, exactly six legs and one long straight rear breathing siphon; no adult wings, terrestrial scorpion, stinger, prey, eggs, text, watermark, extra limbs, cropped subject or stylized illustration", body: "수초 줄기에 붙어 긴 숨관을 물 위로 뻗은 게아재비 약충의 생활사 이미지입니다." }),
+    Object.freeze({ kind: "egg", role: "알 관찰", prompt: "several Chinese water scorpion eggs Ranatra chinensis inserted in a submerged reed stem in a quiet East Asian pond; small elongated pale eggs embedded along a slit with fine paired breathing filaments barely projecting; no adult, nymph, text, watermark, injury, hatchlings or terrestrial scorpion", body: "물속 갈대 줄기에 심어진 게아재비 알과 가는 숨실을 관찰하는 생활사 이미지입니다." }),
   ]),
   "chalcosoma-atlas": Object.freeze([
     Object.freeze({ kind: "larva", role: "유충 관찰", prompt: "one Atlas beetle larva Chalcosoma atlas resting in a loose C-shape in dark damp decaying hardwood and leaf mold in a Southeast Asian rainforest; large creamy white scarab grub with a chestnut-brown head capsule and exactly three pairs of short thoracic legs; complete intact body, no adult beetle, pupa, eggs, text, watermark, caterpillar, extra legs, injury or exposed anatomy", body: "썩은 나무와 부식질 속에서 C자 모양으로 자라는 아틀라스장수풍뎅이 유충입니다." }),
+    Object.freeze({ kind: "pupa", role: "번데기 관찰", prompt: "one male Atlas beetle pupa Chalcosoma atlas resting intact inside a smooth oval earthen pupal cell in Southeast Asian rainforest soil; pale warm tan scarab pupa with folded wing cases, six developing legs, one long head horn and two shorter thoracic horns attached smoothly; no adult, larva, eggs, text, watermark, opened body, damage or extra limbs", body: "흙으로 만든 번데기방 안에서 세 갈래 뿔이 자리 잡는 아틀라스장수풍뎅이 단계입니다." }),
+  ]),
+  "kallima-inachus": Object.freeze([
+    Object.freeze({ kind: "egg", role: "알 관찰", prompt: "a small neat cluster of orange oakleaf butterfly eggs Kallima inachus on the underside of a fresh broad Acanthaceae leaf in a humid South Asian forest; tiny pale yellow-green round eggs with fine vertical ribs, no caterpillar, adult, text, watermark, injury or hatchlings", body: "습한 숲의 잎 뒷면에 붙은 죽은잎나비의 작고 둥근 알 무리입니다." }),
+  ]),
+  "mantispa-japonica": Object.freeze([
+    Object.freeze({ kind: "larva", role: "유충 관찰", prompt: "one mantidfly larva Mantispa japonica beside a small intact white spider egg sac inside a curled dry leaf shelter on an East Asian forest floor; tiny slender pale tan campodeiform larva with small head, short sickle-shaped front jaws, six legs and wingless segmented body; no blood, damage, hatched eggs, adult mantidfly, true mantis, text, watermark or extra limbs", body: "마른 잎 은신처의 거미 알주머니 곁에서 움직이는 사마귀붙이 유충입니다." }),
   ]),
   "meloimorpha-japonica": Object.freeze([
     Object.freeze({ kind: "nymph", role: "약충 관찰", prompt: "one Japanese bell cricket nymph Meloimorpha japonica on a dew-covered Korean meadow grass blade at dawn; warm brown oval wingless juvenile with very long threadlike antennae, short developing wing pads, powerful hind legs and exactly six legs; complete body, no adult wings, eggs, text, watermark, extra limbs, injury or cropped antennae", body: "이슬 맺힌 풀잎 위에서 날개가 아직 짧은 방울벌레 약충을 관찰하는 생활사 이미지입니다." }),
