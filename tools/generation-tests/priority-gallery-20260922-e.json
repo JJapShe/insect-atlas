@@ -1,0 +1,16 @@
+{
+  "createdAt":"2026-09-22",
+  "scope":"Anatomy-screened life-stage and ecology enrichment for five priority galleries.",
+  "source":"OpenAI built-in image generation; no external artwork was supplied as input",
+  "license":"Generated project assets; published to the Insect Atlas gallery at the user's direction",
+  "seed":"service-assigned; not exposed",
+  "workflow":"Built-in image generation, visual anatomy screening, unchanged copies into review and approved paths, public status pending user review",
+  "reviewStatus":"published-pending-user-review",
+  "species":[
+    {"id":"myrmecocystus-mexicanus","koreanName":"꿀단지개미","roles":["interaction"],"asset":"assets/insects/review/priority-gallery-20260922-e/myrmecocystus-mexicanus-interaction-imagegen-v1.png","supports":"저장통 일개미와 작은 일개미의 먹이 나눔"},
+    {"id":"danaus-plexippus","koreanName":"제왕나비","roles":["pupa"],"asset":"assets/insects/review/priority-gallery-20260922-e/danaus-plexippus-pupa-imagegen-v1.png","supports":"밀크위드 잎 아래의 금빛 점무늬 번데기"},
+    {"id":"limulus-polyphemus","koreanName":"대서양투구게","roles":["egg"],"asset":"assets/insects/review/priority-gallery-20260922-e/limulus-polyphemus-egg-imagegen-v1.png","supports":"물가 젖은 모래의 알 무리"},
+    {"id":"misumena-vatia","koreanName":"꽃게거미","roles":["egg-sack"],"asset":"assets/insects/review/priority-gallery-20260922-e/misumena-vatia-egg-sack-imagegen-v1.png","supports":"잎 뒷면의 알주머니와 여덟 다리"},
+    {"id":"pepsis-grossa","koreanName":"타란툴라매","roles":["interaction"],"asset":"assets/insects/review/priority-gallery-20260922-e/pepsis-grossa-interaction-imagegen-v1.png","supports":"먹잇감 없이 굴 입구에 선 성충의 형태와 환경"}
+  ]
+}

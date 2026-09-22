@@ -325,6 +325,7 @@ const priorityGalleryLifeStageSpecs = Object.freeze({
   ]),
   "danaus-plexippus": Object.freeze([
     Object.freeze({ kind: "larva", role: "유충 관찰", prompt: "one monarch butterfly caterpillar, Danaus plexippus, eating a milkweed leaf in a North American meadow; complete plump caterpillar with crisp alternating black, white and yellow bands, small black head, exactly three pairs of thoracic legs and normal abdominal prolegs; no adult butterfly, pupa, eggs, text, watermark, extra limbs, injury, cropped body or stylized illustration", body: "밀크위드 잎을 먹으며 검정·흰색·노랑 줄무늬를 보이는 제왕나비 유충입니다." }),
+    Object.freeze({ kind: "pupa", role: "번데기 관찰", prompt: "one intact monarch butterfly chrysalis Danaus plexippus suspended beneath a milkweed leaf in a North American meadow; smooth jade-green teardrop chrysalis with a neat line of tiny metallic gold dots and a short black silk attachment; no adult, larva, text, watermark, damage or exposed anatomy", body: "밀크위드 잎 아래에서 금빛 점무늬를 두른 제왕나비 번데기입니다." }),
   ]),
   "ranatra-chinensis": Object.freeze([
     Object.freeze({ kind: "nymph", role: "약충 관찰", prompt: "one juvenile Chinese water scorpion, Ranatra chinensis, clinging quietly to a submerged reed in a clear East Asian pond; smaller wingless brown true-bug nymph with a slender stick-like body, grasping forelegs, exactly six legs and one long straight rear breathing siphon; no adult wings, terrestrial scorpion, stinger, prey, eggs, text, watermark, extra limbs, cropped subject or stylized illustration", body: "수초 줄기에 붙어 긴 숨관을 물 위로 뻗은 게아재비 약충의 생활사 이미지입니다." }),
@@ -346,6 +347,18 @@ const priorityGalleryLifeStageSpecs = Object.freeze({
   ]),
   "hydropsyche-orientalis": Object.freeze([
     Object.freeze({ kind: "larva", role: "유충 관찰", prompt: "one Oriental caddisfly larva Hydropsyche orientalis attached to a submerged rounded stone in a clear fast Korean mountain stream beside its fine silk catching net; segmented olive-brown larva with dark head capsule, three pairs of thoracic legs and short rear hooks, no wings or long mayfly tails; complete body, no adult, text, watermark, extra limbs or injury", body: "흐르는 물의 돌에 붙어 작은 실그물을 친 동양날도래 유충입니다." }),
+  ]),
+  "myrmecocystus-mexicanus": Object.freeze([
+    Object.freeze({ kind: "interaction", role: "동료 먹이 나눔", prompt: "two ordinary honeypot ant workers Myrmecocystus mexicanus sharing a tiny nectar droplet with one large hanging replete worker inside a sandy underground nest; transparent amber swollen abdomen, smaller workers have elbowed antennae and exactly six legs; no queen, wings, text, watermark, detached abdomen, injury or extra limbs", body: "작은 일개미가 저장통 일개미와 먹이를 나누는 꿀단지개미의 둥지 모습입니다." }),
+  ]),
+  "pepsis-grossa": Object.freeze([
+    Object.freeze({ kind: "interaction", role: "둥지 주변 관찰", prompt: "one adult female tarantula hawk wasp Pepsis grossa standing at a small sandy desert burrow entrance; iridescent blue-black body, vivid orange folded wings, narrow waist, long legs, antennae and exactly six legs; no spider, prey, stinging, blood, text, watermark, injury or extra limbs", body: "모래 굴 입구에서 주변을 살피는 타란툴라매의 생태 이미지입니다." }),
+  ]),
+  "limulus-polyphemus": Object.freeze([
+    Object.freeze({ kind: "egg", role: "알 관찰", prompt: "a shallow nest depression of Atlantic horseshoe crab eggs Limulus polyphemus in damp North American coastal sand at the waterline; small round translucent pale green-gray eggs partly covered by wet sand, one adult softly blurred far behind; no text, watermark, blood, injury or exposed contents", body: "물가의 젖은 모래 속에 자리 잡은 대서양투구게 알 무리입니다." }),
+  ]),
+  "misumena-vatia": Object.freeze([
+    Object.freeze({ kind: "egg-sack", role: "알주머니 관찰", prompt: "one female goldenrod crab spider Misumena vatia guarding a compact pale silk egg sac on the underside of a broad green meadow leaf; pale yellow-white body, sideways longer front legs and exactly eight intact legs; no prey, text, watermark, injury, hatched spiderlings or extra legs", body: "잎 뒷면의 작은 알주머니 곁을 지키는 꽃게거미입니다." }),
   ]),
   "papilio-maackii": Object.freeze([
     Object.freeze({ kind: "pupa", role: "번데기 관찰", prompt: "one small Maack's swallowtail chrysalis Papilio maackii fixed upright to a thin Korean woodland twig by a fine white silk girdle; compact angular green pupa with a small pointed head tip and pale cream side stripe, clearly an insect chrysalis not a leaf; no adult, larva, cocoon, text, watermark, damage or exposed anatomy", body: "가는 가지에 실띠로 고정되어 다음 모습을 준비하는 산제비나비 번데기입니다." }),
