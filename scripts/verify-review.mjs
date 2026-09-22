@@ -15,6 +15,7 @@ const expected = new Map([
   ["tools/generation-tests/priority-representatives-20260917.json", 34],
   ["tools/generation-tests/priority-gallery-20260922.json", 5],
   ["tools/generation-tests/priority-gallery-20260922-b.json", 5],
+  ["tools/generation-tests/priority-gallery-20260922-c.json", 5],
 ]);
 for (const [url, count] of expected) {
   const records = recordsByManifest.get(url);

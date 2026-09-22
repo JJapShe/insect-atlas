@@ -1,0 +1,16 @@
+{
+  "createdAt": "2026-09-22",
+  "scope": "Anatomy-screened life-stage enrichment for five low-count priority insect galleries.",
+  "source": "OpenAI built-in image generation; no external artwork was supplied as input",
+  "license": "Generated project assets; published to the Insect Atlas gallery at the user's direction",
+  "seed": "service-assigned; not exposed",
+  "workflow": "Built-in image generation, visual anatomy screening, unchanged copies into review and approved paths, public status pending user review",
+  "reviewStatus": "published-pending-user-review",
+  "species": [
+    {"id":"meloimorpha-japonica","koreanName":"방울벌레","roles":["nymph"],"asset":"assets/insects/review/priority-gallery-20260922-c/meloimorpha-japonica-nymph-imagegen-v1.png","supports":"날개가 짧은 갈색 약충과 긴 더듬이를 보이는 불완전변태 생활사"},
+    {"id":"gryllus-bimaculatus","koreanName":"쌍별귀뚜라미","roles":["nymph"],"asset":"assets/insects/review/priority-gallery-20260922-c/gryllus-bimaculatus-nymph-imagegen-v1.png","supports":"검은 몸과 앞날개 자리의 두 밝은 점, 짧은 날개싹을 보이는 약충"},
+    {"id":"oecanthus-longicauda","koreanName":"긴꼬리","roles":["nymph"],"asset":"assets/insects/review/priority-gallery-20260922-c/oecanthus-longicauda-nymph-imagegen-v1.png","supports":"연둣빛 몸과 매우 긴 더듬이, 성충 날개 전의 약충 단계"},
+    {"id":"polistes-chinensis-antennalis","koreanName":"두눈박이쌍살벌","roles":["pupa"],"asset":"assets/insects/review/priority-gallery-20260922-c/polistes-chinensis-antennalis-pupa-imagegen-v1.png","supports":"열린 종이벌집 방 안의 온전한 번데기 단계"},
+    {"id":"hydropsyche-orientalis","koreanName":"동양날도래","roles":["larva"],"asset":"assets/insects/review/priority-gallery-20260922-c/hydropsyche-orientalis-larva-imagegen-v1.png","supports":"흐르는 물의 돌과 실그물에 붙은 수서 유충 단계"}
+  ]
+}

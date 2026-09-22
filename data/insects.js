@@ -332,6 +332,21 @@ const priorityGalleryLifeStageSpecs = Object.freeze({
   "chalcosoma-atlas": Object.freeze([
     Object.freeze({ kind: "larva", role: "유충 관찰", prompt: "one Atlas beetle larva Chalcosoma atlas resting in a loose C-shape in dark damp decaying hardwood and leaf mold in a Southeast Asian rainforest; large creamy white scarab grub with a chestnut-brown head capsule and exactly three pairs of short thoracic legs; complete intact body, no adult beetle, pupa, eggs, text, watermark, caterpillar, extra legs, injury or exposed anatomy", body: "썩은 나무와 부식질 속에서 C자 모양으로 자라는 아틀라스장수풍뎅이 유충입니다." }),
   ]),
+  "meloimorpha-japonica": Object.freeze([
+    Object.freeze({ kind: "nymph", role: "약충 관찰", prompt: "one Japanese bell cricket nymph Meloimorpha japonica on a dew-covered Korean meadow grass blade at dawn; warm brown oval wingless juvenile with very long threadlike antennae, short developing wing pads, powerful hind legs and exactly six legs; complete body, no adult wings, eggs, text, watermark, extra limbs, injury or cropped antennae", body: "이슬 맺힌 풀잎 위에서 날개가 아직 짧은 방울벌레 약충을 관찰하는 생활사 이미지입니다." }),
+  ]),
+  "gryllus-bimaculatus": Object.freeze([
+    Object.freeze({ kind: "nymph", role: "약충 관찰", prompt: "one juvenile two-spotted field cricket Gryllus bimaculatus sheltering under a dry Korean grassland stone; glossy black wingless nymph with two small pale yellow marks at the wing-pad area, long antennae, strong hind legs and exactly six legs; complete body, no adult wings, eggs, text, watermark, extra limbs or injury", body: "돌 아래에서 앞날개의 밝은 점과 짧은 날개싹을 보이는 쌍별귀뚜라미 약충입니다." }),
+  ]),
+  "oecanthus-longicauda": Object.freeze([
+    Object.freeze({ kind: "nymph", role: "약충 관찰", prompt: "one Japanese tree cricket nymph Oecanthus longicauda on the underside of a Korean shrub leaf at dusk; slender pale green wingless juvenile with extremely long antennae, tiny wing pads, long hind legs and exactly six legs; complete body, no adult wings, eggs, text, watermark, extra limbs, injury or cropped antennae", body: "잎 뒷면에서 매우 긴 더듬이와 작은 날개싹을 보이는 긴꼬리 약충입니다." }),
+  ]),
+  "polistes-chinensis-antennalis": Object.freeze([
+    Object.freeze({ kind: "pupa", role: "번데기 관찰", prompt: "one Asian paper wasp pupa Polistes chinensis antennalis safely developing inside a single intact open paper-nest cell beneath a Korean garden eave; pale cream pupa enclosed by a thin translucent cocoon cap, folded wings and legs gently suggested; no adult, damage, human hands, text, watermark, honeycomb wax or exposed anatomy", body: "종이처럼 얇은 벌집 방 안에서 다음 모습을 준비하는 두눈박이쌍살벌 번데기입니다." }),
+  ]),
+  "hydropsyche-orientalis": Object.freeze([
+    Object.freeze({ kind: "larva", role: "유충 관찰", prompt: "one Oriental caddisfly larva Hydropsyche orientalis attached to a submerged rounded stone in a clear fast Korean mountain stream beside its fine silk catching net; segmented olive-brown larva with dark head capsule, three pairs of thoracic legs and short rear hooks, no wings or long mayfly tails; complete body, no adult, text, watermark, extra limbs or injury", body: "흐르는 물의 돌에 붙어 작은 실그물을 친 동양날도래 유충입니다." }),
+  ]),
   "megasoma-elephas": Object.freeze([
     Object.freeze({ kind: "larva", role: "유충 관찰", prompt: "Scientific-educational wildlife atlas photograph, vertical 3:2. One complete elephant beetle larva (Megasoma elephas) curled in a gentle C-shape in rich dark decaying wood and leaf mold of a Central American tropical forest. It has a thick creamy white segmented grub body, a small chestnut-brown head capsule, exactly three pairs of small thoracic legs, clean normal anatomy and no damage. Humid natural forest-floor macro photography, bark fibres and soft green bokeh. No adult beetle, no pupa, no eggs, no text, watermark, extra limbs, duplicate larvae, exposed innards, injury, or stylized illustration.", body: "썩은 나무와 부식질 속에서 C자 모양으로 자라는 코끼리장수풍뎅이 유충입니다." }),
     Object.freeze({ kind: "pupa", role: "번데기 관찰", prompt: "Scientific-educational wildlife atlas photograph, vertical 3:2. One male elephant beetle (Megasoma elephas) pupa resting whole and undisturbed inside a smooth earthen pupal cell within decaying wood of a Central American tropical forest. The pupa is pale warm tan, with neatly folded developing wing cases, six developing legs, and the unmistakable developing long forked male horn visible as a smooth attached feature. Complete normal pupa anatomy, gentle humid soil texture, soft natural forest light, realistic macro field photography. No adult beetle, no larva, no eggs, no text, watermark, opened body, damage, extra limbs, duplicate pupae, or stylized illustration.", body: "단단한 번데기방 안에서 날개와 수컷의 갈림뿔이 자리 잡는 코끼리장수풍뎅이 단계입니다." }),
@@ -343,7 +358,8 @@ const priorityGalleryLifeStageSpecs = Object.freeze({
     Object.freeze({ kind: "egg-sack", role: "알주머니 관찰", prompt: "Scientific-educational wildlife atlas photograph, vertical 3:2. One adult bold jumping spider (Phidippus audax) calmly guarding a small round white silk egg sac inside a curled green leaf shelter on a North American garden shrub. The spider is black and fuzzy with distinct white spots and small orange markings, forward-facing large eyes, and exactly eight complete legs. The egg sac is intact and separate beside her, not opened. Soft natural daylight, botanical leaf texture, realistic macro field photography. No prey, no fighting, no hatched spiderlings, no text, watermark, extra legs, injury, oversized eyes, or stylized illustration.", body: "잎으로 만든 작은 은신처에서 하얀 알주머니를 지키는 대담한깡충거미의 생활사 이미지입니다." }),
   ]),
 });
-const priorityPublicationDates = new Map([["danaus-plexippus", "2026-09-19"], ["kallima-inachus", "2026-09-19"], ["ranatra-chinensis", "2026-09-19"], ["mantispa-japonica", "2026-09-19"], ["chalcosoma-atlas", "2026-09-22"], ["myrmecocystus-mexicanus", "2026-09-22"], ["pepsis-grossa", "2026-09-22"], ["limulus-polyphemus", "2026-09-22"], ["misumena-vatia", "2026-09-22"]]);
+const priorityRepresentativePublicationDates = new Map([["danaus-plexippus", "2026-09-19"], ["kallima-inachus", "2026-09-19"], ["ranatra-chinensis", "2026-09-19"], ["mantispa-japonica", "2026-09-19"], ["chalcosoma-atlas", "2026-09-22"]]);
+const priorityFollowUpPublicationDates = new Map([["myrmecocystus-mexicanus", "2026-09-22"], ["pepsis-grossa", "2026-09-22"], ["limulus-polyphemus", "2026-09-22"], ["misumena-vatia", "2026-09-22"], ["chalcosoma-atlas", "2026-09-22"], ["meloimorpha-japonica", "2026-09-22"], ["gryllus-bimaculatus", "2026-09-22"], ["oecanthus-longicauda", "2026-09-22"], ["polistes-chinensis-antennalis", "2026-09-22"], ["hydropsyche-orientalis", "2026-09-22"]]);
 const newFriendRepresentativeItem = (id) => Object.freeze({
   src: `assets/insects/approved/${id}-individual-imagegen-v1.png`, alt: "", role: "생태 대표 관찰", body: "서식 환경 속 전신 형태를 먼저 살펴보는 AI 생성 대표 이미지입니다. 사용자 검수 뒤에 갤러리를 더 채웁니다.",
   sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: "Generated project asset; published to the Insect Atlas gallery at the user's direction on 2026-09-10", generationPrompt: newFriendRepresentativeSpecs[id],
@@ -352,17 +368,17 @@ const newFriendRepresentativeItem = (id) => Object.freeze({
 const priorityRepresentativeGallery = Object.freeze(Object.fromEntries(Object.entries(priorityRepresentativeSpecs).map(([id, spec]) => {
   const items = [Object.freeze({
     src: `assets/insects/approved/${id}-individual-imagegen-v1.png`, alt: "", role: "생태 대표 관찰", body: spec.body,
-    sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: `Generated project asset; published to the Insect Atlas gallery at the user's direction on ${priorityPublicationDates.get(id) || "2026-09-17"}`, generationPrompt: spec.prompt,
+    sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: `Generated project asset; published to the Insect Atlas gallery at the user's direction on ${priorityRepresentativePublicationDates.get(id) || "2026-09-17"}`, generationPrompt: spec.prompt,
     generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, then unchanged copies into review and public-gallery paths", reviewStatus: "published-pending-user-review",
   })];
   if (priorityGalleryExpansionSpecs[id]) items.push(Object.freeze({
     src: `assets/insects/approved/${id}-${priorityGalleryExpansionSpecs[id].kind}-imagegen-v1.png`, alt: "", role: "생태·행동 관찰", body: priorityGalleryExpansionSpecs[id].body,
-    sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: `Generated project asset; published to the Insect Atlas gallery at the user's direction on ${priorityPublicationDates.get(id) || "2026-09-19"}`, generationPrompt: priorityGalleryExpansionSpecs[id].prompt,
+    sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: `Generated project asset; published to the Insect Atlas gallery at the user's direction on ${priorityFollowUpPublicationDates.get(id) || "2026-09-19"}`, generationPrompt: priorityGalleryExpansionSpecs[id].prompt,
     generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, then unchanged copies into review and public-gallery paths", reviewStatus: "published-pending-user-review",
   }));
   for (const stage of priorityGalleryLifeStageSpecs[id] || []) items.push(Object.freeze({
     src: `assets/insects/approved/${id}-${stage.kind}-imagegen-v1.png`, alt: "", role: stage.role, body: stage.body,
-    sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: `Generated project asset; published to the Insect Atlas gallery at the user's direction on ${priorityPublicationDates.get(id) || "2026-09-19"}`, generationPrompt: stage.prompt,
+    sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: `Generated project asset; published to the Insect Atlas gallery at the user's direction on ${priorityFollowUpPublicationDates.get(id) || "2026-09-19"}`, generationPrompt: stage.prompt,
     generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, then unchanged copies into review and public-gallery paths", reviewStatus: "published-pending-user-review",
   }));
   return [id, Object.freeze(items)];
