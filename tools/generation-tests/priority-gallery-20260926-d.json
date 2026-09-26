@@ -1,0 +1,18 @@
+{
+  "createdAt": "2026-09-26",
+  "scope": "Ranatra chinensis Chinese water scorpion ecology-gallery enrichment, published at the user's direction for later review.",
+  "source": "OpenAI built-in image generation; no external artwork was supplied as input",
+  "license": "Generated project asset; published to the Insect Atlas gallery at the user's direction",
+  "seed": "service-assigned; not exposed",
+  "workflow": "Built-in image generation, visual anatomy screening, unchanged copies into review and approved paths, public status pending user review",
+  "reviewStatus": "published-pending-user-review",
+  "records": [
+    {
+      "id": "ranatra-chinensis",
+      "koreanName": "게아재비",
+      "role": "ecology",
+      "asset": "assets/insects/review/priority-gallery-20260926-d/ranatra-chinensis-ecology-imagegen-v1.png",
+      "supports": "수초 사이에서 긴 숨관을 수면에 대고 온전한 작은 새우를 앞다리로 붙잡은 성체"
+    }
+  ]
+}

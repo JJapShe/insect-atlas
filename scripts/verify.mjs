@@ -150,6 +150,14 @@ const deroplatysGallery = insects.find((item) => item.id === "deroplatys-desicca
   const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
   if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
 }
+const ranatraGallery = insects.find((item) => item.id === "ranatra-chinensis");
+{
+  const fileName = "ranatra-chinensis-ecology-imagegen-v1.png";
+  if (!ranatraGallery || ranatraGallery.gallery.length !== 4 || !ranatraGallery.gallery.some((item) => item.src.endsWith(fileName))) throw new Error("Ranatra chinensis ecology gallery is incomplete.");
+  const reviewCopy = await readFile(new URL(`../assets/insects/review/priority-gallery-20260926-d/${fileName}`, import.meta.url));
+  const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
+  if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
+}
 for (const id of illustratedExpansionIds) {
   const insect = insects.find((item) => item.id === id);
   if (!insect || insect.gallery.length !== 4) throw new Error(`Familiar-life expansion needs four varied images: ${id}`);
