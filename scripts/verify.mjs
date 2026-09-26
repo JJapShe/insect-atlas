@@ -118,6 +118,14 @@ for (const fileName of pagurusFiles) {
   const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
   if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
 }
+const birgusLifeStages = insects.find((item) => item.id === "birgus-latro");
+{
+  const fileName = "birgus-latro-larva-imagegen-v1.png";
+  if (!birgusLifeStages || birgusLifeStages.gallery.length !== 4 || !birgusLifeStages.gallery.some((item) => item.src.endsWith(fileName))) throw new Error("Birgus latro larval gallery is incomplete.");
+  const reviewCopy = await readFile(new URL(`../assets/insects/review/priority-life-cycle-20260926-a/${fileName}`, import.meta.url));
+  const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
+  if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
+}
 for (const id of illustratedExpansionIds) {
   const insect = insects.find((item) => item.id === id);
   if (!insect || insect.gallery.length !== 4) throw new Error(`Familiar-life expansion needs four varied images: ${id}`);

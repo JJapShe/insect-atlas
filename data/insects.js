@@ -415,6 +415,7 @@ const priorityGalleryLifeStageSpecs = Object.freeze({
   ]),
   "birgus-latro": Object.freeze([
     Object.freeze({ kind: "juvenile", role: "어린 육지게 관찰", prompt: "one tiny juvenile coconut crab Birgus latro just after settling near a tropical island shore, using one small empty snail shell as a temporary home; pale cream-brown body with faint brown stripes, one small larger left claw, two antennae and visible walking legs, partly tucked into a single empty natural snail shell; no adult coconut crab, other animals, human, text, watermark, extra legs or claws, colorful decorative shell or cropped body", body: "육지 생활을 막 시작해 빈 껍데기를 임시 집으로 쓰는 어린 코코넛크랩의 성장 이미지입니다." }),
+    Object.freeze({ kind: "larva", role: "바다 유생 관찰", publicationDate: "2026-09-26", prompt: "one early marine larva of the coconut crab Birgus latro in shallow clear tropical island seawater, a realistic small translucent tan-orange crab larva with a compact oval carapace, two large dark eyes, two antennae and delicate symmetrical swimming appendages, drifting beside a few natural sea-grass blades; no shore or dry land, adult crab, shell, lobster, fish, human, text, watermark, duplicated body parts, extra claws, malformed anatomy or cropped subject", body: "바다에서 떠다니며 자라는 코코넛크랩의 작은 유생을 관찰하는 생활사 이미지입니다." }),
   ]),
   "chrysina-gloriosa": Object.freeze([
     Object.freeze({ kind: "larva", role: "유충 관찰", prompt: "one complete glorious jewel scarab larva Chrysina gloriosa in a shallow chamber inside a moist decaying Arizona sycamore log; plump creamy-white scarab grub in a gentle C shape, chestnut-brown head capsule, small dark mandibles and exactly three pairs of short thoracic legs; realistic wildlife macro photograph, no adult, pupa, eggs, cocoon, injury, exposed anatomy, text, watermark, extra legs, centipede anatomy or cropped body", body: "썩은 나무 속 방에서 밤색 머리와 세 쌍의 짧은 다리를 보이는 보석풍뎅이 유충입니다." }),
@@ -449,7 +450,7 @@ const priorityRepresentativeGallery = Object.freeze(Object.fromEntries(Object.en
   }));
   for (const stage of priorityGalleryLifeStageSpecs[id] || []) items.push(Object.freeze({
     src: `assets/insects/approved/${id}-${stage.kind}-imagegen-v1.png`, alt: "", role: stage.role, body: stage.body,
-    sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: `Generated project asset; published to the Insect Atlas gallery at the user's direction on ${priorityFollowUpPublicationDates.get(id) || "2026-09-19"}`, generationPrompt: stage.prompt,
+    sourceAttribution: "OpenAI built-in image generation; no external artwork was supplied as input", license: `Generated project asset; published to the Insect Atlas gallery at the user's direction on ${stage.publicationDate || priorityFollowUpPublicationDates.get(id) || "2026-09-19"}`, generationPrompt: stage.prompt,
     generationSeed: "service-assigned; not exposed", generationWorkflow: "Built-in image generation, then unchanged copies into review and public-gallery paths", reviewStatus: "published-pending-user-review",
   }));
   return [id, Object.freeze(items)];
