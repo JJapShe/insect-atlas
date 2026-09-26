@@ -51,6 +51,7 @@ export const manifestUrls = Object.freeze([
   "tools/generation-tests/priority-life-cycle-20260926-b.json",
   "tools/generation-tests/priority-life-cycle-20260926-c.json",
   "tools/generation-tests/priority-gallery-20260926-d.json",
+  "tools/generation-tests/priority-life-cycle-20260926-d.json",
 ]);
 
 const publicReviewFolders = Object.freeze([
@@ -76,6 +77,7 @@ const reviewAssetByPublicFile = new Map([
   ["macroglossum-pyrrhosticta-egg-imagegen-v1.png", "assets/insects/review/priority-life-cycle-20260926-b/macroglossum-pyrrhosticta-egg-imagegen-v1.png"],
   ["kallima-inachus-pupa-imagegen-v1.png", "assets/insects/review/priority-life-cycle-20260926-c/kallima-inachus-pupa-imagegen-v1.png"],
   ["ranatra-chinensis-ecology-imagegen-v1.png", "assets/insects/review/priority-gallery-20260926-d/ranatra-chinensis-ecology-imagegen-v1.png"],
+  ["meloimorpha-japonica-egg-imagegen-v1.png", "assets/insects/review/priority-life-cycle-20260926-d/meloimorpha-japonica-egg-imagegen-v1.png"],
   ["trypoxylus-dichotomus-interaction-imagegen-v1.png", "assets/insects/review/replaced-combat-20260905/trypoxylus-dichotomus-interaction-2-imagegen-v1.png"],
   ["tenodera-sinensis-interaction-imagegen-v1.png", "assets/insects/review/replaced-combat-20260905/tenodera-sinensis-interaction-2-imagegen-v1.png"],
   ...["dipentium-japonicum-ecology-2-imagegen-v1.png", "pulex-irritans-ecology-2-imagegen-v1.png", "monomorium-chinense-ecology-2-imagegen-v1.png", "brephidium-exilis-ecology-2-imagegen-v1.png", "eriophyes-tiliae-ecology-2-imagegen-v1.png", "lissachatina-fulica-ecology-2-imagegen-v1.png", "limax-flavus-ecology-2-imagegen-v1.png", "maratus-volans-ecology-2-imagegen-v1.png", "greta-oto-ecology-2-imagegen-v1.png", "sphaerocoris-annulus-ecology-2-imagegen-v1.png", "catoxantha-purpurea-ecology-2-imagegen-v1.png", "polymita-picta-ecology-2-imagegen-v1.png", "bombyx-mori-larva-imagegen-v1.png", "tenebrio-molitor-larva-imagegen-v1.png"].map((file) => [file, `assets/insects/review/new-friend-gallery-expansion-20260910/${file}`]),

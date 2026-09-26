@@ -1,0 +1,18 @@
+{
+  "createdAt": "2026-09-26",
+  "scope": "Meloimorpha japonica Japanese bell cricket egg-stage gallery enrichment, published at the user's direction for later review.",
+  "source": "OpenAI built-in image generation; no external artwork was supplied as input",
+  "license": "Generated project asset; published to the Insect Atlas gallery at the user's direction",
+  "seed": "service-assigned; not exposed",
+  "workflow": "Built-in image generation, visual anatomy screening, unchanged copies into review and approved paths, public status pending user review",
+  "reviewStatus": "published-pending-user-review",
+  "records": [
+    {
+      "id": "meloimorpha-japonica",
+      "koreanName": "방울벌레",
+      "role": "egg",
+      "asset": "assets/insects/review/priority-life-cycle-20260926-d/meloimorpha-japonica-egg-imagegen-v1.png",
+      "supports": "풀뿌리 가까운 흙에 놓인 옅은 타원형 알 무리와 성체"
+    }
+  ]
+}
