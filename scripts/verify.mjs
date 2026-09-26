@@ -19,6 +19,7 @@ const newFriendExtraExpansionIds = new Set(["cerura-felina", "chrysiridia-rhiphe
 const priorityRepresentativeIds = new Set(["meloimorpha-japonica", "gryllus-bimaculatus", "oecanthus-longicauda", "polistes-chinensis-antennalis", "hydropsyche-orientalis", "papilio-maackii", "titanus-giganteus", "phalacrognathus-muelleri", "actias-luna", "megasoma-elephas", "myrmecocystus-mexicanus", "pepsis-grossa", "reticulitermes-speratus", "limulus-polyphemus", "phidippus-audax", "misumena-vatia", "danaus-plexippus", "kallima-inachus", "ranatra-chinensis", "mantispa-japonica", "chalcosoma-atlas", "graphium-sarpedon", "argiope-amoena", "dendrolimus-spectabilis", "birgus-latro", "chrysina-gloriosa", "macroglossum-pyrrhosticta", "deroplatys-desiccata"]);
 const newFriendExtraCounts = new Map([["cerura-felina", 2], ["chrysiridia-rhipheus", 2], ["theraphosa-blondi", 2], ["mymaridae", 2], ["dipentium-japonicum", 2], ["pulex-irritans", 2], ["monomorium-chinense", 2], ["brephidium-exilis", 2], ["eriophyes-tiliae", 2], ["lissachatina-fulica", 2], ["limax-flavus", 2], ["maratus-volans", 2], ["greta-oto", 2], ["sphaerocoris-annulus", 2], ["catoxantha-purpurea", 2], ["polymita-picta", 2], ["bombyx-mori", 2], ["tenebrio-molitor", 2]]);
 const illustratedNonInsectIds = new Set(["trichonephila-clavata", "armadillidium-vulgare", "acusta-despecta", "pandinus-imperator"]);
+const directGalleryIds = new Set(["pagurus-minutus"]);
 const illustratedFamiliarInsectIds = new Set(["aquarius-paludum", "chrysopa-intima", "lycorma-delicatula"]);
 const illustratedExpansionIds = new Set(["anechura-japonica", "aphis-gossypii", "blattella-germanica", "scolopendra-subspinipes-mutilans", "bradybaena-similaris", "eisenia-fetida"]);
 const familiarLocalIds = new Set(["coccinella-septempunctata", "zizeeria-maha", "meimuna-mongolica", "episyrphus-balteatus", "oxya-japonica", "atractomorpha-lata", "plutella-xylostella", "formica-japonica"]);
@@ -44,7 +45,7 @@ const completeMetamorphosisIds = new Set([
 const lifeStages = ["egg", "larva", "pupa"];
 const lifeStageSpecies = insects.filter((insect) => completeMetamorphosisIds.has(insect.id));
 if (completeMetamorphosisIds.size !== 42 || lifeStageSpecies.length !== completeMetamorphosisIds.size || lifeStageSpecies.some((insect) => insect.gallery.length !== 7)) throw new Error("Every complete-metamorphosis species must retain seven gallery images.");
-if (incompleteMetamorphosisIds.length !== 22 || new Set(incompleteMetamorphosisIds).size !== 22 || insects.filter((insect) => insect.reviewStatus !== "draft" && !completeMetamorphosisIds.has(insect.id) && !illustratedNonInsectIds.has(insect.id) && !illustratedFamiliarInsectIds.has(insect.id) && !illustratedExpansionIds.has(insect.id) && !familiarLocalIds.has(insect.id) && !rareFamousIds.has(insect.id) && !familiarNextIds.has(insect.id) && !newFriendRepresentativeIds.has(insect.id) && !priorityRepresentativeIds.has(insect.id)).some((insect) => !incompleteMetamorphosisIds.includes(insect.id))) throw new Error("The incomplete-metamorphosis goal must cover all illustrated insect records.");
+if (incompleteMetamorphosisIds.length !== 22 || new Set(incompleteMetamorphosisIds).size !== 22 || insects.filter((insect) => insect.reviewStatus !== "draft" && !completeMetamorphosisIds.has(insect.id) && !illustratedNonInsectIds.has(insect.id) && !directGalleryIds.has(insect.id) && !illustratedFamiliarInsectIds.has(insect.id) && !illustratedExpansionIds.has(insect.id) && !familiarLocalIds.has(insect.id) && !rareFamousIds.has(insect.id) && !familiarNextIds.has(insect.id) && !newFriendRepresentativeIds.has(insect.id) && !priorityRepresentativeIds.has(insect.id)).some((insect) => !incompleteMetamorphosisIds.includes(insect.id))) throw new Error("The incomplete-metamorphosis goal must cover all illustrated insect records.");
 if ([...newFriendRepresentativeIds].some((id) => {
   const insect = insects.find((item) => item.id === id);
   return !insect || insect.gallery.length !== (newFriendExpansionIds.has(id) ? 2 + (newFriendExtraCounts.get(id) || Number(newFriendExtraExpansionIds.has(id))) : 1) || insect.reviewStatus !== "gallery-published-pending-user-review" || insect.gallery[0].role !== "생태 대표 관찰" || insect.familiarityLevel !== 1 || !insect.region.includes("새로운 친구");
@@ -109,6 +110,14 @@ if (!limulusLifeStages || limulusLifeStages.gallery.length !== 4 || !limulusLife
   const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
   if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
 }
+const pagurusGallery = insects.find((item) => item.id === "pagurus-minutus");
+const pagurusFiles = ["individual", "juvenile", "shell-choice", "feeding"].map((role) => `pagurus-minutus-${role}-imagegen-v1.png`);
+if (!pagurusGallery || pagurusGallery.gallery.length !== 4 || pagurusFiles.some((fileName) => !pagurusGallery.gallery.some((item) => item.src.endsWith(fileName)))) throw new Error("Pagurus minutus first gallery is incomplete.");
+for (const fileName of pagurusFiles) {
+  const reviewCopy = await readFile(new URL(`../assets/insects/review/priority-new-friends-20260926-a/${fileName}`, import.meta.url));
+  const publicCopy = await readFile(new URL(`../assets/insects/approved/${fileName}`, import.meta.url));
+  if (!reviewCopy.equals(publicCopy)) throw new Error(`Review and public copies differ: ${fileName}`);
+}
 for (const id of illustratedExpansionIds) {
   const insect = insects.find((item) => item.id === id);
   if (!insect || insect.gallery.length !== 4) throw new Error(`Familiar-life expansion needs four varied images: ${id}`);
@@ -155,7 +164,7 @@ const rareFamousManifest = JSON.parse(await readFile(new URL("../tools/generatio
 if (rareFamousManifest.species?.length !== rareFamousIds.size || rareFamousManifest.species.some((entry) => !rareFamousIds.has(entry.id) || entry.roles?.length !== 4 || !entry.sources?.length || !entry.supports)) throw new Error("Rare and famous image provenance manifest is incomplete.");
 const familiarNextManifest = JSON.parse(await readFile(new URL("../tools/generation-tests/familiar-next-20260909.json", import.meta.url), "utf8"));
 if (familiarNextManifest.species?.length !== familiarNextIds.size || familiarNextManifest.species.some((entry) => !familiarNextIds.has(entry.id) || entry.roles?.length !== 4 || !entry.sources?.length || !entry.supports)) throw new Error("Familiar new-friend image provenance manifest is incomplete.");
-const familiarLifeGalleryCount = [...illustratedNonInsectIds, ...illustratedFamiliarInsectIds, ...illustratedExpansionIds, ...familiarLocalIds, ...rareFamousIds, ...familiarNextIds, ...newFriendRepresentativeIds].reduce((total, id) => total + insects.find((insect) => insect.id === id).gallery.length, 0);
+const familiarLifeGalleryCount = [...illustratedNonInsectIds, ...directGalleryIds, ...illustratedFamiliarInsectIds, ...illustratedExpansionIds, ...familiarLocalIds, ...rareFamousIds, ...familiarNextIds, ...newFriendRepresentativeIds].reduce((total, id) => total + insects.find((insect) => insect.id === id).gallery.length, 0);
 const priorityRepresentativeGalleryCount = [...priorityRepresentativeIds].reduce((total, id) => total + insects.find((insect) => insect.id === id).gallery.length, 0);
 if (publicGalleryItems.length !== 378 + generatedImages.length + familiarLifeGalleryCount + priorityRepresentativeGalleryCount) throw new Error("Registered gallery count must match the baseline plus individually reviewed additions.");
 const newFriendManifest = JSON.parse(await readFile(new URL("../tools/generation-tests/new-friend-representatives-20260910.json", import.meta.url), "utf8"));
