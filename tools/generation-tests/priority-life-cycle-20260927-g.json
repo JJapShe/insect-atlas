@@ -1,0 +1,18 @@
+{
+  "createdAt": "2026-09-27",
+  "scope": "Myrmecocystus mexicanus pupal life-stage-gallery enrichment, published at the user's direction for later review.",
+  "source": "OpenAI built-in image generation; no external artwork was supplied as input",
+  "license": "Generated project asset; published to the Insect Atlas gallery at the user's direction",
+  "seed": "service-assigned; not exposed",
+  "workflow": "Built-in image generation, visual anatomy screening, unchanged copies into review and approved paths, public status pending user review",
+  "reviewStatus": "published-pending-user-review",
+  "records": [
+    {
+      "id": "myrmecocystus-mexicanus",
+      "koreanName": "꿀단지개미",
+      "role": "pupa",
+      "asset": "assets/insects/review/priority-life-cycle-20260927-g/myrmecocystus-mexicanus-pupa-imagegen-v1.png",
+      "supports": "모래 둥지에서 일개미가 돌보는 고치 속 번데기"
+    }
+  ]
+}

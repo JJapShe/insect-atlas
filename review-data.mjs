@@ -60,6 +60,7 @@ export const manifestUrls = Object.freeze([
   "tools/generation-tests/priority-life-cycle-20260927-d.json",
   "tools/generation-tests/priority-life-cycle-20260927-e.json",
   "tools/generation-tests/priority-life-cycle-20260927-f.json",
+  "tools/generation-tests/priority-life-cycle-20260927-g.json",
   "tools/generation-tests/priority-gallery-20260927-a.json",
   "tools/generation-tests/priority-gallery-20260927-b.json",
 ]);
@@ -99,6 +100,7 @@ const reviewAssetByPublicFile = new Map([
   ["chalcosoma-atlas-ecology-imagegen-v1.png", "assets/insects/review/priority-gallery-20260927-b/chalcosoma-atlas-ecology-imagegen-v1.png"],
   ["argiope-amoena-ecology-imagegen-v1.png", "assets/insects/review/priority-gallery-20260927-b/argiope-amoena-ecology-imagegen-v1.png"],
   ["phidippus-audax-juvenile-imagegen-v1.png", "assets/insects/review/priority-life-cycle-20260927-f/phidippus-audax-juvenile-imagegen-v1.png"],
+  ["myrmecocystus-mexicanus-pupa-imagegen-v1.png", "assets/insects/review/priority-life-cycle-20260927-g/myrmecocystus-mexicanus-pupa-imagegen-v1.png"],
   ["oecanthus-longicauda-egg-imagegen-v1.png", "assets/insects/review/priority-life-cycle-20260926-f/oecanthus-longicauda-egg-imagegen-v1.png"],
   ["trypoxylus-dichotomus-interaction-imagegen-v1.png", "assets/insects/review/replaced-combat-20260905/trypoxylus-dichotomus-interaction-2-imagegen-v1.png"],
   ["tenodera-sinensis-interaction-imagegen-v1.png", "assets/insects/review/replaced-combat-20260905/tenodera-sinensis-interaction-2-imagegen-v1.png"],
