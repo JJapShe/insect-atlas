@@ -1,6 +1,6 @@
 {
   "createdAt": "2026-09-27",
-  "scope": "Reticulitermes speratus Japanese subterranean termite ecology-gallery enrichment, published at the user's direction for later review.",
+  "scope": "Reticulitermes speratus, Chalcosoma atlas, and Argiope amoena ecology-gallery enrichment, published at the user's direction for later review.",
   "source": "OpenAI built-in image generation; no external artwork was supplied as input",
   "license": "Generated project asset; published to the Insect Atlas gallery at the user's direction",
   "seed": "service-assigned; not exposed",
@@ -20,6 +20,13 @@
       "role": "ecology",
       "asset": "assets/insects/review/priority-gallery-20260927-b/chalcosoma-atlas-ecology-imagegen-v1.png",
       "supports": "열대우림 나무의 수액을 먹는 성충 수컷"
+    },
+    {
+      "id": "argiope-amoena",
+      "koreanName": "호랑거미",
+      "role": "ecology",
+      "asset": "assets/insects/review/priority-gallery-20260927-b/argiope-amoena-ecology-imagegen-v1.png",
+      "supports": "그물 한가운데에서 작은 나방을 실로 감싸는 성체"
     }
   ]
 }

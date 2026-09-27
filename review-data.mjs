@@ -97,6 +97,7 @@ const reviewAssetByPublicFile = new Map([
   ["megasoma-elephas-ecology-imagegen-v1.png", "assets/insects/review/priority-gallery-20260927-a/megasoma-elephas-ecology-imagegen-v1.png"],
   ["reticulitermes-speratus-ecology-imagegen-v1.png", "assets/insects/review/priority-gallery-20260927-b/reticulitermes-speratus-ecology-imagegen-v1.png"],
   ["chalcosoma-atlas-ecology-imagegen-v1.png", "assets/insects/review/priority-gallery-20260927-b/chalcosoma-atlas-ecology-imagegen-v1.png"],
+  ["argiope-amoena-ecology-imagegen-v1.png", "assets/insects/review/priority-gallery-20260927-b/argiope-amoena-ecology-imagegen-v1.png"],
   ["phidippus-audax-juvenile-imagegen-v1.png", "assets/insects/review/priority-life-cycle-20260927-f/phidippus-audax-juvenile-imagegen-v1.png"],
   ["oecanthus-longicauda-egg-imagegen-v1.png", "assets/insects/review/priority-life-cycle-20260926-f/oecanthus-longicauda-egg-imagegen-v1.png"],
   ["trypoxylus-dichotomus-interaction-imagegen-v1.png", "assets/insects/review/replaced-combat-20260905/trypoxylus-dichotomus-interaction-2-imagegen-v1.png"],
