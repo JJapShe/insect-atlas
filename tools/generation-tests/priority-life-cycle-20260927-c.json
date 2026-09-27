@@ -1,0 +1,18 @@
+{
+  "createdAt": "2026-09-27",
+  "scope": "Papilio maackii Maack's swallowtail larval-stage gallery enrichment, published at the user's direction for later review.",
+  "source": "OpenAI built-in image generation; no external artwork was supplied as input",
+  "license": "Generated project asset; published to the Insect Atlas gallery at the user's direction",
+  "seed": "service-assigned; not exposed",
+  "workflow": "Built-in image generation, visual anatomy screening, unchanged copies into review and approved paths, public status pending user review",
+  "reviewStatus": "published-pending-user-review",
+  "records": [
+    {
+      "id": "papilio-maackii",
+      "koreanName": "산제비나비",
+      "role": "larva",
+      "asset": "assets/insects/review/priority-life-cycle-20260927-c/papilio-maackii-larva-imagegen-v1.png",
+      "supports": "산지 숲의 먹이식물 잎 위에서 자라는 초록 유충"
+    }
+  ]
+}
