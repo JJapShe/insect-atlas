@@ -1,0 +1,18 @@
+{
+  "createdAt": "2026-09-27",
+  "scope": "Hydropsyche orientalis Oriental caddisfly pupal-stage gallery enrichment, published at the user's direction for later review.",
+  "source": "OpenAI built-in image generation; no external artwork was supplied as input",
+  "license": "Generated project asset; published to the Insect Atlas gallery at the user's direction",
+  "seed": "service-assigned; not exposed",
+  "workflow": "Built-in image generation, visual anatomy screening, unchanged copies into review and approved paths, public status pending user review",
+  "reviewStatus": "published-pending-user-review",
+  "records": [
+    {
+      "id": "hydropsyche-orientalis",
+      "koreanName": "동양날도래",
+      "role": "pupa",
+      "asset": "assets/insects/review/priority-life-cycle-20260927-b/hydropsyche-orientalis-pupa-imagegen-v1.png",
+      "supports": "계류의 돌 아래 실집 안에 안전하게 자리한 번데기"
+    }
+  ]
+}
