@@ -13,6 +13,13 @@
       "role": "ecology",
       "asset": "assets/insects/review/priority-gallery-20260927-b/reticulitermes-speratus-ecology-imagegen-v1.png",
       "supports": "고목 속에서 나무 조각을 옮기는 일개미들"
+    },
+    {
+      "id": "chalcosoma-atlas",
+      "koreanName": "아틀라스장수풍뎅이",
+      "role": "ecology",
+      "asset": "assets/insects/review/priority-gallery-20260927-b/chalcosoma-atlas-ecology-imagegen-v1.png",
+      "supports": "열대우림 나무의 수액을 먹는 성충 수컷"
     }
   ]
 }
